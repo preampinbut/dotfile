@@ -197,6 +197,10 @@ bindsym $mod+Escape exec --no-startup-id $HOME/.config/polybar/forest/scripts/po
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png"
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 
+bindsym $mod+comma exec --no-startup-id emoji-picker
+
+
+
 for_window [class="discord"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
 
@@ -205,6 +209,15 @@ for_window [class="Spotify"] move to workspace $ws10
 # bar {
 #         status_command i3status
 # }
+
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
 
 default_border pixel 5
 default_floating_border pixel 5
