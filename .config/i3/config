@@ -48,6 +48,8 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl --player=spotify previous
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
+bindsym $mod+n exec --no-startup-id synclient TouchpadOff=$((`synclient -l | grep TouchpadOff | awk '{print $3}'`==0))
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -70,6 +72,8 @@ bindsym $mod+d exec --no-startup-id $HOME/.config/polybar/forest/scripts/launche
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+bindsym $mod+x exec pcmanfm
 
 # change focus
 bindsym $mod+j focus left
@@ -227,7 +231,7 @@ gaps outer 4
 
 focus_follows_mouse no
 
-exec feh --bg-scale $HOME/Pictures/alena-aenami-7pm.png
+exec feh --bg-scale $HOME/Pictures/bg.png
 exec --no-startup-id picom -b
 
 exec i3-config-wizard
