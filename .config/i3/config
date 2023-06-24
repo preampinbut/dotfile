@@ -239,3 +239,5 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 
 exec discord
 exec spotify-launcher -v --skip-update
+
+exec unclutter -idle 1 -jitter 2 -root &
