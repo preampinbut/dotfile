@@ -26,6 +26,8 @@
 if xinput list-props 10 | grep "Device Enabled ([[:digit:]]\+):\s*1" >/dev/null
 then
     xinput disable 10
+    xdotool mousemove 1920 1080
 else
     xinput enable 10
+    xdotool mousemove 960 540 
 fi
