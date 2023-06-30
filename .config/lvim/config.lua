@@ -3,11 +3,21 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
+local components = require("lvim.core.lualine.components")
+lvim.builtin.lualine.sections.lualine_a = {
+  components.mode,
+  "mode"
+}
+
 vim.opt.relativenumber = true
 vim.opt.wrap = true
 
+-- Buffer navigation
 lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
+
+-- Terminal mode to return to normal
+lvim.keys.terminal_mode["<ESC>"] = "<C-\\><C\n><cr>"
 
 lvim.format_on_save = true
 
