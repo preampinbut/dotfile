@@ -17,7 +17,8 @@ lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
 
 -- Terminal mode to return to normal
-lvim.keys.terminal_mode["<ESC>"] = "<C-\\><C\n><cr>"
+vim.api.nvim_set_keymap('t', '<ESC>', "<C-\\><C-n><cr>",
+  { noremap = true, silent = true })
 
 lvim.format_on_save = true
 
