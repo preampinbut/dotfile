@@ -50,6 +50,21 @@ require("lvim.lsp.manager").setup("tsserver", {
   },
 })
 
+require("lvim.lsp.manager").setup("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      lens = {
+        run = {
+          enable = false
+        },
+        debug = {
+          enable = false
+        }
+      }
+    }
+  }
+})
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
