@@ -1,4 +1,6 @@
 import:
  - ~/.config/alacritty/themes/themes/dracula.yaml
 font:
-  size: 7.0
+  size: 6.5
+window:
+  dynamic_padding: true
