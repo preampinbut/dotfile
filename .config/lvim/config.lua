@@ -11,13 +11,17 @@ lvim.builtin.lualine.sections.lualine_a = {
 
 vim.opt.relativenumber = true
 vim.opt.wrap = true
+vim.opt.showcmd = true
 
 -- Buffer navigation
 lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
 
+-- Save all
+lvim.keys.normal_mode["<leader>W"] = ":wa<cr>"
+
 -- Terminal mode to return to normal
-vim.api.nvim_set_keymap('t', '<ESC>', "<C-\\><C-n><cr>",
+vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
   { noremap = true, silent = true })
 
 lvim.format_on_save = true
@@ -29,10 +33,22 @@ lvim.plugins = {
     version = "<CurrentMajor>.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
     -- install jsregexp (optional!).
     build = "make install_jsregexp"
-  }
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
 }
 
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.expand("$HOME/.config/Code/User/snippets") } })
+
+require("lvim.lsp.manager").setup("tsserver", {
+  settings = {
+    diagnostics = { ignoredCodes = { 6133 } }
+  },
+})
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
