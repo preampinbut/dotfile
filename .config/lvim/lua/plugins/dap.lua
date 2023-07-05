@@ -5,10 +5,12 @@ dap.adapters.lldb = {
   name = 'lldb'
 }
 
-require('dap.ext.vscode').load_launchjs(nil, { lldb = { 'rust' } })
+local dep_vscode = require('dap.ext.vscode')
+dep_vscode.load_launchjs(nil, { lldb = { 'rust' } })
 
 -- Define a function to build the Rust app and start the debug session
 function BuildAndDebug()
+  dep_vscode.load_launchjs(nil, { lldb = { 'rust' } })
   local file_extension = vim.fn.expand('%:e') -- Get the file extension of the current file
   if file_extension == 'rs' then
     -- Run the build command (e.g., cargo build)
@@ -25,3 +27,5 @@ end
 -- Bind the function to a key mapping (e.g., <F5>)
 vim.api.nvim_set_keymap('n', '<F5>', '<cmd>lua BuildAndDebug()<CR>',
   { noremap = true, silent = true })
+
+lvim.builtin.which_key.mappings.d.s = { "<cmd>lua BuildAndDebug()<CR>", "Start" }
