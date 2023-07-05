@@ -6,7 +6,6 @@ dap.adapters.lldb = {
 }
 
 local dep_vscode = require('dap.ext.vscode')
-dep_vscode.load_launchjs(nil, { lldb = { 'rust' } })
 
 -- Define a function to build the Rust app and start the debug session
 function BuildAndDebug()
