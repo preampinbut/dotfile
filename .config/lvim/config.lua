@@ -65,6 +65,15 @@ require("lvim.lsp.manager").setup("rust_analyzer", {
   }
 })
 
+local dap = require('dap')
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode',
+  name = 'lldb'
+}
+
+require('dap.ext.vscode').load_launchjs(nil, { lldb = { 'rust' } })
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
