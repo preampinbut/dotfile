@@ -22,12 +22,33 @@
 # Following bash script is referred to this askubuntu question:
 # http://askubuntu.com/questions/751413/how-to-disable-enable-toggle-touchpad-in-a-dell-laptop
 
+flag_v=false
+
+while [[ $# -gt 0 ]]; do
+  flag="$1"
+  case "$flag" in
+    -v)
+      flag_v=true
+      ;;
+  esac
+  shift
+done
 
 if xinput list-props 10 | grep "Device Enabled ([[:digit:]]\+):\s*1" >/dev/null
 then
+  if [ "$flag_v" = true ]
+  then
+    echo "true"
+  else
     xinput disable 10
     xdotool mousemove 1920 1080
+  fi
 else
+  if [ "$flag_v" = true ]
+  then
+    echo "false"
+  else
     xinput enable 10
     xdotool mousemove 960 540 
+  fi
 fi
