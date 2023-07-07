@@ -38,7 +38,7 @@ if xinput list-props 10 | grep "Device Enabled ([[:digit:]]\+):\s*1" >/dev/null
 then
   if [ "$flag_v" = true ]
   then
-    echo "true"
+    echo "on"
   else
     xinput disable 10
     xdotool mousemove 1920 1080
@@ -46,7 +46,7 @@ then
 else
   if [ "$flag_v" = true ]
   then
-    echo "false"
+    echo "off"
   else
     xinput enable 10
     xdotool mousemove 960 540 
