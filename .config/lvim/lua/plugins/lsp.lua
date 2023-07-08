@@ -53,3 +53,16 @@ linters.setup {
     }
   }
 }
+
+local code_actions = require "lvim.lsp.null-ls.code_actions"
+code_actions.setup {
+  {
+    exe = "eslint_d",
+    filetypes = {
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact"
+    },
+  },
+}
