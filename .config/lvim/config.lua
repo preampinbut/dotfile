@@ -14,7 +14,10 @@ lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
 
 -- Save all
-lvim.keys.normal_mode["<leader>W"] = ":wa<cr>"
+-- lvim.keys.normal_mode["<leader>W"] = ":wa<cr>"
+lvim.builtin.which_key.mappings["W"] = {
+  ":wa<CR>", "Save All"
+}
 
 -- Terminal mode to return to normal
 vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
@@ -24,3 +27,4 @@ require("plugins.dap")
 require("plugins.lsp")
 require("plugins.lualine")
 require("plugins.snippet")
+require("plugins.tree")
