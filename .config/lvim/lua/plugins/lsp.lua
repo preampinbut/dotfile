@@ -1,12 +1,3 @@
-lvim.plugins = {
-  {
-    "windwp/nvim-ts-autotag",
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
-  }
-}
-
 require("lvim.lsp.manager").setup("tsserver", {
   settings = {
     diagnostics = { ignoredCodes = { 6133 } }
