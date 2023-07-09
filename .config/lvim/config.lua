@@ -23,6 +23,22 @@ lvim.builtin.which_key.mappings["W"] = {
 vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
   { noremap = true, silent = true })
 
+lvim.plugins = {
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "<CurrentMajor>.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp"
+  },
+}
+
 require("plugins.dap")
 require("plugins.lsp")
 require("plugins.lualine")
