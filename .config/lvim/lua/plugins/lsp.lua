@@ -1,3 +1,5 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 require("lvim.lsp.manager").setup("tsserver", {
   settings = {
     diagnostics = { ignoredCodes = { 6133 } }
@@ -16,6 +18,19 @@ require("lvim.lsp.manager").setup("rust_analyzer", {
         }
       }
     }
+  }
+})
+
+require("lvim.lsp.manager").setup("emmet_ls", {
+  cmd = { "emmet-ls", "--stdio" },
+  capabilities = capabilities,
+  filetypes = {
+    "css",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
   }
 })
 
