@@ -23,7 +23,12 @@ lvim.builtin.which_key.mappings["W"] = {
 vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
   { noremap = true, silent = true })
 
+lvim.colorscheme = "dracula"
+
 lvim.plugins = {
+  {
+    "ray-x/starry.nvim",
+  },
   {
     "windwp/nvim-ts-autotag",
     config = function()
@@ -37,6 +42,14 @@ lvim.plugins = {
     -- install jsregexp (optional!).
     build = "make install_jsregexp"
   },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 1
+    end,
+  },
 }
 
 require("plugins.dap")
@@ -44,3 +57,4 @@ require("plugins.lsp")
 require("plugins.lualine")
 require("plugins.snippet")
 require("plugins.tree")
+require("plugins.telescope")
