@@ -6,6 +6,7 @@
 vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.showcmd = true
+vim.opt.scrolloff = 15
 
 lvim.format_on_save = true
 
@@ -26,6 +27,13 @@ vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
 lvim.colorscheme = "dracula"
 
 lvim.plugins = {
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
   {
     "ray-x/starry.nvim",
   },
@@ -58,3 +66,4 @@ require("plugins.lualine")
 require("plugins.snippet")
 require("plugins.tree")
 require("plugins.telescope")
+require("plugins.comment")
