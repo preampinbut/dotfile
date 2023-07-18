@@ -15,9 +15,12 @@ lvim.format_on_save = true
 lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
 
--- Save all
+-- BUG: csharp_lsp related colorscheme not load
+-- NOTE: <leader>+W This is to fix problem cause by csharp_ls
+-- wait for csharp_ls to finish load up project then press <leader>+W
+-- its not a big deal just annoying
 lvim.builtin.which_key.mappings.W = {
-  "<cmd>:wa<cr>", "Save All"
+  "<cmd>:w<cr>:mkview<cr>:e<cr>", "Save"
 }
 
 -- Terminal mode to return to normal
