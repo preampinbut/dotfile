@@ -35,8 +35,8 @@ vim.opt.foldenable = true
 vim.cmd [[
 augroup remember_folds
     autocmd!
-    autocmd BufWinLeave ?* mkview | filetype detect
-    autocmd BufWinEnter ?* silent loadview | filetype detect
+    autocmd BufWinLeave *.* mkview
+    autocmd BufWinEnter *.* silent loadview
 augroup END
 ]]
 
