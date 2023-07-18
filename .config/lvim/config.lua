@@ -28,6 +28,19 @@ vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
 lvim.colorscheme = "dracula"
 
 lvim.builtin.treesitter.ensure_installed = "all"
+lvim.builtin.which_key.setup.plugins.presets.z = true
+lvim.builtin.which_key.setup.plugins.registers = true
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+vim.cmd([[
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent! loadview | set foldmethod=manual
+  autocmd BufReadPost *.* set foldmethod=manual
+augroup END
+]])
 
 lvim.plugins = {
   {
