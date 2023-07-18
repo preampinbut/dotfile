@@ -16,9 +16,8 @@ lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
 
 -- Save all
--- lvim.keys.normal_mode["<leader>W"] = ":wa<cr>"
-lvim.builtin.which_key.mappings["W"] = {
-  ":wa<CR>", "Save All"
+lvim.builtin.which_key.mappings.W = {
+  "<cmd>:wa<cr>", "Save All"
 }
 
 -- Terminal mode to return to normal
@@ -29,18 +28,17 @@ lvim.colorscheme = "dracula"
 
 lvim.builtin.treesitter.ensure_installed = "all"
 lvim.builtin.which_key.setup.plugins.presets.z = true
-lvim.builtin.which_key.setup.plugins.registers = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
-vim.cmd([[
+vim.opt.foldenable = true
+vim.cmd [[
 augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave *.* mkview
-  autocmd BufWinEnter *.* silent! loadview | set foldmethod=manual
-  autocmd BufReadPost *.* set foldmethod=manual
+    autocmd!
+    autocmd BufWinLeave ?* mkview | filetype detect
+    autocmd BufWinEnter ?* silent loadview | filetype detect
 augroup END
-]])
+]]
 
 lvim.plugins = {
   {
