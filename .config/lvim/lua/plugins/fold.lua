@@ -6,13 +6,15 @@ vim.opt.foldenable = true
 
 function InitView()
   local filename = vim.fn.expand('%:p')
-  local home_directory = vim.loop.os_homedir() or ''
-  filename = string.gsub(filename, home_directory, '~')
-  filename = string.gsub(filename, '/', '=+')
-  filename = filename .. "="
-  local view_file = vim.fn.stdpath("state") .. '/view/' .. filename
-  if vim.fn.filereadable(view_file) == 0 then
-    vim.cmd('mkview')
+  if vim.fn.filereadable(filename) ~= 0 then
+    local home_directory = vim.loop.os_homedir() or ''
+    filename = string.gsub(filename, home_directory, '~')
+    filename = string.gsub(filename, '/', '=+')
+    filename = filename .. "="
+    local view_file = vim.fn.stdpath("state") .. '/view/' .. filename
+    if vim.fn.filereadable(view_file) == 0 then
+      vim.cmd('mkview')
+    end
   end
 end
 
