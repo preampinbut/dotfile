@@ -7,6 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.showcmd = true
 vim.opt.scrolloff = 15
+vim.opt.hidden = false
 
 lvim.format_on_save = true
 
@@ -25,6 +26,8 @@ vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
   { noremap = true, silent = true })
 
 lvim.colorscheme = "dracula"
+
+lvim.builtin.treesitter.ensure_installed = "all"
 
 lvim.plugins = {
   {
