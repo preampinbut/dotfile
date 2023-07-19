@@ -9,6 +9,15 @@ vim.opt.showcmd = true
 vim.opt.scrolloff = 15
 vim.opt.hidden = false
 
+function TermCheck()
+  local filename = vim.fn.expand("%:p")
+  if filename:match("^term://") == nil then
+    vim.opt.hidden = true
+  end
+end
+
+vim.cmd("lua TermCheck()")
+
 lvim.format_on_save = true
 
 -- Buffer navigation
