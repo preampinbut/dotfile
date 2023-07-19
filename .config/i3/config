@@ -200,10 +200,16 @@ bindsym $mod+Escape exec --no-startup-id $HOME/.config/polybar/forest/scripts/po
 
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png"
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim -sD | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim -sD "/home/$USER/Pictures/$(date).png"
 
 bindsym $mod+comma exec --no-startup-id emoji-picker
 
-
+# Editable
+# START DEV
+# edit or add new class
+for_window [class="Explorer"] move to workspace $ws3
+# END DEV
 
 for_window [class="discord"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
@@ -240,5 +246,5 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 # exec discord
 # exec spotify-launcher -v --skip-update
 
-exec xinput disable 10
+exec_always xinput disable 10
 exec unclutter -idle 1 -jitter 2 -root &
