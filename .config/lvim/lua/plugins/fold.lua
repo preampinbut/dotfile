@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("BufRead", {
       once = true,
       callback = function()
         vim.defer_fn(function()
-          local str = vim.api.nvim_replace_termcodes("<cmd>lua InitView()<cr>:silent! loadview<cr>", true, false,
+          local str = vim.api.nvim_replace_termcodes("<cmd>lua InitView()<cr>:silent! loadview<cr>:<C-c>", true, false,
             true)
           vim.api.nvim_feedkeys(str, "m", false)
         end, 60)
