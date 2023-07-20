@@ -60,7 +60,7 @@ tiling_drag modifier titlebar
 # start a terminal
 bindsym $mod+Return exec kitty
 
-bindsym $mod+Shift+Return exec brave
+bindsym $mod+Shift+Return exec /opt/min-browser/min-browser
 
 # kill focused window
 bindsym $mod+Shift+q kill
