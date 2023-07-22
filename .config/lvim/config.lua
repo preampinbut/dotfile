@@ -9,13 +9,12 @@ vim.opt.showcmd = true
 vim.opt.scrolloff = 15
 vim.opt.hidden = false
 
-local function termCheck()
-  local filename = vim.fn.expand("%:p")
-  if filename:match("^term://") == nil then
-    vim.opt.hidden = true
-  end
-end
-termCheck()
+vim.cmd[[
+augroup TerminalBuffer
+    autocmd!
+    autocmd TermOpen * setlocal hidden
+  augroup END
+]]
 
 lvim.format_on_save = true
 
@@ -85,3 +84,4 @@ require("plugins.tree")
 require("plugins.telescope")
 require("plugins.comment")
 require("plugins.fold")
+
