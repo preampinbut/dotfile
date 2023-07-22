@@ -9,14 +9,13 @@ vim.opt.showcmd = true
 vim.opt.scrolloff = 15
 vim.opt.hidden = false
 
-function TermCheck()
+local function termCheck()
   local filename = vim.fn.expand("%:p")
   if filename:match("^term://") == nil then
     vim.opt.hidden = true
   end
 end
-
-vim.cmd("lua TermCheck()")
+termCheck()
 
 lvim.format_on_save = true
 
@@ -24,21 +23,35 @@ lvim.format_on_save = true
 lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
 
+lvim.builtin.which_key.mappings.C = {
+  "<cmd>:bufdo bd<cr>", "Close All Buffer"
+}
+
 -- BUG: csharp_lsp related colorscheme not load
 -- NOTE: <leader>+W This is to fix problem cause by csharp_ls
 -- wait for csharp_ls to finish load up project then press <leader>+W
 -- its not a big deal just annoying
 lvim.builtin.which_key.mappings.W = {
-  "<cmd>:w<cr>:mkview<cr>:e<cr>", "Save"
+  "<cmd>:w<cr>:mkview<cr>:e<cr>", "Save and Reload"
 }
 
 -- Terminal mode to return to normal
 vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
   { noremap = true, silent = true })
 
-lvim.colorscheme = "dracula"
-
 lvim.builtin.treesitter.ensure_installed = "all"
+
+local function dayNight()
+  local hour = tonumber(os.date("%H"))
+
+  if hour >= 6 and hour < 18 then
+    return "tokyonight-day"
+  else
+    return "dracula"
+  end
+end
+
+lvim.colorscheme = dayNight()
 
 lvim.plugins = {
   {
@@ -49,7 +62,13 @@ lvim.plugins = {
     end,
   },
   {
-    "ray-x/starry.nvim",
+    "dracula/vim"
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
   {
     "windwp/nvim-ts-autotag",
