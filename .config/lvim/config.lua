@@ -41,17 +41,17 @@ vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
 
 lvim.builtin.treesitter.ensure_installed = "all"
 
-local function dayNight()
-  local hour = tonumber(os.date("%H"))
+-- local function dayNight()
+--   local hour = tonumber(os.date("%H"))
 
-  if hour >= 6 and hour < 18 then
-    return "tokyonight-day"
-  else
-    return "dracula"
-  end
-end
+--   if hour >= 6 and hour < 18 then
+--     return "tokyonight-day"
+--   else
+--     return "dracula"
+--   end
+-- end
 
-lvim.colorscheme = dayNight()
+lvim.colorscheme = "dracula"
 
 lvim.plugins = {
   {
@@ -62,13 +62,9 @@ lvim.plugins = {
     end,
   },
   {
-    "dracula/vim"
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
+    "ray-x/starry.nvim",
+    init = function()
+    end,
   },
   {
     "windwp/nvim-ts-autotag",
