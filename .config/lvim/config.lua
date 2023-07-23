@@ -9,7 +9,7 @@ vim.opt.showcmd = true
 vim.opt.scrolloff = 15
 vim.opt.hidden = false
 
-vim.cmd[[
+vim.cmd [[
 augroup TerminalBuffer
     autocmd!
     autocmd TermOpen * setlocal hidden
@@ -83,5 +83,5 @@ require("plugins.snippet")
 require("plugins.tree")
 require("plugins.telescope")
 require("plugins.comment")
-require("plugins.fold")
-
+-- WARN: currently conflict with go to definition
+-- require("plugins.fold")
