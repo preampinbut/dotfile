@@ -4,6 +4,8 @@ import sys
 import dbus
 import argparse
 
+offline = '%{F#EC7875} %{F-}Offline'
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     '-t',
@@ -121,7 +123,7 @@ try:
     album = fix_string(metadata['xesam:album']) if metadata['xesam:album'] else ''
 
     if (quiet and status == 'Paused') or (not artist and not song and not album):
-        print('Offline')
+        print(offline)
     else:
         if font:
             artist = label_with_font.format(font=font, label=artist)
@@ -136,7 +138,7 @@ try:
 
 except Exception as e:
     if isinstance(e, dbus.exceptions.DBusException):
-        print('Offline')
+        print(offline)
     else:
         print(e)
 
