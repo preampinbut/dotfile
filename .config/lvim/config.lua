@@ -9,13 +9,6 @@ vim.opt.showcmd = true
 vim.opt.scrolloff = 15
 vim.opt.hidden = false
 
-vim.cmd [[
-augroup TerminalBuffer
-    autocmd!
-    autocmd TermOpen * setlocal hidden
-  augroup END
-]]
-
 lvim.format_on_save = true
 
 -- Buffer navigation
