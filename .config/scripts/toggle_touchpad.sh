@@ -24,6 +24,9 @@
 
 flag_v=false
 
+# xinput list --name-only
+device_id=$(xinput list --id-only "ELAN0791:00 04F3:30FD Touchpad")
+
 while [[ $# -gt 0 ]]; do
   flag="$1"
   case "$flag" in
@@ -34,13 +37,13 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
-if xinput list-props 10 | grep "Device Enabled ([[:digit:]]\+):\s*1" >/dev/null
+if xinput list-props "$device_id" | grep "Device Enabled ([[:digit:]]\+):\s*1" >/dev/null
 then
   if [ "$flag_v" = true ]
   then
     echo "on"
   else
-    xinput disable 10
+    xinput disable "$device_id"
     xdotool mousemove 1920 1080
   fi
 else
@@ -48,7 +51,7 @@ else
   then
     echo "off"
   else
-    xinput enable 10
+    xinput enable "$device_id"
     xdotool mousemove 960 540 
   fi
 fi
