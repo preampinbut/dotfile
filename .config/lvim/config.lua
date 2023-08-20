@@ -51,7 +51,19 @@ lvim.plugins = {
     end,
   },
   {
-    "ray-x/starry.nvim"
+    "ray-x/starry.nvim",
+    config = function()
+      local starry = require "starry"
+      local colors = require "starry.colors"
+      starry.setup {
+        custom_highlights = {
+          BufferLineBackground = {
+            bg = colors.bg,
+            italic = true
+          }
+        }
+      }
+    end,
   },
   {
     "windwp/nvim-ts-autotag",
