@@ -237,7 +237,7 @@ gaps outer 4
 
 focus_follows_mouse no
 
-exec feh --bg-scale $HOME/Pictures/bg.png
+exec --no-startup-id feh --bg-scale $HOME/Pictures/bg.png
 exec --no-startup-id picom -b
 
 exec i3-config-wizard
@@ -247,4 +247,5 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 # exec spotify-launcher -v --skip-update
 
 # exec_always xinput disable 10
-exec unclutter -idle 1 -jitter 2 -root &
+exec --no-startup-id unclutter -idle 1 -jitter 2 -root &
+exec --no-startup-id screenkey --no-systray --opacity 0.0 --key-mode raw --bak-mode normal --persist -p fixed -g 301x30+394+0
