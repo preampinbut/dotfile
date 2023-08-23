@@ -248,4 +248,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 
 # exec_always xinput disable 10
 exec --no-startup-id unclutter -idle 1 -jitter 2 -root &
-exec --no-startup-id screenkey --no-systray --opacity 0.0 --key-mode raw --bak-mode normal --persist -p fixed -g 301x30+394+0
+exec --no-startup-id screenkey --no-systray --key-mode raw --bak-mode normal -p fixed -g 245x26+1675+1054
