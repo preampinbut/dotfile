@@ -44,6 +44,15 @@ lvim.plugins = {
     end,
   },
   {
+    "ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function()
+      require "lsp_signature".setup {
+        hint_enable = false
+      }
+    end
+  },
+  {
     "ray-x/starry.nvim",
     config = function()
       local starry = require "starry"
@@ -85,6 +94,7 @@ require("plugins.dap")
 require("plugins.lsp")
 require("plugins.lualine")
 require("plugins.snippet")
+require("plugins.signature")
 require("plugins.tree")
 require("plugins.telescope")
 require("plugins.comment")
