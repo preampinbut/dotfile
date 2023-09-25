@@ -34,41 +34,48 @@ require("lvim.lsp.manager").setup("emmet_ls", {
   }
 })
 
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  {
-    exe = "eslint_d",
-    filetypes = {
-      "typescript",
-      "typescriptreact",
-      "javascript",
-      "javascriptreact"
+local eslintrc = vim.fn.glob(".eslintrc*", false, true)
+
+if not vim.tbl_isempty(eslintrc) then
+  local formatters = require "lvim.lsp.null-ls.formatters"
+  formatters.setup {
+    {
+      exe = "eslint_d",
+      args = { "--stdin", "--cache" },
+      filetypes = {
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact"
+      }
     }
   }
-}
 
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  {
-    command = "eslint_d",
-    filetypes = {
-      "typescript",
-      "typescriptreact",
-      "javascript",
-      "javascriptreact"
+  local linters = require "lvim.lsp.null-ls.linters"
+  linters.setup {
+    {
+      command = "eslint_d",
+      args = { "--stdin", "--cache" },
+      filetypes = {
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact"
+      }
     }
   }
-}
 
-local code_actions = require "lvim.lsp.null-ls.code_actions"
-code_actions.setup {
-  {
-    exe = "eslint_d",
-    filetypes = {
-      "typescript",
-      "typescriptreact",
-      "javascript",
-      "javascriptreact"
+  local code_actions = require "lvim.lsp.null-ls.code_actions"
+  code_actions.setup {
+    {
+      exe = "eslint_d",
+      args = { "--stdin", "--cache" },
+      filetypes = {
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact"
+      },
     },
-  },
-}
+  }
+end
