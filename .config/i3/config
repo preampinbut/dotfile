@@ -48,7 +48,9 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl --player=spotify previous &
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 && $refresh_i3status
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 && $refresh_i3status
 
-bindsym $mod+n exec --no-startup-id $HOME/.config/scripts/toggle_touchpad.sh && $refresh_i3status
+# bindsym $mod+Shift+n exec --no-startup-id $HOME/.config/scripts/toggle_touchpad.sh && $refresh_i3status
+
+bindsym $mod+n exec --no-startup-id xdotool mousemove 1920 1080
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -60,7 +62,7 @@ tiling_drag modifier titlebar
 # start a terminal
 bindsym $mod+Return exec kitty
 
-bindsym $mod+Shift+Return exec /opt/min-browser/min-browser
+bindsym $mod+Shift+Return exec opera
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -116,8 +118,11 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
+# toggle sticky
+bindsym $mod+Shift+s sticky toggle
+
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+t focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -214,6 +219,8 @@ for_window [class="obs"] move to workspace $ws8
 for_window [class="discord"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
 
+# for_window [floating] sticky enable
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
@@ -237,7 +244,7 @@ gaps outer 4
 
 focus_follows_mouse no
 
-exec --no-startup-id feh --bg-scale $HOME/Pictures/bg.png
+exec --no-startup-id feh --bg-max $HOME/Pictures/ryo.jpg
 exec --no-startup-id picom -b
 
 exec i3-config-wizard
@@ -248,4 +255,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
 
 # exec_always xinput disable 10
 exec --no-startup-id unclutter -idle 1 -jitter 2 -root &
-exec --no-startup-id screenkey --no-systray --key-mode raw --bak-mode normal -p fixed -g 245x26+1675+1054
+exec_always --no-startup-id screenkey --no-systray --key-mode raw --bak-mode normal -p fixed -g 245x26+1675+1054
