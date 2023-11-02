@@ -4,7 +4,7 @@ import sys
 import dbus
 import argparse
 
-offline = '%{F#EC7875}%{F-} Offline'
+offline = '%{F#EC7875}%{F-}                Offline             '
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -141,4 +141,3 @@ except Exception as e:
         print(offline)
     else:
         print(e)
-
