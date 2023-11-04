@@ -4,25 +4,6 @@ import sys
 import dbus
 import argparse
 
-def set_buffer(name, trunclen, prefix_size):
-    buffer_size = trunclen - (len(name) - prefix_size)
-    buffer = ' ' * buffer_size
-    # Calculate the length of the buffer_string
-    buffer_length = len(buffer)
-    # Calculate the positions to split the buffer_string
-    split_position = buffer_length // 2
-    # Split the buffer_string into two halves
-    first_half = buffer[:split_position]
-    second_half = buffer[split_position:]
-    # Combine the first half, the name, and the second half
-    name = first_half + name + second_half
-    return name
-
-def print_offline(trunclen):
-    offline_prefix = '%{F#EC7875}%{F-}'
-    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen, len(offline_prefix))
-    print(offline)
-
 parser = argparse.ArgumentParser()
 parser.add_argument(
     '-t',
@@ -73,6 +54,25 @@ def fix_string(string):
         return string
     else:
         return string.encode('utf-8')
+
+def set_buffer(name, trunclen, prefix_size):
+    buffer_size = trunclen - (len(name) - prefix_size)
+    buffer = ' ' * buffer_size
+    # Calculate the length of the buffer_string
+    buffer_length = len(buffer)
+    # Calculate the positions to split the buffer_string
+    split_position = buffer_length // 2
+    # Split the buffer_string into two halves
+    first_half = buffer[:split_position]
+    second_half = buffer[split_position:]
+    # Combine the first half, the name, and the second half
+    name = first_half + name + second_half
+    return name
+
+def print_offline(trunclen):
+    offline_prefix = '%{F#EC7875}%{F-}'
+    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen, len(offline_prefix))
+    print(offline)
 
 def truncate(name, trunclen, prefix_size):
     if (len(name) - prefix_size) > trunclen:
