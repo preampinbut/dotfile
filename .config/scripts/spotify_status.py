@@ -4,7 +4,24 @@ import sys
 import dbus
 import argparse
 
-offline = '%{F#EC7875}%{F-}                Offline             '
+def set_buffer(name, trunclen, prefix_size):
+    buffer_size = trunclen - (len(name) - prefix_size)
+    buffer = ' ' * buffer_size
+    # Calculate the length of the buffer_string
+    buffer_length = len(buffer)
+    # Calculate the positions to split the buffer_string
+    split_position = buffer_length // 2
+    # Split the buffer_string into two halves
+    first_half = buffer[:split_position]
+    second_half = buffer[split_position:]
+    # Combine the first half, the name, and the second half
+    name = first_half + name + second_half
+    return name
+
+def print_offline(trunclen):
+    offline_prefix = '%{F#EC7875}%{F-}'
+    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen + 4, len(offline_prefix))
+    print(offline)
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -57,20 +74,20 @@ def fix_string(string):
     else:
         return string.encode('utf-8')
 
-
-def truncate(name, trunclen):
-    if len(name) > trunclen:
-        name = name[:trunclen]
+def truncate(name, trunclen, prefix_size):
+    if (len(name) - prefix_size) > trunclen:
+        name = name[:trunclen + prefix_size - 3]
         name += '...'
         if ('(' in name) and (')' not in name):
             name += ')'
+    else:
+        name = set_buffer(name, trunclen, prefix_size)
     return name
-
 
 
 # Default parameters
 output = fix_string(u'{play_pause} {artist}: {song}')
-trunclen = 35
+trunclen = 20
 play_pause = fix_string(u'\u25B6,\u23F8') # first character is play, second is paused
 
 label_with_font = '%{{T{font}}}{label}%{{T-}}'
@@ -123,7 +140,7 @@ try:
     album = fix_string(metadata['xesam:album']) if metadata['xesam:album'] else ''
 
     if (quiet and status == 'Paused') or (not artist and not song and not album):
-        print(offline)
+        print_offline(trunclen)
     else:
         if font:
             artist = label_with_font.format(font=font, label=artist)
@@ -134,10 +151,10 @@ try:
         print(truncate(output.format(artist=artist, 
                                      song=song, 
                                      play_pause=play_pause, 
-                                     album=album), trunclen + 4))
+                                     album=album), trunclen + 4, len(play_pause)))
 
 except Exception as e:
     if isinstance(e, dbus.exceptions.DBusException):
-        print(offline)
+        print_offline(trunclen)
     else:
         print(e)
