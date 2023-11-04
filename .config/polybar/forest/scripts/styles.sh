@@ -4,10 +4,12 @@
 PFILE="$HOME/.config/polybar/forest/colors.ini"
 RFILE="$HOME/.config/polybar/forest/scripts/rofi/colors.rasi"
 
+ABG="FF"
+
 # Change colors
 change_color() {
 	# polybar
-	sed -i -e "s/background = #.*/background = $BG/g" $PFILE
+	sed -i -e "s/background = #.*/background = $BBG$CBG$BG/g" $PFILE
 	sed -i -e "s/foreground = #.*/foreground = $FG/g" $PFILE
 	sed -i -e "s/sep = #.*/sep = $SEP/g" $PFILE
 	
@@ -17,7 +19,7 @@ change_color() {
 
 	* {
 	  al:   #00000000;
-	  bg:   ${BG}FF;
+	  bg:   ${BBG}${BG}${ABG};
 	  bga:  ${BGA}FF;
 	  fg:   ${FG}FF;
 	  ac:   ${AC}FF;
@@ -68,9 +70,20 @@ elif  [[ $1 = "--cherry" ]]; then
 	AC="#D94084"
 	SE="#4F5D95"
 	change_color
+elif  [[ $1 = "--cherrye" ]]; then
+  BBG="#"
+  CBG="44"
+	BG="000000"
+  ABG="88"
+	FG="#FFFFFF"
+	BGA="#292030"
+	SEP="#473F4E"
+	AC="#D94084"
+	SE="#4F5D95"
+	change_color
 else
 	cat <<- _EOF_
 	No option specified, Available options:
-	--default    --nord    --gruvbox    --dark    --cherry
+	--default    --nord    --gruvbox    --dark    --cherry    --cherrye
 	_EOF_
 fi
