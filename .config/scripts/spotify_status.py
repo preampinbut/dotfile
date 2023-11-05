@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys
+# import sys
 import dbus
 import argparse
 
@@ -48,13 +48,6 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-def fix_string(string):
-    # corrects encoding for the python version used
-    if sys.version_info.major == 3:
-        return string
-    else:
-        return string.encode('utf-8')
-
 def set_buffer(name, trunclen, prefix_size):
     buffer_size = trunclen - (len(name) - prefix_size)
     buffer = ' ' * buffer_size
@@ -71,8 +64,15 @@ def set_buffer(name, trunclen, prefix_size):
 
 def print_offline(trunclen):
     offline_prefix = '%{F#EC7875}%{F-}'
-    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen, len(offline_prefix))
+    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen + 4, len(offline_prefix))
     print(offline)
+
+def fix_string(string):
+    # corrects encoding for the python version used
+    # if sys.version_info.major == 3:
+    return string
+    # else:
+    #     return string.encode('utf-8')
 
 def truncate(name, trunclen, prefix_size):
     if (len(name) - prefix_size) > trunclen:
@@ -140,7 +140,7 @@ try:
     album = fix_string(metadata['xesam:album']) if metadata['xesam:album'] else ''
 
     if (quiet and status == 'Paused') or (not artist and not song and not album):
-        print_offline(trunclen + 4)
+        print_offline(trunclen)
     else:
         if font:
             artist = label_with_font.format(font=font, label=artist)
@@ -155,6 +155,6 @@ try:
 
 except Exception as e:
     if isinstance(e, dbus.exceptions.DBusException):
-        print_offline(trunclen + 4)
+        print_offline(trunclen)
     else:
         print(e)
