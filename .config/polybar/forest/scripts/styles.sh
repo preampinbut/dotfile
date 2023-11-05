@@ -71,10 +71,10 @@ elif  [[ $1 = "--cherry" ]]; then
 	SE="#4F5D95"
 	change_color
 elif  [[ $1 = "--cherrye" ]]; then
-  BBG="#"
-  CBG="44"
+	BBG="#"
+	CBG="44"
 	BG="000000"
-  ABG="88"
+	ABG="D1"
 	FG="#FFFFFF"
 	BGA="#292030"
 	SEP="#473F4E"
