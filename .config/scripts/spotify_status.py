@@ -135,7 +135,8 @@ try:
     elif status == 'Paused':
         play_pause = play_pause[1]
     else:
-        play_pause = str()
+        play_pause = str() if len(play_pause) == 2 else play_pause[2]
+        # play_pause = str()
 
     if play_pause_font:
         play_pause = label_with_font.format(font=play_pause_font, label=play_pause)
@@ -153,7 +154,7 @@ try:
             artist = label_with_font.format(font=font, label=artist)
             song = label_with_font.format(font=font, label=song)
             album = label_with_font.format(font=font, label=album)
-
+        
         # Add 4 to trunclen to account for status symbol, spaces, and other padding characters
         print(truncate(output.format(artist=artist, 
                                      song=song, 
