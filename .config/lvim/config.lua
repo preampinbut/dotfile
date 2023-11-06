@@ -33,7 +33,7 @@ vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
 
 lvim.builtin.treesitter.ensure_installed = "all"
 
-lvim.colorscheme = "dracula"
+lvim.colorscheme = "tokyonight-night"
 
 lvim.plugins = {
   {
@@ -66,6 +66,12 @@ lvim.plugins = {
         }
       }
     end,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
   {
     "windwp/nvim-ts-autotag",
