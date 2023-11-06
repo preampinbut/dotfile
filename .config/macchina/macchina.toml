@@ -1,0 +1,13 @@
+theme="Beryllium"
+
+show=[
+  "Host",
+  "Distribution",
+  "DesktopEnvironment",
+  "Packages",
+  "Terminal",
+  "Shell",
+  "Uptime",
+  "Processor",
+  "Memory"
+]
