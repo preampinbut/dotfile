@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import re
 import dbus
 import argparse
@@ -12,7 +13,8 @@ parser.add_argument("command",
                         "Next",
                         "Previous",
                         "Artist",
-                        "Title"])
+                        "Title",
+                        "Restart"])
 
 args = parser.parse_args()
 
@@ -54,6 +56,13 @@ try:
         case "Title":
             metadata = get_metadata(spotify_bus)
             print(metadata["xesam:title"])
+        case "Restart":
+            os.system("/usr/bin/systemctl --user restart spotifyd.service")
+
+except dbus.exceptions.DBusException as e:
+    if "org.freedesktop.DBus.Error.NoReply" == e.get_dbus_name():
+        os.system("/usr/bin/systemctl --user restart spotifyd.service")
+
 except Exception as e:
     msg = e.__str__()
     metadata_error = re.match("^'xesam:", msg)

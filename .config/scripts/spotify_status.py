@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# import sys
+import os
 import dbus
 import argparse
 
@@ -161,8 +161,12 @@ try:
                                      play_pause=play_pause, 
                                      album=album), trunclen + 4, len(play_pause)))
 
+except dbus.exceptions.DBusException as e:
+    if "org.freedesktop.DBus.Error.NoReply" == e.get_dbus_name():
+        os.system("/usr/bin/systemctl --user restart spotifyd.service")
+    print_offline(trunclen)
+
+
 except Exception as e:
-    if isinstance(e, dbus.exceptions.DBusException):
-        print_offline(trunclen)
-    else:
-        print_offline(trunclen)
+    print_offline(trunclen)
+
