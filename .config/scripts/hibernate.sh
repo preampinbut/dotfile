@@ -1,3 +1,4 @@
 #!/bin/bash
-# pkill spotifyd
+pkill spotifyd
+sleep 1
 systemctl hibernate
