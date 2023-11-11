@@ -20,6 +20,9 @@ require("lvim.lsp.manager").setup("rust_analyzer", {
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
+      diagnostics = {
+        enable = false
+      },
       lens = {
         run = {
           enable = false

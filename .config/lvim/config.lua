@@ -9,7 +9,7 @@ vim.opt.showcmd = true
 vim.opt.scrolloff = 15
 vim.opt.hidden = false
 
-lvim.format_on_save = true
+lvim.format_on_save.enabled = true
 
 -- Buffer navigation
 lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
@@ -19,12 +19,16 @@ lvim.builtin.which_key.mappings.C = {
   "<cmd>:bufdo bd<cr>", "Close All Buffer"
 }
 
--- BUG: csharp_lsp related colorscheme not load
--- NOTE: <leader>+W This is to fix problem cause by csharp_ls
--- wait for csharp_ls to finish load up project then press <leader>+W
--- its not a big deal just annoying
+-- -- BUG: csharp_lsp related colorscheme not load
+-- -- NOTE: <leader>+W This is to fix problem cause by csharp_ls
+-- -- wait for csharp_ls to finish load up project then press <leader>+W
+-- -- its not a big deal just annoying
+-- lvim.builtin.which_key.mappings.W = {
+--   "<cmd>:w<cr>:mkview<cr>:e<cr>", "Save and Reload"
+-- }
+
 lvim.builtin.which_key.mappings.W = {
-  "<cmd>:w<cr>:mkview<cr>:e<cr>", "Save and Reload"
+  "<cmd>:wa<cr>", "Save All Buffers"
 }
 
 -- Terminal mode to return to normal
