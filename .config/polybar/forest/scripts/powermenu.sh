@@ -34,7 +34,6 @@ msg() {
 }
 
 # Variable passed to rofi
-# options="$suspend\n$hibernate\n$logout\n$reboot\n$shutdown"
 options="$hibernate\n$logout\n$reboot\n$shutdown"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 0)"
@@ -73,7 +72,8 @@ case $chosen in
       elif [[ "$DESKTOP_SESSION" == "bspwm" ]]; then
         bspc quit
       elif [[ "$DESKTOP_SESSION" == "i3" ]]; then
-        i3-msg exit
+        # i3-msg exit
+        dm-tool lock
       fi
       ;;
 esac
