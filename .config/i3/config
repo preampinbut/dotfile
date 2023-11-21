@@ -64,7 +64,7 @@ tiling_drag modifier titlebar
 # start a terminal
 bindsym $mod+Return exec kitty
 
-bindsym $mod+Shift+Return exec opera
+bindsym $mod+Shift+Return exec vivaldi
 
 # kill focused window
 bindsym $mod+Shift+q kill
