@@ -12,8 +12,10 @@ vim.opt.hidden = false
 lvim.format_on_save.enabled = true
 
 -- Buffer navigation
-lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
-lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
+lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<cr>"
+lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<cr>"
+lvim.keys.normal_mode["<M-Tab>"] = ":BufferLineMoveNext<cr>"
+lvim.keys.normal_mode["<M-S-Tab>"] = ":BufferLineMovePrev<cr>"
 
 lvim.builtin.which_key.mappings.C = {
   "<cmd>:bufdo bd<cr>", "Close All Buffer"
