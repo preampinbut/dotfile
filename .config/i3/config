@@ -258,7 +258,7 @@ gaps outer 4
 
 focus_follows_mouse no
 
-exec --no-startup-id feh --bg-max $HOME/Pictures/ryo.jpg
+exec --no-startup-id feh --bg-max $HOME/Pictures/JLT4n/ryo.png
 exec --no-startup-id picom -b
 
 exec i3-config-wizard
