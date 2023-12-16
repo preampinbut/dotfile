@@ -9,6 +9,8 @@ vim.opt.showcmd = true
 vim.opt.scrolloff = 15
 vim.opt.hidden = false
 
+lvim.use_icons = true;
+
 lvim.format_on_save.enabled = true
 
 -- Buffer navigation
@@ -110,5 +112,6 @@ require("plugins.signature")
 require("plugins.tree")
 require("plugins.telescope")
 require("plugins.comment")
+require("plugins.dashboard")
 -- WARN: currently conflict with go to definition
 -- require("plugins.fold")
