@@ -23,13 +23,14 @@ lvim.builtin.which_key.mappings.C = {
   "<cmd>:bufdo bd<cr>", "Close All Buffer"
 }
 
--- -- BUG: csharp_lsp related colorscheme not load
+-- -- BUG: csharp_lsp related problem
 -- -- NOTE: <leader>+W This is to fix problem cause by csharp_ls
 -- -- wait for csharp_ls to finish load up project then press <leader>+W
 -- -- its not a big deal just annoying
--- lvim.builtin.which_key.mappings.W = {
---   "<cmd>:w<cr>:mkview<cr>:e<cr>", "Save and Reload"
--- }
+lvim.builtin.which_key.mappings.R = {
+  "<cmd>:w<cr>:e<cr>", "Save and Reload"
+  -- "<cmd>:w<cr>:mkview<cr>:e<cr>", "Save and Reload"
+}
 
 lvim.builtin.which_key.mappings.W = {
   "<cmd>:wa<cr>", "Save All Buffers"
