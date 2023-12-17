@@ -64,7 +64,7 @@ case $chosen in
         fi
       ;;
     $hibernate)
-      $HOME/.config/scripts/hibernate.sh
+      systemctl hibernate
       ;;
     $logout)
       if [[ "$DESKTOP_SESSION" == "Openbox" ]]; then
