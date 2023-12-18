@@ -34,7 +34,7 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$hibernate\n$lock\n$logout\n$reboot\n$shutdown"
+options="$hibernate\n$suspend\n$lock\n$reboot\n$shutdown\n$logout"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 0)"
 case $chosen in
@@ -51,18 +51,11 @@ case $chosen in
 			betterlockscreen -l
 		fi
       ;;
-  #   $suspend)
-		# ans=$(confirm_exit &)
-		# if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
-		# 	mpc -q pause
-		# 	amixer set Master mute
-		# 	systemctl suspend
-		# elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
-		# 	exit 0
-  #       else
-		# 	msg
-  #       fi
-  #     ;;
+    $suspend)
+      mpc -q pause
+			amixer set Master mute
+			systemctl suspend
+      ;;
     $hibernate)
       systemctl hibernate
       ;;
