@@ -12,5 +12,6 @@ lvim.builtin.alpha.dashboard.section.header.val = {
 }
 
 lvim.builtin.alpha.dashboard.section.footer.val = {
+  "",
   "I will fall in \"Love\" more and more."
 }

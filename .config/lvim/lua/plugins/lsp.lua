@@ -1,9 +1,20 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "jedi_language_server"
+end, lvim.lsp.automatic_configuration.skipped_servers)
+
 require("lvim.lsp.manager").setup("tsserver", {
   capabilities = capabilities,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() end, -- disable bacause the bug is fucking annoying!!!
+  },
   settings = {
-    diagnostics = { ignoredCodes = { 6133 } }
+    diagnostics = {
+      ignoredCodes = { 6133 }
+    }
   },
 })
 

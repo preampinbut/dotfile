@@ -7,7 +7,16 @@ vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.showcmd = true
 vim.opt.scrolloff = 15
-vim.opt.hidden = false
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = "{}",
+  callback = function(args)
+    if vim.api.nvim_buf_get_name(args.buf) == "" then
+      vim.opt_local.buftype = "nofile"
+      vim.opt_local.bufhidden = "unload"
+    end
+  end,
+})
 
 lvim.use_icons = true;
 
@@ -40,7 +49,7 @@ lvim.builtin.which_key.mappings.W = {
 vim.api.nvim_set_keymap('t', '<C-\\><C-n>', "<C-\\><C-n><cr>",
   { noremap = true, silent = true })
 
-lvim.builtin.treesitter.ensure_installed = "all"
+-- lvim.builtin.treesitter.ensure_installed = "all"
 
 lvim.colorscheme = "tokyonight-night"
 
