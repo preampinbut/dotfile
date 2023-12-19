@@ -12,6 +12,7 @@ local servers = {
   "prismals",
   "eslint",
   "rust_analyzer",
+  "gopls",
 }
 
 for _, lsp in ipairs(servers) do

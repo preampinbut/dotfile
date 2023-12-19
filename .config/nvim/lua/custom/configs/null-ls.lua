@@ -35,6 +35,9 @@ local sources = {
     end,
   },
 
+  -- ga
+  formatting.gofmt,
+
   -- prisma
   -- b.formatting.prismaFmt, -- gago
 }
