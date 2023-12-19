@@ -3,9 +3,9 @@ local null_ls = require "null-ls"
 local b = null_ls.builtins
 
 local formatting = b.formatting
+local diagnostics = b.diagnostics
 
 local sources = {
-
   -- webdev stuff
   formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
   formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
@@ -15,6 +15,8 @@ local sources = {
 
   -- cpp
   formatting.clang_format,
+  -- csharp
+  formatting.csharpier,
 
   -- rust
   formatting.rustfmt.with {
@@ -54,10 +56,6 @@ null_ls.setup {
         buffer = bufnr,
         callback = function()
           vim.lsp.buf.format {
-            filter = function(client)
-              return client.name == "null-ls"
-            end,
-            bufnr = bufnr,
             async = false,
           }
         end,

@@ -13,6 +13,7 @@ local servers = {
   "eslint",
   "rust_analyzer",
   "gopls",
+  "csharp_ls",
 }
 
 for _, lsp in ipairs(servers) do
@@ -21,6 +22,15 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  },
+}
 
 --
 -- lspconfig.pyright.setup { blabla}
