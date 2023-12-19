@@ -11,9 +11,11 @@ local servers = {
   "clangd",
   "prismals",
   "eslint",
+  "emmet_ls",
   "rust_analyzer",
   "gopls",
   "csharp_ls",
+  "jedi_language_server",
 }
 
 for _, lsp in ipairs(servers) do
@@ -30,6 +32,16 @@ lspconfig.clangd.setup {
     "clangd",
     "--offset-encoding=utf-16",
   },
+}
+
+lspconfig.eslint.setup {
+  on_attach = function()
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = buffer,
+      command = "EslintFixAll",
+    })
+  end,
+  capabilities = capabilities,
 }
 
 --
