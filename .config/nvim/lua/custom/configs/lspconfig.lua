@@ -11,6 +11,7 @@ local servers = {
   "clangd",
   "prismals",
   "eslint",
+  "rust_analyzer",
 }
 
 for _, lsp in ipairs(servers) do

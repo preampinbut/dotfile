@@ -6,12 +6,6 @@ local plugins = {
   -- Override plugin definition options
 
   {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- format & linting
