@@ -13,6 +13,7 @@ M.general = {
     ["<M-j>"] = { ":m .+1<CR>", "move line up" },
     ["<M-k>"] = { ":m .-2<CR>", "move line up" },
     ["<leader>q"] = { ":q<CR>", "quit" },
+    ["<leader>;"] = { ":Nvdash<CR>", "open dashboard" },
   },
   v = {
     [">"] = { ">gv", "indent" },
