@@ -63,8 +63,8 @@ def set_buffer(name, trunclen, prefix_size):
     return name
 
 def print_offline(trunclen):
-    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen + 4, len(offline_prefix))
     offline_prefix = '%{F#EC7875}󰝛%{F-}'
+    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen + 4, len(offline_prefix))
     print(offline)
 
 def fix_string(string):
