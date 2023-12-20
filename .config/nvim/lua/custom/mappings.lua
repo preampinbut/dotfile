@@ -41,4 +41,17 @@ M.lspconfig = {
   },
 }
 
+M.telescope = {
+  n = {
+    ["<leader>fs"] = {
+      "<cmd> Telescope lsp_document_symbols <CR>",
+      "find document symbol",
+    },
+    ["<leader>fS"] = {
+      "<cmd> Telescope lsp_workspace_symbols <CR>",
+      "find workspace symbol",
+    },
+  },
+}
+
 return M
