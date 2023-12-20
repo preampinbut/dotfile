@@ -44,7 +44,7 @@ if xinput list-props "$device_id" | grep "Device Enabled ([[:digit:]]\+):\s*1" >
 then
   if [ "$flag_v" = true ]
   then
-    echo "$green"
+    echo "$green󱠭"
   else
     xinput disable "$device_id"
     xdotool mousemove 1920 1080
@@ -52,7 +52,7 @@ then
 else
   if [ "$flag_v" = true ]
   then
-    echo "$red"
+    echo "$red󱠳"
   else
     xinput enable "$device_id"
     xdotool mousemove 960 540 

@@ -63,8 +63,8 @@ def set_buffer(name, trunclen, prefix_size):
     return name
 
 def print_offline(trunclen):
-    offline_prefix = '%{F#EC7875}%{F-}'
     offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen + 4, len(offline_prefix))
+    offline_prefix = '%{F#EC7875}󰝛%{F-}'
     print(offline)
 
 def fix_string(string):
@@ -154,7 +154,7 @@ try:
             artist = label_with_font.format(font=font, label=artist)
             song = label_with_font.format(font=font, label=song)
             album = label_with_font.format(font=font, label=album)
-        
+
         # Add 4 to trunclen to account for status symbol, spaces, and other padding characters
         print(truncate(output.format(artist=artist, 
                                      song=song, 
@@ -165,7 +165,6 @@ except dbus.exceptions.DBusException as e:
     if "org.freedesktop.DBus.Error.NoReply" == e.get_dbus_name():
         os.system("/usr/bin/systemctl --user restart spotifyd.service")
     print_offline(trunclen)
-
 
 except Exception as e:
     print_offline(trunclen)
