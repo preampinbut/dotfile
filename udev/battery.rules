@@ -10,4 +10,4 @@ ACTION=="change", \
   SUBSYSTEM=="power_supply", \
   ATTR{status}=="Discharging", \
   ATTR{capacity}=="[0-5]", \
-  RUN+="/home/preampinbut/.config/scripts/hibernate.sh"
+  RUN+="/usr/bin/systemctl hibernate"
