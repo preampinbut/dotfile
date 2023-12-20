@@ -27,7 +27,7 @@ M.ui = {
 
   statusline = {
     theme = "default",
-    separator_style = "round",
+    separator_style = "block",
   },
 
   tabufline = {
