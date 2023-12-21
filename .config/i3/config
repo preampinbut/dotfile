@@ -259,7 +259,7 @@ gaps outer 4
 focus_follows_mouse no
 
 exec --no-startup-id feh --bg-max $HOME/Pictures/zzz/yor.png
-exec --no-startup-id /home/preampinbut/.config/scripts/wallenginedaemon.sh
+exec --no-startup-id /home/preampinbut/.config/scripts/wallengine-daemon.sh -d
 exec --no-startup-id picom -b
 
 exec --no-startup-id light-locker --lock-on-suspend --no-late-locking --lock-on-lid
