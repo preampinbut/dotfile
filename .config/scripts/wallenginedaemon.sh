@@ -2,10 +2,10 @@
 
 prev_power_status=$(cat /sys/class/power_supply/ADP1/online)
 if [ "$prev_power_status" -eq 0 ]; then
-  echo "wallengine 0"
-  /usr/bin/nohup /home/preampinbut/.config/scripts/wallengine.sh 6 &> /dev/null & disown
+  echo "wallengine disable"
+  /usr/bin/feh --bg-max /home/preampinbut/Pictures/zzz/yor.png
 elif [ "$prev_power_status" -eq 1 ]; then
-  echo "wallengine 1"
+  echo "wallengine enable"
   /usr/bin/nohup /home/preampinbut/.config/scripts/wallengine.sh 25 &> /dev/null & disown
 fi
 
@@ -17,10 +17,10 @@ while true; do
     pkill -x wallengine
     sleep 1
     if [ "$power_status" -eq 0 ]; then
-      echo "wallengine 0"
-      /usr/bin/nohup /home/preampinbut/.config/scripts/wallengine.sh 6 &> /dev/null & disown
+      echo "wallengine disable"
+      /usr/bin/feh --bg-max /home/preampinbut/Pictures/zzz/yor.png
     elif [ "$power_status" -eq 1 ]; then
-      echo "wallengine 1"
+      echo "wallengine enable"
       /usr/bin/nohup /home/preampinbut/.config/scripts/wallengine.sh 25 &> /dev/null & disown
     fi
 
