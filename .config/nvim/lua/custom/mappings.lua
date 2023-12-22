@@ -51,6 +51,7 @@ M.telescope = {
       "<cmd> Telescope lsp_workspace_symbols <CR>",
       "find workspace symbol",
     },
+    ["<leader>fo"] = { "<cmd> Telescope oldfiles only_cwd=true <CR>", "Find oldfiles" },
   },
 }
 
