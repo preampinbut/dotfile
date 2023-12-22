@@ -41,6 +41,24 @@ M.lspconfig = {
   },
 }
 
+M.tabufline = {
+  n = {
+    ["<M-tab>"] = {
+      function()
+        require("nvchad.tabufline").move_buf(1)
+      end,
+      "Move buffer right",
+    },
+
+    ["<M-S-tab>"] = {
+      function()
+        require("nvchad.tabufline").move_buf(-1)
+      end,
+      "Move buffer left",
+    },
+  },
+}
+
 M.telescope = {
   n = {
     ["<leader>fs"] = {
