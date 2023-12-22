@@ -13,6 +13,7 @@ local servers = {
   "prismals",
   "eslint",
   "emmet_ls",
+  "jsonls",
   "rust_analyzer",
   "gopls",
   "csharp_ls",
