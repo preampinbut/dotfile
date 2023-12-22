@@ -16,6 +16,7 @@ local servers = {
   "gopls",
   "csharp_ls",
   "jedi_language_server",
+  "vuels",
 }
 
 for _, lsp in ipairs(servers) do
