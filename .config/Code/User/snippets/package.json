@@ -1,0 +1,37 @@
+{
+  "name": "example-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "lua"
+        ],
+        "path": "./lua.json"
+      },
+      {
+        "language": [
+          "javascript"
+        ],
+        "path": "./javascript.json"
+      },
+      {
+        "language": [
+          "json"
+        ],
+        "path": "./json.json"
+      },
+      {
+        "language": [
+          "css"
+        ],
+        "path": "./tailwindcss.json"
+      },
+      {
+        "language": [
+          "sh"
+        ],
+        "path": "./shellscript.json"
+      }
+    ]
+  }
+}

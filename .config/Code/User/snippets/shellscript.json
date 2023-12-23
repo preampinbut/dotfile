@@ -1,0 +1,26 @@
+{
+  "eslint-t3-nf": {
+    "prefix": "eslint-t3-nf",
+    "body": [
+      "yarn add -D \\\r\neslint \\\r\n@types\/eslint \\\r\nprettier \\\r\neslint-config-prettier \\\r\neslint-plugin-prettier \\\r\n@typescript-eslint\/eslint-plugin \\\r\n@typescript-eslint\/parser\r\n"
+    ]
+  },
+  "eslint-react": {
+    "prefix": "eslint-react",
+    "body": [
+      "yarn add -D \\\r\neslint \\\r\nprettier \\\r\neslint-config-prettier \\\r\neslint-plugin-prettier \\\r\neslint-plugin-react \\\r\n@typescript-eslint\/parser"
+    ]
+  },
+  "eslint-next": {
+    "prefix": "eslint-next",
+    "body": [
+      "yarn add -D \\\r\neslint \\\r\nprettier \\\r\neslint-config-next \\\r\neslint-config-prettier \\\r\neslint-plugin-prettier \\"
+    ]
+  },
+  "eslint-vue": {
+    "prefix": "eslint-vue",
+    "body": [
+      "pnpm add -D \\\r\n  eslint \\\r\n  prettier \\\r\n  eslint-plugin-vue \\\r\n  eslint-plugin-prettier \\\r\n  @vue\/eslint-config-typescript"
+    ]
+  }
+}

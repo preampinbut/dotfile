@@ -1,0 +1,14 @@
+{
+	"Eslint Next Config": {
+		"prefix": "eslint-next",
+		"body": [
+			"{\r\n  \"extends\": [\r\n    \"eslint:recommended\",\r\n    \"next\/core-web-vitals\",\r\n    \"plugin:prettier\/recommended\"\r\n  ],\r\n  \"plugins\": [\r\n    \"prettier\"\r\n  ],\r\n  \"rules\": {\r\n    \"prettier\/prettier\": [\r\n      \"error\",\r\n      {\r\n        \"endOfLine\": \"auto\",\r\n        \"singleAttributePerLine\": true\r\n      }\r\n    ],\r\n    \"curly\": \"error\",\r\n    \"camelcase\": \"error\",\r\n    \"eqeqeq\": \"error\",\r\n    \"no-undef\": \"off\",\r\n    \"no-unused-vars\": \"warn\",\r\n    \"no-useless-escape\": \"off\",\r\n    \"object-curly-newline\": [\r\n      \"error\",\r\n      {\r\n        \"ObjectExpression\": \"always\",\r\n        \"ObjectPattern\": { \"multiline\": true }\r\n      }\r\n    ]\r\n  },\r\n  \"ignorePatterns\": []\r\n}"
+		]
+	},
+	"Eslint React Config": {
+		"prefix": "eslint-react",
+		"body": [
+			"{\r\n  \"env\": {\r\n    \"browser\": true,\r\n    \"es2021\": true\r\n  },\r\n  \"settings\": {\r\n    \"react\": {\r\n      \"version\": \"detect\"\r\n    }\r\n  },\r\n  \"extends\": [\r\n    \"eslint:recommended\",\r\n    \"plugin:react\/recommended\",\r\n    \"plugin:prettier\/recommended\"\r\n  ],\r\n  \"overrides\": [],\r\n  \"parser\": \"@typescript-eslint\/parser\",\r\n  \"parserOptions\": {\r\n    \"ecmaVersion\": \"latest\",\r\n    \"sourceType\": \"module\"\r\n  },\r\n  \"plugins\": [\"react\", \"prettier\"],\r\n  \"rules\": {\r\n    \"react\/react-in-jsx-scope\": \"off\",\r\n    \"prettier\/prettier\": [\r\n      \"error\",\r\n      {\r\n        \"endOfLine\": \"auto\",\r\n        \"singleAttributePerLine\": true\r\n      }\r\n    ],\r\n    \"curly\": \"error\",\r\n    \"camelcase\": \"error\",\r\n    \"eqeqeq\": \"error\",\r\n    \"no-undef\": \"off\",\r\n    \"no-unused-vars\": \"warn\",\r\n    \"no-useless-escape\": \"off\",\r\n    \"object-curly-newline\": [\r\n      \"error\",\r\n      {\r\n        \"ObjectExpression\": \"always\",\r\n        \"ObjectPattern\": {\r\n          \"multiline\": true\r\n        }\r\n      }\r\n    ]\r\n  },\r\n  \"ignorePatterns\": []\r\n}\r\n"
+		]
+	},
+}

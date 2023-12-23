@@ -1,0 +1,8 @@
+{
+	"Tailwind Css": {
+		"prefix": "tailwind",
+		"body": [
+			"@tailwind base;\n@tailwind components;\n@tailwind utilities;"
+		]
+	}
+}
