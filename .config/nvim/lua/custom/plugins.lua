@@ -5,6 +5,24 @@ local plugins = {
 
   -- Override plugin definition options
   {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      local harpoon = require "harpoon"
+      harpoon:setup()
+      harpoon:extend {
+        UI_CREATE = function(cx)
+          vim.keymap.set("n", "l", function()
+            harpoon.ui:select_menu_item()
+          end, { buffer = cx.bufnr })
+        end,
+      }
+    end,
+  },
+  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && npm install",

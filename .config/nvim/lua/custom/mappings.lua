@@ -1,6 +1,17 @@
 ---@type MappingsTable
 local M = {}
 
+M.disabled = {
+  n = {
+    ["A-i"] = "",
+    ["A-h"] = "",
+    ["A-v"] = "",
+
+    ["<leader>h"] = "",
+    ["<leader>v"] = "",
+  },
+}
+
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
@@ -10,15 +21,15 @@ M.general = {
       end,
       "Floating diagnostic",
     },
-    ["<M-j>"] = { ":m .+1<CR>", "move line up" },
-    ["<M-k>"] = { ":m .-2<CR>", "move line up" },
-    ["<leader>q"] = { ":q<CR>", "quit" },
-    ["<leader>;"] = { ":Nvdash<CR>", "open dashboard" },
+    ["<M-j>"] = { "<cmd> m .+1<CR>", "move line up" },
+    ["<M-k>"] = { "<cmd> m .-2<CR>", "move line up" },
+    ["<leader>q"] = { "<cmd> q<CR>", "quit" },
+    ["<leader>;"] = { "<cmd> Nvdash<CR>", "open dashboard" },
   },
   v = {
     [">"] = { ">gv", "indent" },
-    ["<M-j>"] = { ":m '>+1<CR>gv", "move line up" },
-    ["<M-k>"] = { ":m '<-2<CR>gv", "move line up" },
+    ["<M-j>"] = { "<cmd> m '>+1<CR>gv", "move line up" },
+    ["<M-k>"] = { "<cmd> m '<-2<CR>gv", "move line up" },
   },
 }
 
@@ -55,6 +66,40 @@ M.tabufline = {
         require("nvchad.tabufline").move_buf(-1)
       end,
       "Move buffer left",
+    },
+  },
+}
+
+M.harpoon = {
+  n = {
+    ["<leader>ha"] = {
+      "<cmd> lua require('harpoon'):list():append() <CR>",
+      "Append",
+    },
+    ["<leader>hl"] = {
+      "<cmd> lua require('harpoon').ui:toggle_quick_menu(require('harpoon'):list()) <CR>",
+      "Toggle quick menu",
+    },
+
+    ["<C-1>"] = {
+      "<cmd> lua require('harpoon'):list():select(1) <CR>",
+      "Select 1",
+    },
+    ["<C-2>"] = {
+      "<cmd> lua require('harpoon'):list():select(2) <CR>",
+      "Select 2",
+    },
+    ["<C-3>"] = {
+      "<cmd> lua require('harpoon'):list():select(3) <CR>",
+      "Select 3",
+    },
+    ["<C-4>"] = {
+      "<cmd> lua require('harpoon'):list():select(4) <CR>",
+      "Select 4",
+    },
+    ["<C-5>"] = {
+      "<cmd> lua require('harpoon'):list():select(5) <CR>",
+      "Select 5",
     },
   },
 }
