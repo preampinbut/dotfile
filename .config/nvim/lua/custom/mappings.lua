@@ -29,8 +29,8 @@ M.general = {
   },
   v = {
     [">"] = { ">gv", "indent" },
-    ["<M-j>"] = { "<cmd> m '>+1<CR>gv", "move line up" },
-    ["<M-k>"] = { "<cmd> m '<-2<CR>gv", "move line up" },
+    ["<M-j>"] = { ":m '>+1<CR>gv", "move line up" },
+    ["<M-k>"] = { ":m '<-2<CR>gv", "move line up" },
   },
 }
 
