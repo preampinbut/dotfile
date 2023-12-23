@@ -2,11 +2,12 @@
 local M = {}
 
 M.disabled = {
-  n = {
+  t = {
     ["A-i"] = "",
     ["A-h"] = "",
     ["A-v"] = "",
-
+  },
+  n = {
     ["<leader>h"] = "",
     ["<leader>v"] = "",
   },
@@ -81,23 +82,23 @@ M.harpoon = {
       "Toggle quick menu",
     },
 
-    ["<C-1>"] = {
+    ["<M-1>"] = {
       "<cmd> lua require('harpoon'):list():select(1) <CR>",
       "Select 1",
     },
-    ["<C-2>"] = {
+    ["<M-2>"] = {
       "<cmd> lua require('harpoon'):list():select(2) <CR>",
       "Select 2",
     },
-    ["<C-3>"] = {
+    ["<M-3>"] = {
       "<cmd> lua require('harpoon'):list():select(3) <CR>",
       "Select 3",
     },
-    ["<C-4>"] = {
+    ["<M-4>"] = {
       "<cmd> lua require('harpoon'):list():select(4) <CR>",
       "Select 4",
     },
-    ["<C-5>"] = {
+    ["<M-5>"] = {
       "<cmd> lua require('harpoon'):list():select(5) <CR>",
       "Select 5",
     },
