@@ -5,6 +5,19 @@ local plugins = {
 
   -- Override plugin definition options
   {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        mappings = {
+          i = {
+            ["<C-j>"] = "move_selection_next",
+            ["<C-k>"] = "move_selection_previous",
+          },
+        },
+      },
+    },
+  },
+  {
     "ThePrimeagen/harpoon",
     lazy = true,
     branch = "harpoon2",
