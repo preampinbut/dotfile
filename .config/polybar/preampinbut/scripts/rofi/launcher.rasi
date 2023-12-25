@@ -8,7 +8,7 @@
  */
 
 configuration {
-	font:							"Terminus 9";
+	font:							"EnvyCodeR Nerd Font 15";
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";
@@ -28,7 +28,7 @@ window {
 	border:							0px 0px 0px 0px;
 	border-color:					@ac;
     border-radius:                  0px;
-	width:							500px;
+	width:							300px;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
@@ -39,7 +39,7 @@ prompt {
 	padding: 						0px;
 	background-color: 				@bg;
 	text-color: 					@ac;
-	font:							"feather 8";
+	font:							"EnvyCodeR Nerd Font 15";
 }
 
 entry {
