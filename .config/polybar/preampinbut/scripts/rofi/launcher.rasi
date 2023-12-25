@@ -37,7 +37,7 @@ window {
 prompt {
     enabled: 						true;
 	padding: 						0px;
-	background-color: 				@bga;
+	background-color: 				@bg;
 	text-color: 					@ac;
 	font:							"feather 8";
 }
@@ -55,7 +55,7 @@ entry {
 
 inputbar {
 	children: 						[ prompt, entry ];
-    background-color:               @bga;
+    background-color:               @bg;
     text-color:                     @fg;
     expand:                         false;
 	border:							0px 0px 1px 0px;

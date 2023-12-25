@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIR="$HOME/.config/polybar/forest"
+DIR="$HOME/.config/polybar/preampinbut"
 
 # Terminate already running bar instances
 killall -q polybar
