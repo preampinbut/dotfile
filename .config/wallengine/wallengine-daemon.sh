@@ -1,17 +1,43 @@
 #!/bin/bash
 
+config_file="$HOME/.config/wallengine/config"
+
 usage() {
   echo "Usage: $0 [-d]" 1>&2
   exit 1
 }
 
+use_feh() {
+  bg=$(grep "^bg:" "$config_file" | awk '{print $2}')
+
+  # Check if the value is not empty
+  if [ -n "$bg" ]; then
+      # Use the value in your command
+    feh --bg-max $bg
+  else
+    echo "Error: Value for key $bg not found in the config file."
+  fi
+}
+
+use_wall() {
+  id=$(grep "^id:" "$config_file" | awk '{print $2}')
+
+  # Check if the value is not empty
+  if [ -n "$id" ]; then
+      # Use the value in your command
+    /usr/bin/nohup $HOME/.config/wallengine/wallengine.sh $1 $id &> /dev/null & disown
+  else
+    echo "Error: Value for key $id not found in the config file."
+  fi
+}
+
 change_wallpaper() {
   if [ "$1" -eq 0 ]; then
     echo "wallengine disable"
-    feh --bg-max /home/preampinbut/Pictures/zzz/yor.png
+    use_feh
   elif [ "$1" -eq 1 ]; then
     echo "wallengine enable"
-    /usr/bin/nohup /home/preampinbut/.config/scripts/wallengine.sh 25 &> /dev/null & disown
+    use_wall 25
   fi
 }
 
