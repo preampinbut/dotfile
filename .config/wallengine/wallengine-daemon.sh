@@ -2,6 +2,13 @@
 
 config_file="$HOME/.config/wallengine/config"
 
+adp=$(grep "^adp:" "$config_file" | awk '{print $2}')
+
+if [ -z "$adp" ]; then
+  echo "Error: Value for key $adp not found in the config file."
+  exit 1
+fi
+
 usage() {
   echo "Usage: $0 [-d]" 1>&2
   exit 1
@@ -42,10 +49,10 @@ change_wallpaper() {
 }
 
 monitor_power_status() {
-  local prev_power_status=$(cat /sys/class/power_supply/ADP1/online)
+  local prev_power_status=$(cat "$adp")
 
   while true; do
-    local power_status=$(cat /sys/class/power_supply/ADP1/online)
+    local power_status=$(cat "$adp")
 
     if [ "$power_status" -ne "$prev_power_status" ]; then
       echo "kill wallengine"
@@ -77,7 +84,7 @@ if [ "$run_in_background" = false ]; then
   pkill -x wallengine
 fi
 
-change_wallpaper "$(cat /sys/class/power_supply/ADP1/online)"
+change_wallpaper "$(cat $adp)"
 
 if [ "$run_in_background" = false ]; then
   exit 0
