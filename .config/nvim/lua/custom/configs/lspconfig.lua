@@ -18,6 +18,9 @@ local servers = {
   "gopls",
   "csharp_ls",
   "jedi_language_server",
+  "tailwindcss",
+  "dockerls",
+  "docker_compose_language_service",
 }
 
 for _, lsp in ipairs(servers) do
