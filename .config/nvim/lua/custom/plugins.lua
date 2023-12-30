@@ -10,8 +10,8 @@ local plugins = {
       defaults = {
         mappings = {
           i = {
-            ["<C-j>"] = "move_selection_next",
-            ["<C-k>"] = "move_selection_previous",
+            ["<Tab>"] = "move_selection_next",
+            ["<S-Tab>"] = "move_selection_previous",
           },
         },
       },
