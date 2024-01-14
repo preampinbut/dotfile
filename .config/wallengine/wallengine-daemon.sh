@@ -5,7 +5,7 @@ config_file="$HOME/.config/wallengine/config"
 adp=$(grep "^adp:" "$config_file" | awk '{print $2}')
 
 if [ -z "$adp" ]; then
-  echo "Error: Value for key $adp not found in the config file."
+  echo "Error: Value for key \"adp\" not found in the config file."
   exit 1
 fi
 
@@ -22,7 +22,7 @@ use_feh() {
       # Use the value in your command
     feh --bg-max $bg
   else
-    echo "Error: Value for key $bg not found in the config file."
+    echo "Error: Value for key \"bg\" not found in the config file."
   fi
 }
 
@@ -34,7 +34,7 @@ use_wall() {
       # Use the value in your command
     /usr/bin/nohup $HOME/.config/wallengine/wallengine.sh $1 $id &> /dev/null & disown
   else
-    echo "Error: Value for key $id not found in the config file."
+    echo "Error: Value for key \"id\" not found in the config file."
   fi
 }
 
