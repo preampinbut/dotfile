@@ -39,6 +39,15 @@ use_wall() {
 }
 
 change_wallpaper() {
+  disabled=$(grep "^disabled:" "$config_file" | awk '{print $2}')
+
+  if [ -n "$disabled" ]; then
+    if [ "$disabled" -eq 1 ]; then
+      use_feh
+      return
+    fi
+  fi
+
   if [ "$1" -eq 0 ]; then
     echo "wallengine disable"
     use_feh
