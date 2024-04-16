@@ -41,9 +41,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym XF86AudioPlay exec --no-startup-id $HOME/.config/scripts/spotify_controller.py PlayPause && $refresh_i3status
-bindsym XF86AudioNext exec --no-startup-id $HOME/.config/scripts/spotify_controller.py Next && $refresh_i3status
-bindsym XF86AudioPrev exec --no-startup-id $HOME/.config/scripts/spotify_controller.py Previous && $refresh_i3status
+bindsym XF86AudioPlay exec --no-startup-id $HOME/.config/scripts/n_spotify_controller.py PlayPause && $refresh_i3status
+bindsym XF86AudioNext exec --no-startup-id $HOME/.config/scripts/n_spotify_controller.py Next && $refresh_i3status
+bindsym XF86AudioPrev exec --no-startup-id $HOME/.config/scripts/n_spotify_controller.py Previous && $refresh_i3status
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 && $refresh_i3status
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 && $refresh_i3status
@@ -259,8 +259,9 @@ gaps outer 4
 
 focus_follows_mouse no
 
+# run feh so the bg is not black while wallengine are booting
 exec --no-startup-id feh --bg-max $HOME/Pictures/zzz/yor.png
-exec --no-startup-id /home/preampinbut/.config/wallengine/wallengine-daemon.sh -d
+exec --no-startup-id $HOME/.config/wallengine/wallengine-daemon.sh -d
 exec --no-startup-id picom -b
 
 exec --no-startup-id light-locker --lock-on-suspend --no-late-locking --lock-on-lid
@@ -274,3 +275,4 @@ exec_always --no-startup-id $HOME/.config/polybar/preampinbut/launch.sh
 # exec_always xinput disable 10
 exec --no-startup-id unclutter -idle 1 -jitter 2 -root &
 exec_always --no-startup-id screenkey --no-systray --key-mode raw --bak-mode normal -p fixed -g 245x26+1675+1054
+
