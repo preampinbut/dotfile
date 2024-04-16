@@ -77,46 +77,51 @@ if args.play_pause is not None:
 
 command = args.command
 
-if command in ["PlayPause", "Next", "Previous"]:
-    device_id = requests.get(f"{url}/instance").json()["device_id"]
-    current_player_id = requests.get(f"{url}/web-api/v1/me/player").json()["device"]["id"]
-    if device_id == current_player_id:
+try:
+    if command in ["PlayPause", "Next", "Previous"]:
+        device_id = requests.get(f"{url}/instance").json()["device_id"]
+        current_player_id = requests.get(f"{url}/web-api/v1/me/player").json()["device"]["id"]
+        if device_id == current_player_id:
+            match command:
+                case "PlayPause":
+                    requests.post(f"{url}/player/play-pause")
+                case "Next":
+                    requests.post(f"{url}/player/next")
+                case "Previous":
+                    requests.post(f"{url}/player/prev")
+    elif command in ["Artist", "Title"]:
+        player = requests.get(f"{url}/web-api/v1/me/player/currently-playing").json()
         match command:
-            case "PlayPause":
-                requests.post(f"{url}/player/play-pause")
-            case "Next":
-                requests.post(f"{url}/player/next")
-            case "Previous":
-                requests.post(f"{url}/player/prev")
-elif command in ["Artist", "Title"]:
-    player = requests.get(f"{url}/web-api/v1/me/player/currently-playing").json()
-    match command:
-        case "Artist":
-            print(player["item"]["artists"][0]["name"])
-        case "Title":
-            print(player["item"]["name"])
-elif command in ["Status"]:
+            case "Artist":
+                print(player["item"]["artists"][0]["name"])
+            case "Title":
+                print(player["item"]["name"])
+    elif command in ["Status"]:
 
-    # player = requests.post(f"{url}/player/current").json()
-    # title = player["track"]["name"]
-    # artist = player["track"]["artist"][0]["name"]
-    # play_pause = play_pause.split(",")[0]
-    # print(truncate(output.format(artist=artist, song=title, play_pause=play_pause), trunclen + 4, len(play_pause)))
+        # player = requests.post(f"{url}/player/current").json()
+        # title = player["track"]["name"]
+        # artist = player["track"]["artist"][0]["name"]
+        # play_pause = play_pause.split(",")[0]
+        # print(truncate(output.format(artist=artist, song=title, play_pause=play_pause), trunclen + 4, len(play_pause)))
 
-    player = requests.get(f"{url}/web-api/v1/me/player").json()
-    artist = player["item"]["artists"][0]["name"]
-    title = player["item"]["name"]
-    is_playing = player["is_playing"]
-    device_id = requests.get(f"{url}/instance").json()["device_id"]
-    current_player_id = player["device"]["id"]
+        player = requests.get(f"{url}/web-api/v1/me/player").json()
+        artist = player["item"]["artists"][0]["name"]
+        title = player["item"]["name"]
+        is_playing = player["is_playing"]
+        device_id = requests.get(f"{url}/instance").json()["device_id"]
+        current_player_id = player["device"]["id"]
 
-    play_pause = play_pause.split(",")
-    if device_id != current_player_id:
-        play_pause = play_pause[2]
-    else:
-        if is_playing:
-            play_pause = play_pause[0]
+        play_pause = play_pause.split(",")
+        if device_id != current_player_id:
+            play_pause = play_pause[2]
         else:
-            play_pause = play_pause[1]
+            if is_playing:
+                play_pause = play_pause[0]
+            else:
+                play_pause = play_pause[1]
 
-    print(truncate(output.format(artist=artist, song=title, play_pause=play_pause), trunclen + 4, len(play_pause)))
+        print(truncate(output.format(artist=artist, song=title, play_pause=play_pause), trunclen + 4, len(play_pause)))
+except:
+    offline_prefix = '%{F#EC7875}󰝛%{F-}'
+    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen + 4, len(offline_prefix))
+    print(offline)
