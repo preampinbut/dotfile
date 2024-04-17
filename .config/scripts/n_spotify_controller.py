@@ -6,7 +6,7 @@ import argparse
 # Default parameters
 output = u'{play_pause} {artist}: {song}'
 trunclen = 20
-play_pause = u'\u25B6,\u23F8' # first character is play, second is paused
+play_pause = u'󰐊,󰏤,󰝚,󰝚' # first character is play, second is paused first set is when listening on this machine and other set is while listening on remote
 
 url = "http://localhost:24879"
 
@@ -113,7 +113,10 @@ try:
 
         play_pause = play_pause.split(",")
         if device_id != current_player_id:
-            play_pause = play_pause[2]
+            if is_playing:
+                play_pause = play_pause[2]
+            else:
+                play_pause = play_pause[3]
         else:
             if is_playing:
                 play_pause = play_pause[0]
