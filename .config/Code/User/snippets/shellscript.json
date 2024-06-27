@@ -20,7 +20,7 @@
   "eslint-vue": {
     "prefix": "eslint-vue",
     "body": [
-      "pnpm add -D \\\r\n  eslint \\\r\n  prettier \\\r\n  eslint-plugin-vue \\\r\n  eslint-plugin-prettier \\\r\n  eslint-config-prettier \\\r\n  @vue\/eslint-config-typescript \\\r\n  @rushstack\/eslint-patch"
+      "pnpm add -D \\\r\n  typescript@latest \\\r\n  eslint@^8.56.0 \\\r\n  prettier@^3.1.1 \\\r\n  eslint-config-prettier@^9.1.0 \\\r\n  eslint-plugin-prettier@^5.1.2 \\\r\n  eslint-plugin-vue@^9.19.2 \\\r\n  @vue\/eslint-config-typescript@^12.0.0 \\\r\n  @rushstack\/eslint-patch@^1.6.1"
     ]
   }
 }

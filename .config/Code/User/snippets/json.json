@@ -32,7 +32,7 @@
   "Prettierrc": {
     "prefix": "prettierrc",
     "body": [
-      "{\r\n  \"endOfLine\": \"auto\",\r\n  \"singleAttributePerLine\": true\r\n}\r\n"
+      "{\r\n  \"$schema\": \"https:\/\/json.schemastore.org\/prettierrc\",\r\n  \"singleAttributePerLine\": true,\r\n  \"endOfLine\": \"auto\"\r\n}"
     ]
   }
 }
