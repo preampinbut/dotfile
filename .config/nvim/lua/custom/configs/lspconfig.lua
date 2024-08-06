@@ -1,6 +1,7 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
+---@diagnostic disable-next-line: different-requires
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
@@ -17,7 +18,7 @@ local servers = {
   "rust_analyzer",
   "gopls",
   "csharp_ls",
-  "jedi_language_server",
+  "pyright",
   "tailwindcss",
   "dockerls",
   "docker_compose_language_service",
@@ -39,9 +40,27 @@ lspconfig.clangd.setup {
   },
 }
 
+local mason_registry = require "mason-registry"
+local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+  .. "/node_modules/@vue/language-server"
+
+lspconfig.tsserver.setup {
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = vue_language_server_path,
+        languages = { "vue" },
+      },
+    },
+  },
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+}
+
 lspconfig.eslint.setup {
   on_attach = function()
     vim.api.nvim_create_autocmd("BufWritePre", {
+      ---@diagnostic disable-next-line: undefined-global
       buffer = buffer,
       command = "EslintFixAll",
     })
