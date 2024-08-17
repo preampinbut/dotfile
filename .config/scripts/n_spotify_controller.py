@@ -79,16 +79,17 @@ command = args.command
 
 try:
     if command in ["PlayPause", "Next", "Previous"]:
-        device_id = requests.get(f"{url}/instance").json()["device_id"]
-        current_player_id = requests.get(f"{url}/web-api/v1/me/player").json()["device"]["id"]
-        if device_id == current_player_id:
-            match command:
-                case "PlayPause":
-                    requests.post(f"{url}/player/play-pause")
-                case "Next":
-                    requests.post(f"{url}/player/next")
-                case "Previous":
-                    requests.post(f"{url}/player/prev")
+        player = requests.get(f"{url}/web-api/v1/me/player").json()
+        match command:
+            case "PlayPause":
+                if player["is_playing"]:
+                    requests.put(f"{url}/web-api/v1/me/player/pause")
+                else:
+                    requests.put(f"{url}/web-api/v1/me/player/play")
+            case "Next":
+                requests.post(f"{url}/web-api/v1/me/player/next")
+            case "Previous":
+                requests.post(f"{url}/web-api/v1/me/player/previous")
     elif command in ["Artist", "Title"]:
         player = requests.get(f"{url}/web-api/v1/me/player/currently-playing").json()
         match command:
@@ -97,31 +98,14 @@ try:
             case "Title":
                 print(player["item"]["name"])
     elif command in ["Status"]:
-
-        # player = requests.post(f"{url}/player/current").json()
-        # title = player["track"]["name"]
-        # artist = player["track"]["artist"][0]["name"]
-        # play_pause = play_pause.split(",")[0]
-        # print(truncate(output.format(artist=artist, song=title, play_pause=play_pause), trunclen + 4, len(play_pause)))
-
         player = requests.get(f"{url}/web-api/v1/me/player").json()
         artist = player["item"]["artists"][0]["name"]
         title = player["item"]["name"]
-        is_playing = player["is_playing"]
-        device_id = requests.get(f"{url}/instance").json()["device_id"]
-        current_player_id = player["device"]["id"]
-
         play_pause = play_pause.split(",")
-        if device_id != current_player_id:
-            if is_playing:
-                play_pause = play_pause[2]
-            else:
-                play_pause = play_pause[3]
+        if player["is_playing"]:
+            play_pause = play_pause[0]
         else:
-            if is_playing:
-                play_pause = play_pause[0]
-            else:
-                play_pause = play_pause[1]
+            play_pause = play_pause[1]
 
         print(truncate(output.format(artist=artist, song=title, play_pause=play_pause), trunclen + 4, len(play_pause)))
 except:
