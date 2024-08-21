@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -43,10 +43,24 @@ return {
           quit_on_open = true,
         },
       },
-      on_attach = function (bufnr)
-        local nvimtree = require("configs.nvimtree")
+      on_attach = function(bufnr)
+        local nvimtree = require "configs.nvimtree"
         nvimtree.on_attach(bufnr)
-      end
-    }
-  }
+      end,
+    },
+  },
+
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        mappings = {
+          i = {
+            ["<Tab>"] = "move_selection_next",
+            ["<S-Tab>"] = "move_selection_previous",
+          },
+        },
+      },
+    },
+  },
 }
