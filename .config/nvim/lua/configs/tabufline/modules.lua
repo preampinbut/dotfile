@@ -7,9 +7,14 @@ dofile(vim.g.base46_cache .. "tbline")
 local txt = require("nvchad.tabufline.utils").txt
 local btn = require("nvchad.tabufline.utils").btn
 local strep = string.rep
-local style_buf = require("nvchad.tabufline.utils").style_buf
+local style_buf = require("configs.tabufline.utils").style_buf
 local cur_buf = api.nvim_get_current_buf
-local config = require("nvconfig").ui.tabufline
+local c = {
+  "treeOffset",
+  "buffers",
+  "tabs",
+  "btns",
+}
 
 ---------------------------------------------------------- btn onclick functions ----------------------------------------------
 
@@ -43,7 +48,7 @@ local M = {}
 local function available_space()
   local str = ""
 
-  for _, key in ipairs(config.order) do
+  for _, key in ipairs(c) do
     if key ~= "buffers" then
       str = str .. M[key]()
     end

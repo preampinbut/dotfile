@@ -38,12 +38,15 @@ M.ui = {
     lazyload = false,
     order = {
       "treeOffset",
-      -- currently have no idea how to modify buffers
-      "buffers",
+      "mbuffers",
       "tabs",
       "mbtns",
     },
     modules = {
+      mbuffers = function()
+        local buffers = require("configs.tabufline.modules").buffers
+        return buffers()
+      end,
       mbtns = function()
         local btns = require("configs.tabufline.modules").btns
         return btns()
