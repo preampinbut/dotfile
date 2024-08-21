@@ -1,17 +1,25 @@
+-- This file needs to have same structure as nvconfig.lua
+-- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
+
 ---@type ChadrcConfig
 local M = {}
 
--- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
-
-M.ui = {
+M.base46 = {
   theme = "tokyonight",
-  theme_toggle = { "tokyodark", "tokyonight" },
   transparency = true,
 
-  hl_override = highlights.override,
-  hl_add = highlights.add,
+  hl_override = {
+    Comment = { italic = false },
+    ["@comment"] = { italic = false },
+  },
+  hl_add = {
+    NvimTreeOpenedFolderName = { fg = "green", bold = true },
+  },
 
+  theme_toggle = { "tokyonight", "gruvbox" },
+}
+
+M.ui = {
   nvdash = {
     header = {
       "                                                     ",
@@ -26,27 +34,27 @@ M.ui = {
     load_on_startup = true,
   },
 
+  tabufline = {
+    lazyload = false,
+    order = {
+      "treeOffset",
+      -- currently have no idea how to modify buffers
+      "buffers",
+      "tabs",
+      "mbtns",
+    },
+    modules = {
+      mbtns = function()
+        local btns = require("configs.tabufline.modules").btns
+        return btns()
+      end,
+    },
+  },
+
   statusline = {
     theme = "default",
     separator_style = "block",
   },
-
-  tabufline = {
-    overriden_modules = function(modules)
-      local tabufline = require "custom.configs.tabufline"
-
-      table.remove(modules, 4)
-      table.insert(modules, 4, tabufline.buttons())
-
-      table.remove(modules, 2)
-      table.insert(modules, 2, tabufline.bufferlist())
-    end,
-  },
 }
-
-M.plugins = "custom.plugins"
-
--- check core.mappings for table structure
-M.mappings = require "custom.mappings"
 
 return M
