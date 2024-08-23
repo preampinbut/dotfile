@@ -1,44 +1,16 @@
 {
-  "Tailwind Next Config": {
-    "prefix": "tailwind-next",
+  "Vite Eslint Prettier React": {
+    "prefix": "vite-eslint-prettier-react",
+    "description": "eslint.config.js",
     "body": [
-      "\/** @type {import('tailwindcss').Config} *\/\r\nmodule.exports = {\r\n  content: [\r\n    \".\/pages\/**\/*.{js,ts,jsx,tsx}\",\r\n    \".\/components\/**\/*.{js,ts,jsx,tsx}\",\r\n  ],\r\n  theme: {\r\n    extend: {},\r\n  },\r\n  plugins: [],\r\n}\r\n"
+      "import js from '@eslint\/js'\r\nimport globals from 'globals'\r\nimport reactHooks from 'eslint-plugin-react-hooks'\r\nimport reactRefresh from 'eslint-plugin-react-refresh'\r\nimport prettier from \"eslint-plugin-prettier\"\r\nimport tseslint from 'typescript-eslint'\r\n\r\nexport default tseslint.config(\r\n  { ignores: ['dist'] },\r\n  {\r\n    extends: [js.configs.recommended, ...tseslint.configs.recommended],\r\n    files: ['**\/*.{ts,tsx}'],\r\n    languageOptions: {\r\n      ecmaVersion: 2020,\r\n      globals: globals.browser,\r\n    },\r\n    plugins: {\r\n      'react-hooks': reactHooks,\r\n      'react-refresh': reactRefresh,\r\n      \"prettier\": prettier,\r\n    },\r\n    rules: {\r\n      \"prettier\/prettier\": [\r\n        \"error\",\r\n        {\r\n          endOfLine: \"auto\",\r\n          singleAttributePerLine: true\r\n        }\r\n      ],\r\n      ...reactHooks.configs.recommended.rules,\r\n      'react-refresh\/only-export-components': [\r\n        'warn',\r\n        { allowConstantExport: true },\r\n      ],\r\n      curly: \"error\",\r\n      camelcase: \"error\",\r\n      eqeqeq: \"error\",\r\n      \"no-undef\": \"off\",\r\n      \"no-useless-escape\": \"off\",\r\n      \"object-curly-newline\": [\r\n        \"error\",\r\n        {\r\n          ObjectExpression: \"always\",\r\n          ObjectPattern: {\r\n            multiline: true,\r\n          },\r\n        },\r\n      ]\r\n    },\r\n  },\r\n)"
     ]
   },
-  "Tailwind React Config": {
-    "prefix": "tailwind-react",
+  "Vite Eslint Prettier Vue": {
+    "prefix": "vite-eslint-prettier-vue",
+    "description": ".eslintrc.cjs",
     "body": [
-      "\/** @type {import('tailwindcss').Config} *\/\r\nmodule.exports = {\r\n  content: [\r\n    \".\/src\/**\/*.{js,ts,jsx,tsx}\",\r\n  ],\r\n  theme: {\r\n    extend: {},\r\n  },\r\n  plugins: [],\r\n}\r\n"
-    ]
-  },
-  "Eslint T3 Config": {
-    "prefix": "eslint-t3",
-    "body": [
-      "\/** @type {import(\"eslint\").Linter.Config} *\/\r\nconst config = {\r\n  parser: \"@typescript-eslint\/parser\",\r\n  parserOptions: {\r\n    project: true,\r\n  },\r\n  plugins: [\"@typescript-eslint\", \"prettier\"],\r\n  extends: [\r\n    \"eslint:recommended\",\r\n    \"next\/core-web-vitals\",\r\n    \"plugin:@typescript-eslint\/recommended-type-checked\",\r\n    \"plugin:@typescript-eslint\/stylistic-type-checked\",\r\n    \"plugin:prettier\/recommended\",\r\n    \"plugin:tailwindcss\/recommended\",\r\n  ],\r\n  rules: {\r\n    \"@typescript-eslint\/consistent-type-imports\": [\r\n      \"warn\",\r\n      {\r\n        prefer: \"type-imports\",\r\n        fixStyle: \"inline-type-imports\",\r\n      },\r\n    ],\r\n    \"@typescript-eslint\/no-unused-vars\": [\r\n      \"warn\",\r\n      {\r\n        argsIgnorePattern: \"^_\",\r\n      },\r\n    ],\r\n    \"tailwindcss\/no-custom-classname\": \"off\",\r\n    curly: \"error\",\r\n    camelcase: \"error\",\r\n    eqeqeq: \"error\",\r\n    \"no-undef\": \"off\",\r\n    \"no-useless-escape\": \"off\",\r\n    \"object-curly-newline\": [\r\n      \"error\",\r\n      {\r\n        ObjectExpression: \"always\",\r\n        ObjectPattern: {\r\n          multiline: true,\r\n        },\r\n      },\r\n    ],\r\n  },\r\n};\r\n\r\nmodule.exports = config;\r\n"
-    ]
-  },
-  "Prettier T3 Config": {
-    "prefix": "prettier-t3",
-    "body": [
-      "\/** @type {import(\"prettier\").Config} *\/\r\nconst config = {\r\n  singleAttributePerLine: true,\r\n  endOfLine: \"auto\",\r\n};\r\n\r\nmodule.exports = config;\r\n"
-    ]
-  },
-  "Eslint T3 Config No Framework": {
-    "prefix": "eslint-t3-nf",
-    "body": [
-      "\/** @type {import(\"eslint\").Linter.Config} *\/\r\nconst config = {\r\n  parser: \"@typescript-eslint\/parser\",\r\n  parserOptions: {\r\n    project: true,\r\n  },\r\n  plugins: [\"@typescript-eslint\", \"prettier\"],\r\n  extends: [\r\n    \"eslint:recommended\",\r\n    \"plugin:@typescript-eslint\/recommended-type-checked\",\r\n    \"plugin:@typescript-eslint\/stylistic-type-checked\",\r\n    \"plugin:prettier\/recommended\",\r\n  ],\r\n  rules: {\r\n    \"@typescript-eslint\/consistent-type-imports\": [\r\n      \"warn\",\r\n      {\r\n        prefer: \"type-imports\",\r\n        fixStyle: \"inline-type-imports\",\r\n      },\r\n    ],\r\n    \"@typescript-eslint\/no-unused-vars\": [\r\n      \"warn\",\r\n      {\r\n        argsIgnorePattern: \"^_\",\r\n      },\r\n    ],\r\n    \"tailwindcss\/no-custom-classname\": \"off\",\r\n    curly: \"error\",\r\n    camelcase: \"error\",\r\n    eqeqeq: \"error\",\r\n    \"no-undef\": \"off\",\r\n    \"no-useless-escape\": \"off\",\r\n    \"object-curly-newline\": [\r\n      \"error\",\r\n      {\r\n        ObjectExpression: \"always\",\r\n        ObjectPattern: {\r\n          multiline: true,\r\n        },\r\n      },\r\n    ],\r\n  },\r\n  ignorePatterns: [\"*.cjs\"],\r\n};\r\n\r\nmodule.exports = config;\r\n"
-    ]
-  },
-  "Eslint Vue": {
-    "prefix": "eslint-vue",
-    "body": [
-      "require(\"@rushstack\/eslint-patch\/modern-module-resolution\");\r\n\r\nmodule.exports = {\r\n  root: true,\r\n  extends: [\r\n    \"plugin:vue\/vue3-essential\",\r\n    \"eslint:recommended\",\r\n    \"@vue\/eslint-config-typescript\",\r\n    \"plugin:prettier\/recommended\",\r\n  ],\r\n  parserOptions: {\r\n    ecmaVersion: \"latest\",\r\n  },\r\n  rules: {\r\n    \"vue\/multi-word-component-names\": \"off\", \/\/ required for nuxt\r\n    semi: \"error\",\r\n    curly: \"error\",\r\n    camelcase: \"error\",\r\n    eqeqeq: \"error\",\r\n    \"no-undef\": \"off\",\r\n    \"no-useless-escape\": \"off\",\r\n    \"object-curly-newline\": [\r\n      \"error\",\r\n      {\r\n        ObjectExpression: \"always\",\r\n        ObjectPattern: {\r\n          multiline: true,\r\n        },\r\n      },\r\n    ],\r\n  },\r\n};"
-    ]
-  },
-  "Prettier Vue": {
-    "prefix": "prettier-vue",
-    "body": [
-      "\/** @type {import(\"prettier\").Config} *\/\r\nconst config = {\r\n  singleAttributePerLine: true,\r\n  endOfLine: \"auto\",\r\n};\r\n\r\nmodule.exports = config;"
+      "\/* eslint-env node *\/\r\nrequire(\"@rushstack\/eslint-patch\/modern-module-resolution\");\r\n\r\nmodule.exports = {\r\n  root: true,\r\n  extends: [\r\n    \"plugin:vue\/vue3-essential\",\r\n    \"eslint:recommended\",\r\n    \"plugin:prettier\/recommended\",\r\n    \"@vue\/eslint-config-typescript\",\r\n  ],\r\n  parserOptions: {\r\n    ecmaVersion: \"latest\",\r\n  },\r\n  plugins: [\"prettier\"],\r\n  rules: {\r\n    \/\/\"vue\/multi-word-component-names\": \"off\", \/\/ required for nuxt\r\n    \"prettier\/prettier\": [\r\n      \"error\",\r\n      {\r\n        endOfLine: \"auto\",\r\n        singleAttributePerLine: true,\r\n      },\r\n    ],\r\n    curly: \"error\",\r\n    camelcase: \"error\",\r\n    eqeqeq: \"error\",\r\n    \"no-undef\": \"off\",\r\n    \"no-unused-vars\": \"warn\",\r\n    \"no-useless-escape\": \"off\",\r\n    \"object-curly-newline\": [\r\n      \"error\",\r\n      {\r\n        ObjectExpression: \"always\",\r\n        ObjectPattern: {\r\n          multiline: true,\r\n        },\r\n      },\r\n    ],\r\n  },\r\n};\r\n"
     ]
   }
 }
