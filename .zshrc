@@ -100,8 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source /home/preampinbut/zsh-syntax-highlighting/zsh-syntax-highlighting.sh
-
 alias l="ls -lah --color=auto"
 alias ls="ls -a --color=auto"
 
@@ -123,3 +121,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# bun completions
+[ -s "/home/preampinbut/.bun/_bun" ] && source "/home/preampinbut/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
