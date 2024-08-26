@@ -35,7 +35,7 @@ M.ui = {
   },
 
   tabufline = {
-    lazyload = false,
+    lazyload = true,
     order = {
       "treeOffset",
       "mbuffers",
