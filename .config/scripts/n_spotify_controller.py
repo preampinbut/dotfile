@@ -118,6 +118,7 @@ try:
 
         print(truncate(output.format(artist=artist, song=title, play_pause=play_pause), trunclen + 4, len(play_pause)))
 except:
-    offline_prefix = '%{F#EC7875}󰝛%{F-}'
-    offline = '%{u#EC7875}' + set_buffer(f'{offline_prefix} Offline', trunclen + 4, len(offline_prefix))
+    play_pause = play_pause.split(",")
+    offline_prefix = f'%{{F#EC7875}}{play_pause[1]}%{{F-}}'
+    offline = f'%{{u#EC7875}}{offline_prefix} Offline'
     print(offline)
