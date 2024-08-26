@@ -6,6 +6,7 @@ local M = {}
 
 M.base46 = {
   theme = "tokyonight",
+  theme_toggle = { "tokyonight", "kanagawa" },
   transparency = true,
 
   hl_override = {
@@ -15,8 +16,6 @@ M.base46 = {
   hl_add = {
     NvimTreeOpenedFolderName = { fg = "green", bold = true },
   },
-
-  theme_toggle = { "tokyonight", "gruvbox" },
 }
 
 M.ui = {
