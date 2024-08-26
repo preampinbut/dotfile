@@ -36,6 +36,9 @@ local vue_language_server_path = mason_registry.get_package("vue-language-server
   .. "/node_modules/@vue/language-server"
 --
 lspconfig.tsserver.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
   init_options = {
     plugins = {
       {
@@ -51,9 +54,25 @@ lspconfig.tsserver.setup {
 -- require the following workaround to work
 -- https://github.com/vuejs/language-tools/issues/4706#issuecomment-2295347078
 lspconfig.volar.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
   init_options = {
     vue = {
       hybridMode = false,
+    },
+  },
+}
+
+lspconfig.cssls.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    css = {
+      lint = {
+        unknownAtRules = "ignore",
+      },
     },
   },
 }
