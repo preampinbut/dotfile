@@ -2,7 +2,7 @@
 
 # Add this script to your wm startup file.
 
-DIR="$HOME/.config/polybar/preampinbut/"
+DIR="$HOME/.config/polybar/colorblocks"
 
 # Terminate already running bar instances
 killall -q polybar

@@ -97,7 +97,7 @@ bindsym $mod+Shift+Return exec vivaldi
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id $HOME/.config/polybar/preampinbut/scripts/launcher.sh
+bindsym $mod+d exec --no-startup-id $HOME/.config/polybar/colorblocks/scripts/launcher.sh
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -235,7 +235,7 @@ bindsym --border button1 nop
 bindsym --border button2 nop
 bindsym --border button3 nop
 
-bindsym $mod+Escape exec --no-startup-id $HOME/.config/polybar/preampinbut/scripts/powermenu.sh
+bindsym $mod+Escape exec --no-startup-id $HOME/.config/polybar/colorblocks/scripts/powermenu.sh
 
 bindsym Print exec --no-startup-id maim -u | xclip -selection clipboard -t image/png
 bindsym Shift+Print exec --no-startup-id maim -su | xclip -selection clipboard -t image/png
@@ -291,12 +291,11 @@ exec --no-startup-id picom -b
 exec --no-startup-id light-locker --lock-on-suspend --no-late-locking --lock-on-lid
 
 exec i3-config-wizard
-exec_always --no-startup-id $HOME/.config/polybar/preampinbut/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/colorblocks/launch.sh
 
 # exec discord
 # exec spotify-launcher -v --skip-update
 
 # exec_always xinput disable 10
 exec --no-startup-id unclutter -idle 1 -jitter 2 -root &
-exec_always --no-startup-id screenkey --no-systray --key-mode raw --bak-mode normal -p fixed -g 245x26+1675+1054
-
+exec_always --no-startup-id screenkey --no-systray --key-mode raw --bak-mode normal -p fixed -g 200x40+860+1040

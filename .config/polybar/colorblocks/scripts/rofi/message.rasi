@@ -5,20 +5,20 @@
 * {
     background-color:       @bg;
     text-color:             @fg;
-	font:				 	"Terminus 9";
+	font:				 	"Iosevka Nerd Font 10";
 }
 
 window {
-    width:      			210px;
+    width:      			320px;
     padding:    			25px;
-    border:					0px 0px 1px 0px;
+    border:					0px 0px 0px 4px;
     border-radius:          0px;
-    border-color:           @se;
+    border-color:           @bg3;
     location:               center;
     y-offset:               -2em;
 }
 
 entry {
     expand: 				true;
-    text-color:				@ac;
+    text-color:				@bg2;
 }
