@@ -2,6 +2,6 @@
 
 case "$1" in
     pre)
-        /usr/bin/pkill spotifyd
+        /usr/bin/pkill go-librespot
         ;;
 esac
