@@ -29,8 +29,8 @@ def truncate(name, trunclen, prefix_size):
         name += '...'
         if ('(' in name) and (')' not in name):
             name += ')'
-    else:
-        name = set_buffer(name, trunclen, prefix_size)
+    # else:
+    #     name = set_buffer(name, trunclen, prefix_size)
     return name
 
 parser = argparse.ArgumentParser()
