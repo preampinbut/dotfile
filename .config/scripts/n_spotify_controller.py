@@ -80,12 +80,21 @@ command = args.command
 try:
     if command in ["PlayPause", "Next", "Previous"]:
         player = requests.get(f"{url}/web-api/v1/me/player").json()
+        player_id = player["device"]["id"]
+        this = requests.get(f"{url}/status").json()
+        this_id = this["device_id"]
         match command:
             case "PlayPause":
-                if player["is_playing"]:
-                    requests.put(f"{url}/web-api/v1/me/player/pause")
+                if player_id == this_id:
+                    if player["is_playing"]:
+                        requests.post(f"{url}/player/pause")
+                    else:
+                        requests.post(f"{url}/player/resume")
                 else:
-                    requests.put(f"{url}/web-api/v1/me/player/play")
+                    if player["is_playing"]:
+                        requests.put(f"{url}/web-api/v1/me/player/pause")
+                    else:
+                        requests.put(f"{url}/web-api/v1/me/player/play")
             case "Next":
                 requests.post(f"{url}/web-api/v1/me/player/next")
             case "Previous":
