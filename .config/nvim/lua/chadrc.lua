@@ -5,8 +5,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "tokyonight",
-  theme_toggle = { "tokyonight", "kanagawa" },
+  theme = "catppuccin",
   transparency = true,
 
   hl_override = {
@@ -39,7 +38,7 @@ M.ui = {
       "treeOffset",
       "mbuffers",
       "tabs",
-      "mbtns",
+      -- "mbtns",
     },
     modules = {
       mbuffers = function()
