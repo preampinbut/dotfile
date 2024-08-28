@@ -66,6 +66,7 @@ case $chosen in
 		fi
         ;;
     $hibernate)
+		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
       systemctl hibernate
 		elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
