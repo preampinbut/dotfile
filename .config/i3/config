@@ -75,7 +75,7 @@ bindsym XF86AudioPrev exec --no-startup-id $HOME/.config/scripts/n_spotify_contr
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 && $refresh_i3status
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 && $refresh_i3status
 
-bindsym XF86PowerOff exec --no-startup-id /usr/bin/systemctl hibernate
+bindsym $mod+Menu exec --no-startup-id /usr/bin/systemctl hibernate
 
 bindsym $mod+Shift+n exec --no-startup-id $HOME/.config/scripts/toggle_touchpad.sh && $refresh_i3status
 
@@ -253,10 +253,10 @@ bindsym --border button3 nop
 
 bindsym $mod+Escape exec --no-startup-id $HOME/.config/polybar/colorblocks/scripts/powermenu.sh
 
-bindsym Print exec --no-startup-id maim -u | xclip -selection clipboard -t image/png
-bindsym Shift+Print exec --no-startup-id maim -su | xclip -selection clipboard -t image/png
-bindsym Ctrl+Print exec --no-startup-id maim -u "/home/$USER/Pictures/$(date).png"
-bindsym Ctrl+Shift+Print exec --no-startup-id maim -su "/home/$USER/Pictures/$(date).png"
+bindsym Menu exec --no-startup-id maim -u | xclip -selection clipboard -t image/png
+bindsym Shift+Menu exec --no-startup-id maim -su | xclip -selection clipboard -t image/png
+bindsym Ctrl+Menu exec --no-startup-id maim -u "/home/$USER/Pictures/$(date).png"
+bindsym Ctrl+Shift+Menu exec --no-startup-id maim -su "/home/$USER/Pictures/$(date).png"
 
 bindsym $mod+comma exec --no-startup-id emoji-picker
 
@@ -301,11 +301,11 @@ focus_wrapping workspace
 exec --no-startup-id $HOME/.config/scripts/pactl-set.sh
 
 # run feh so the bg is not black while wallengine are booting
-exec --no-startup-id feh --bg-max $HOME/Pictures/zzz/yor.png
-exec --no-startup-id $HOME/.config/wallengine/wallengine-daemon.sh -d
+exec --no-startup-id feh --bg-max $HOME/Pictures/su_ponponpopon/kikuri_c.jpg
+# exec --no-startup-id $HOME/.config/wallengine/wallengine-daemon.sh -d
 exec --no-startup-id picom -b
 
-exec --no-startup-id light-locker --lock-on-suspend --no-late-locking --lock-on-lid
+exec --no-startup-id light-locker --lock-on-suspend --no-late-locking
 
 exec i3-config-wizard
 exec_always --no-startup-id $HOME/.config/polybar/colorblocks/launch.sh
@@ -315,4 +315,4 @@ exec_always --no-startup-id $HOME/.config/polybar/colorblocks/launch.sh
 
 # exec_always xinput disable 10
 exec --no-startup-id unclutter -idle 1 -jitter 2 -root &
-exec_always --no-startup-id screenkey --no-systray --key-mode raw --bak-mode normal -p fixed -g 200x40+860+1040
+exec_always --no-startup-id screenkey --no-systray --key-mode raw --bak-mode normal -p fixed -g 200x40+860+1160
