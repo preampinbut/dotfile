@@ -79,7 +79,7 @@ bindsym $mod+Menu exec --no-startup-id /usr/bin/systemctl hibernate
 
 bindsym $mod+Shift+n exec --no-startup-id $HOME/.config/scripts/toggle_touchpad.sh && $refresh_i3status
 
-bindsym $mod+n exec --no-startup-id xdotool mousemove 1920 1080
+bindsym $mod+n exec --no-startup-id xdotool mousemove 1920 1200
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -305,7 +305,7 @@ exec --no-startup-id feh --bg-max $HOME/Pictures/su_ponponpopon/kikuri_c.jpg
 # exec --no-startup-id $HOME/.config/wallengine/wallengine-daemon.sh -d
 exec --no-startup-id picom -b
 
-exec --no-startup-id light-locker --lock-on-suspend --no-late-locking
+exec --no-startup-id light-locker --lock-on-suspend --no-late-locking --lock-on-lid
 
 exec i3-config-wizard
 exec_always --no-startup-id $HOME/.config/polybar/colorblocks/launch.sh
