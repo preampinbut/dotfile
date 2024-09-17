@@ -75,7 +75,7 @@ bindsym XF86AudioPrev exec --no-startup-id $HOME/.config/scripts/n_spotify_contr
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 && $refresh_i3status
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 && $refresh_i3status
 
-bindsym $mod+Menu exec --no-startup-id /usr/bin/systemctl hibernate
+bindsym XF86PowerOff exec --no-startup-id /usr/bin/systemctl hibernate
 
 bindsym $mod+Shift+n exec --no-startup-id $HOME/.config/scripts/toggle_touchpad.sh && $refresh_i3status
 
