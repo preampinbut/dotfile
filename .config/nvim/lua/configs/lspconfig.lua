@@ -9,7 +9,7 @@ local servers = {
   "cssls",
   "tailwindcss",
   "volar",
-  "tsserver",
+  "ts_ls",
   "clangd",
   "eslint",
   "emmet_ls",
@@ -19,6 +19,7 @@ local servers = {
   "csharp_ls",
   "pyright",
   "dockerls",
+  "lemminx",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
@@ -31,11 +32,16 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-local mason_registry = require "mason-registry"
-local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-  .. "/node_modules/@vue/language-server"
+lspconfig.gopls.setup {
+  settings = {
+    gopls = {
+      buildFlags = { "-tags=" }, -- set tags here
+    },
+  },
+}
+
 --
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -43,7 +49,7 @@ lspconfig.tsserver.setup {
     plugins = {
       {
         name = "@vue/typescript-plugin",
-        location = vue_language_server_path,
+        location = "/usr/local/bin/node_modules/@vue/typescript-plugin",
         languages = { "vue" },
       },
     },
@@ -51,8 +57,6 @@ lspconfig.tsserver.setup {
   -- filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 }
 
--- require the following workaround to work
--- https://github.com/vuejs/language-tools/issues/4706#issuecomment-2295347078
 lspconfig.volar.setup {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
