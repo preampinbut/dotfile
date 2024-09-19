@@ -1,3 +1,6 @@
+-- for easy access
+local goBuildTags = ""
+
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
@@ -35,7 +38,7 @@ end
 lspconfig.gopls.setup {
   settings = {
     gopls = {
-      buildFlags = { "-tags=" }, -- set tags here
+      buildFlags = { "-tags=" .. goBuildTags }, -- set tags here
     },
   },
 }
