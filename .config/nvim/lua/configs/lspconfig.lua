@@ -36,6 +36,9 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.gopls.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
   settings = {
     gopls = {
       buildFlags = { "-tags=" .. goBuildTags }, -- set tags here
