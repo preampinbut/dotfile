@@ -5,10 +5,16 @@
       "pnpm add -D \\\r\n  globals@15.9.0 \\\r\n  eslint@9.9.0 \\\r\n  @eslint\/js@9.9.0 \\\r\n  eslint-config-prettier@9.1.0 \\\r\n  eslint-plugin-prettier@5.2.1 \\\r\n  eslint-plugin-react-hooks@^5.1.0-rc.0 \\\r\n  eslint-plugin-react-refresh@^0.4.9 \\\r\n  typescript-eslint@8.0.1\r\n"
     ]
   },
+  "Vite Eslint Prettier Vue L": {
+    "prefix": "vite-eslint-prettier-vue-legacy",
+    "body": [
+      "pnpm add -D \\\r\n  @rushstack\/eslint-patch@1.8.0 \\\r\n  eslint@8.57.0 \\\r\n  eslint-config-prettier@9.1.0 \\\r\n  eslint-plugin-prettier@5.2.1 \\\r\n  eslint-plugin-vue@9.23.0 \\\r\n  @vue\/eslint-config-typescript@13.0.0"
+    ]
+  },
   "Vite Eslint Prettier Vue": {
     "prefix": "vite-eslint-prettier-vue",
     "body": [
-      "pnpm add -D \\\r\n  @rushstack\/eslint-patch@1.8.0 \\\r\n  eslint@8.57.0 \\\r\n  eslint-config-prettier@9.1.0 \\\r\n  eslint-plugin-prettier@5.2.1 \\\r\n  eslint-plugin-vue@9.23.0 \\\r\n  @vue\/eslint-config-typescript@13.0.0"
+      "pnpm add -D \\\r\n  eslint@9.12.0 \\\r\n  eslint-config-prettier@9.1.0 \\\r\n  eslint-plugin-prettier@5.2.1 \\\r\n  eslint-plugin-vue@9.29.0 \\\r\n  @vue\/eslint-config-typescript@14.0.1"
     ]
   }
 }
