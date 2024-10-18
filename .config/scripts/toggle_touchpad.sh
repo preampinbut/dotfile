@@ -22,39 +22,12 @@
 # Following bash script is referred to this askubuntu question:
 # http://askubuntu.com/questions/751413/how-to-disable-enable-toggle-touchpad-in-a-dell-laptop
 
-flag_v=false
-
-disabled="%{F#CC6666}"
-enabled="%{F#141C21}"
-
 # xinput list --name-only
-device_id=$(xinput list --id-only "ELAN0791:00 04F3:30FD Touchpad")
+device_id=$(xinput list --id-only "PNP0C50:00 347D:7640 Touchpad")
 
-while [[ $# -gt 0 ]]; do
-  flag="$1"
-  case "$flag" in
-    -v)
-      flag_v=true
-      ;;
-  esac
-  shift
-done
-
-if xinput list-props "$device_id" | grep "Device Enabled ([[:digit:]]\+):\s*1" >/dev/null
+if xinput list-props "$device_id" | grep "libinput Disable While Typing Enabled (357):\s*1" >/dev/null
 then
-  if [ "$flag_v" = true ]
-  then
-    echo "$enabled"
-  else
-    xinput disable "$device_id"
-    xdotool mousemove 1920 1080
-  fi
+  xinput set-prop "$device_id" 357 0
 else
-  if [ "$flag_v" = true ]
-  then
-    echo "$disabled"
-  else
-    xinput enable "$device_id"
-    xdotool mousemove 960 540 
-  fi
+  xinput set-prop "$device_id" 357 1
 fi
