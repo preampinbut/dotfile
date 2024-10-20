@@ -248,13 +248,15 @@ default_floating_border pixel 5
 gaps inner 8
 gaps outer 0
 
+gaps top 48
+
 focus_follows_mouse no
 focus_wrapping workspace
 
 exec --no-startup-id $HOME/.config/scripts/pactl-set.sh
 
 # run feh so the bg is not black while wallengine are booting
-exec --no-startup-id feh --bg-fill $HOME/Pictures/JLT4n/nijika_e.jpeg
+exec --no-startup-id feh --bg-fill $HOME/Pictures/JLT4n/ryo_e.png
 # exec --no-startup-id $HOME/.config/wallengine/wallengine-daemon.sh -d
 exec --no-startup-id picom -b
 
