@@ -36,8 +36,10 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/scripts/pactl-set.sh +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/scripts/pactl-set.sh -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -130,7 +132,7 @@ bindsym $mod+Shift+t focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+z focus child
 
 # enforce workspace
 workspace 1 output eDP-1
@@ -253,7 +255,7 @@ gaps top 48
 focus_follows_mouse no
 focus_wrapping workspace
 
-exec --no-startup-id $HOME/.config/scripts/pactl-set.sh
+# exec_always --no-startup-id $HOME/.config/scripts/pactl-set.sh
 
 # run feh so the bg is not black while wallengine are booting
 exec --no-startup-id feh --bg-fill $HOME/Pictures/JLT4n/ryo_e.png
