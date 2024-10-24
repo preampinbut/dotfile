@@ -79,6 +79,8 @@ bindsym $mod+d exec --no-startup-id $HOME/.config/polybar/forest/scripts/launche
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
+bindsym $mod+Shift+d exec --no-startup-id thunar
+
 bindsym $mod+x exec pcmanfm
 
 # change focus
