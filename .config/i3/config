@@ -260,7 +260,9 @@ focus_wrapping workspace
 # exec_always --no-startup-id $HOME/.config/scripts/pactl-set.sh
 
 # run feh so the bg is not black while wallengine are booting
-exec --no-startup-id feh --bg-fill $HOME/Pictures/JLT4n/ryo_e.png
+# exec --no-startup-id feh --bg-fill $HOME/Pictures/JLT4n/ryo_e.png
+exec_always --no-startup-id $HOME/.config/scripts/set-anim-wallpaper.sh $HOME/Pictures/gif/e.gif 1500 864 1920 1200
+
 # exec --no-startup-id $HOME/.config/wallengine/wallengine-daemon.sh -d
 exec --no-startup-id picom -b
 
