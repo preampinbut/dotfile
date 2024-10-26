@@ -12,3 +12,5 @@
 
 <img alt="preview-1" src="./1.png" />
 <img alt="preview-2" src="./2.png" />
+
+[anim_preview.webm](https://github.com/user-attachments/assets/c5f159c9-5779-4a9a-bb8d-bd7e8f67eff1)
