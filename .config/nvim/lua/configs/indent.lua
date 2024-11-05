@@ -35,6 +35,7 @@ require("ibl").setup {
     highlight = scope_highlight,
     show_start = true,
     show_end = true,
+    show_exact_scope = true,
   },
 }
 
