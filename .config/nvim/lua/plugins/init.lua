@@ -73,4 +73,19 @@ return {
     end,
     ft = { "markdown" },
   },
+
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    config = function()
+      require "configs.rainbow"
+    end,
+  },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+      require "configs.indent"
+    end,
+  },
 }
