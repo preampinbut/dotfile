@@ -1,5 +1,7 @@
 -- for easy access
 local goBuildTags = ""
+local ts_ls = true
+local denols = false
 
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
@@ -12,7 +14,6 @@ local servers = {
   "cssls",
   "tailwindcss",
   "volar",
-  "ts_ls",
   "clangd",
   "eslint",
   "emmet_ls",
@@ -24,6 +25,15 @@ local servers = {
   "dockerls",
   "lemminx",
 }
+
+if denols == true and ts_ls == true then
+  error "ts_ls and denols cannot be true at the same time"
+end
+
+if denols == true then
+  table.insert(servers, "denols")
+end
+
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -46,22 +56,22 @@ lspconfig.gopls.setup {
   },
 }
 
---
-lspconfig.ts_ls.setup {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-  init_options = {
-    plugins = {
-      {
-        name = "@vue/typescript-plugin",
-        location = "/usr/local/bin/node_modules/@vue/typescript-plugin",
-        languages = { "vue" },
+if ts_ls == true then
+  lspconfig.ts_ls.setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
+    init_options = {
+      plugins = {
+        {
+          name = "@vue/typescript-plugin",
+          location = "/usr/local/bin/node_modules/@vue/typescript-plugin",
+          languages = { "vue" },
+        },
       },
     },
-  },
-  -- filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-}
+  }
+end
 
 lspconfig.volar.setup {
   on_attach = nvlsp.on_attach,
