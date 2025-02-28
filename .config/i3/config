@@ -235,6 +235,11 @@ bindsym Shift+Menu exec --no-startup-id maim -su | xclip -selection clipboard -t
 bindsym Ctrl+Menu exec --no-startup-id maim -u "/home/$USER/Pictures/$(date).png"
 bindsym Ctrl+Shift+Menu exec --no-startup-id maim -su "/home/$USER/Pictures/$(date).png"
 
+bindsym Print exec --no-startup-id maim -u | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim -su | xclip -selection clipboard -t image/png
+bindsym Ctrl+Print exec --no-startup-id maim -u "/home/$USER/Pictures/$(date).png"
+bindsym Ctrl+Shift+Print exec --no-startup-id maim -su "/home/$USER/Pictures/$(date).png"
+
 bindsym $mod+comma exec --no-startup-id emoji-picker
 
 for_window [class="obs"] move to workspace $ws8
