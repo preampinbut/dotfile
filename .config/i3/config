@@ -268,7 +268,7 @@ focus_wrapping workspace
 # exec --no-startup-id feh --bg-fill $HOME/Pictures/JLT4n/ryo_e.png
 exec_always --no-startup-id $HOME/.config/scripts/set-anim-wallpaper.sh $HOME/Pictures/gif/e.gif 1500 864 1920 1200 0
 
-# exec --no-startup-id $HOME/.config/wallengine/wallengine-daemon.sh -d
+# exec --no-startup-id $HOME/.config/linux-wallpaperengine/wallpaperengine-daemon.sh -d
 exec --no-startup-id picom -b
 
 exec --no-startup-id light-locker --lock-on-suspend --no-late-locking --lock-on-lid
