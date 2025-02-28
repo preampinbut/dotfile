@@ -7,8 +7,6 @@ usage() {
   return
 }
 
-pkill xwinwrap
-
 mode=""
 padding_left="unset"
 
@@ -63,6 +61,8 @@ g_width=$(( (screen_width/2) - (source_width/2) + padding_left ))
 g_height=$(( (screen_height/2) - (source_height/2) ))
 
 geo="${source_width}x${source_height}+${g_width}+${g_height}"
+
+pkill xwinwrap
 
 if [ "$mode" = "gifview" ]; then
   xwinwrap -g "$geo" -ov -ni -s -nf -- gifview -w WID "$source" -a
