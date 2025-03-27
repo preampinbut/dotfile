@@ -1,5 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
+import psutil
+import dbus
 import requests
 import argparse
 
@@ -8,7 +10,7 @@ output = u'{play_pause} {artist}: {song}'
 trunclen = 20
 play_pause = u'󰐊,󰏤,󰝚,󰝚' # first character is play, second is paused first set is when listening on this machine and other set is while listening on remote
 
-url = "http://localhost:24879"
+url = "http://localhost:36842"
 
 def set_buffer(name, trunclen, prefix_size):
     buffer_size = trunclen - (len(name) - prefix_size)
@@ -32,6 +34,11 @@ def truncate(name, trunclen, prefix_size):
     # else:
     #     name = set_buffer(name, trunclen, prefix_size)
     return name
+def getpidof(name):
+    for proc in psutil.process_iter(attrs=["pid", "name"]):
+        if proc.info["name"] and name.lower() in proc.info["name"].lower():
+            return proc.info["pid"]
+    return None
 
 parser = argparse.ArgumentParser()
 
@@ -77,32 +84,39 @@ if args.play_pause is not None:
 
 command = args.command
 
+session_bus = dbus.SessionBus()
+try:
+    spotify_bus = session_bus.get_object(
+        'org.mpris.MediaPlayer2.spotifyd.instance' + str(getpidof("spotifyd")),
+        '/org/mpris/MediaPlayer2'
+    )
+    player = dbus.Interface(
+        spotify_bus,
+        'org.mpris.MediaPlayer2.Player'
+    )
+except:
+    player = None
+
 try:
     if command in ["PlayPause", "Next", "Previous"]:
-        player = requests.get(f"{url}/web-api/v1/me/player").json()
-        player_id = player["device"]["id"]
-        this = requests.get(f"{url}/status").json()
-        this_id = this["device_id"]
+        remote_player = requests.get(f"{url}/web-api/v1/me/player").json()
         match command:
             case "PlayPause":
-                if player_id == this_id:
-                    if player["is_playing"]:
-                        requests.post(f"{url}/player/pause")
-                    else:
-                        requests.post(f"{url}/player/resume")
+                if player != None:
+                    player.PlayPause()
                 else:
-                    if player["is_playing"]:
+                    if remote_player["is_playing"]:
                         requests.put(f"{url}/web-api/v1/me/player/pause")
                     else:
                         requests.put(f"{url}/web-api/v1/me/player/play")
             case "Next":
-                if player_id == this_id:
-                    requests.post(f"{url}/player/next", json={})
+                if player != None:
+                    player.Next()
                 else:
                     requests.post(f"{url}/web-api/v1/me/player/next")
             case "Previous":
-                if player_id == this_id:
-                    requests.post(f"{url}/player/prev")
+                if player != None:
+                    player.Previous()
                 else:
                     requests.post(f"{url}/web-api/v1/me/player/previous")
     elif command in ["Artist", "Title"]:
