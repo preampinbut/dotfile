@@ -96,9 +96,15 @@ try:
                     else:
                         requests.put(f"{url}/web-api/v1/me/player/play")
             case "Next":
-                requests.post(f"{url}/web-api/v1/me/player/next")
+                if player_id == this_id:
+                    requests.post(f"{url}/player/next", json={})
+                else:
+                    requests.post(f"{url}/web-api/v1/me/player/next")
             case "Previous":
-                requests.post(f"{url}/web-api/v1/me/player/previous")
+                if player_id == this_id:
+                    requests.post(f"{url}/player/prev")
+                else:
+                    requests.post(f"{url}/web-api/v1/me/player/previous")
     elif command in ["Artist", "Title"]:
         player = requests.get(f"{url}/web-api/v1/me/player/currently-playing").json()
         match command:
