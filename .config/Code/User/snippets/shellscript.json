@@ -2,7 +2,7 @@
   "Vite Eslint Prettier React": {
     "prefix": "vite-eslint-prettier-react",
     "body": [
-      "pnpm add -D \\\r\n  globals@15.9.0 \\\r\n  eslint@9.9.0 \\\r\n  @eslint\/js@9.9.0 \\\r\n  eslint-config-prettier@9.1.0 \\\r\n  eslint-plugin-prettier@5.2.1 \\\r\n  eslint-plugin-react-hooks@^5.1.0-rc.0 \\\r\n  eslint-plugin-react-refresh@^0.4.9 \\\r\n  typescript-eslint@8.0.1\r\n"
+      "pnpm add -D \\\r\n  globals@15.9.0 \\\r\n  eslint@9.9.0 \\\r\n  @eslint\/js@9.9.0 \\\r\n  prettier@3.2.5 \\\r\n  eslint-config-prettier@9.1.0 \\\r\n  eslint-plugin-prettier@5.2.1 \\\r\n  eslint-plugin-react-hooks@^5.1.0-rc.0 \\\r\n  eslint-plugin-react-refresh@^0.4.9 \\\r\n  typescript-eslint@8.0.1"
     ]
   },
   "Vite Eslint Prettier Vue L": {
