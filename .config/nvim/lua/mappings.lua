@@ -43,12 +43,12 @@ end, { desc = "Goto Next" })
 
 -- Tabufline
 
-map("n", "<M-tab>", function()
-  require("nvchad.tebufline").move_buf(1)
-end, { desc = "Move buffer right" })
-map("n", "<M-tab>", function()
-  require("nvchad.tebufline").move_buf(-1)
+map("n", "<M-[>", function()
+  require("nvchad.tabufline").move_buf(-1)
 end, { desc = "Move buffer left" })
+map("n", "<M-]>", function()
+  require("nvchad.tabufline").move_buf(1)
+end, { desc = "Move buffer right" })
 
 -- Telescope
 
