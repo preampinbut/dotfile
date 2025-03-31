@@ -24,6 +24,8 @@ local servers = {
   "pyright",
   "dockerls",
   "lemminx",
+  "dartls",
+  "prismals",
 }
 
 if denols == true and ts_ls == true then
@@ -80,6 +82,13 @@ lspconfig.volar.setup {
   init_options = {
     vue = {
       hybridMode = false,
+    },
+  },
+  settings = {
+    css = {
+      lint = {
+        unknownAtRules = "ignore",
+      },
     },
   },
 }
