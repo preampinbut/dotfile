@@ -14,7 +14,7 @@
   "Vite Eslint Prettier Vue": {
     "prefix": "vite-eslint-prettier-vue",
     "body": [
-      "pnpm add -D \\\r\n  eslint@9.12.0 \\\r\n  eslint-config-prettier@9.1.0 \\\r\n  eslint-plugin-prettier@5.2.1 \\\r\n  eslint-plugin-vue@9.29.0 \\\r\n  @vue\/eslint-config-typescript@14.0.1"
+      "pnpm add -D \\\r\n  eslint \\\r\n  prettier \\\r\n  eslint-config-prettier \\\r\n  eslint-plugin-prettier \\\r\n  eslint-plugin-vue \\\r\n  @vue\/eslint-config-typescript \\\r\n  @stylistic\/eslint-plugin-js"
     ]
   }
 }
