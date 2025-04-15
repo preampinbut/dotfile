@@ -68,9 +68,14 @@ if ts_ls == true then
         {
           name = "@vue/typescript-plugin",
           location = "/usr/local/bin/node_modules/@vue/typescript-plugin",
-          languages = { "vue" },
+          languages = { "javascript", "typescript", "vue" },
         },
       },
+    },
+    filetypes = {
+      "javascript",
+      "typescript",
+      "vue",
     },
   }
 end

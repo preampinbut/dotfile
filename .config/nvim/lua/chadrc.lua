@@ -34,7 +34,7 @@ M.nvdash = {
 M.ui = {
 
   tabufline = {
-    lazyload = true,
+    lazyload = false,
     order = {
       "treeOffset",
       "mbuffers",
