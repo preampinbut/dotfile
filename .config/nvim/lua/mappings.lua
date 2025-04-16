@@ -53,5 +53,5 @@ end, { desc = "Move buffer right" })
 -- Telescope
 
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Find document symbol" })
-map("n", "<leader>fs", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "Find workspace symbol" })
+map("n", "<leader>fS", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "Find workspace symbol" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles only_cwd=true<CR>", { desc = "Find oldfiles" })
