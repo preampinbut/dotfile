@@ -58,6 +58,10 @@ lspconfig.gopls.setup {
   },
 }
 
+local mason_registry = require "mason-registry"
+local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+  .. "/node_modules/@vue/language-server"
+
 if ts_ls == true then
   lspconfig.ts_ls.setup {
     on_attach = nvlsp.on_attach,
@@ -67,14 +71,16 @@ if ts_ls == true then
       plugins = {
         {
           name = "@vue/typescript-plugin",
-          location = "/usr/local/bin/node_modules/@vue/typescript-plugin",
-          languages = { "javascript", "typescript", "vue" },
+          location = vue_language_server_path,
+          languages = { "vue" },
         },
       },
     },
     filetypes = {
       "javascript",
       "typescript",
+      "javascriptreact",
+      "typescriptreact",
       "vue",
     },
   }
@@ -84,11 +90,6 @@ lspconfig.volar.setup {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
-  init_options = {
-    vue = {
-      hybridMode = false,
-    },
-  },
   settings = {
     css = {
       lint = {
