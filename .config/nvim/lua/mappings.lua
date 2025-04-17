@@ -35,10 +35,10 @@ map("v", "<M-k>", ":m '<-2<CR>gv", { desc = "move line up" })
 -- Lspconfig
 
 map("n", "<leader>lk", function()
-  vim.diagnostic.goto_prev { float = { border = "rounded" } }
+  vim.diagnostic.jump { count = -1, float = true }
 end, { desc = "Goto Prev" })
 map("n", "<leader>lj", function()
-  vim.diagnostic.goto_next { float = { border = "rounded" } }
+  vim.diagnostic.jump { count = 1, float = true }
 end, { desc = "Goto Next" })
 
 -- Tabufline
