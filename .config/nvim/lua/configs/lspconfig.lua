@@ -111,3 +111,16 @@ lspconfig.cssls.setup {
     },
   },
 }
+
+lspconfig.eslint.setup {
+  flags = {
+    allow_incremental_sync = false,
+    debounce_text_changes = 1000,
+  },
+}
+
+lspconfig.tailwindcss.setup {
+  flags = {
+    debounce_text_changes = 1000,
+  },
+}
