@@ -41,6 +41,10 @@ map("n", "<leader>lj", function()
   vim.diagnostic.jump { count = 1, float = true }
 end, { desc = "Goto Next" })
 
+map("n", "<leader>ca", function()
+  vim.lsp.buf.code_action()
+end, { desc = "Code Actions " })
+
 -- Tabufline
 
 map("n", "<M-[>", function()
