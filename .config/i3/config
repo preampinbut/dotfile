@@ -46,6 +46,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86AudioPlay exec --no-startup-id $HOME/.config/scripts/n_spotify_controller.py PlayPause && $refresh_i3status
 bindsym XF86AudioNext exec --no-startup-id $HOME/.config/scripts/n_spotify_controller.py Next && $refresh_i3status
 bindsym XF86AudioPrev exec --no-startup-id $HOME/.config/scripts/n_spotify_controller.py Previous && $refresh_i3status
+# bindsym XF86AudioPlay exec --no-startup-id playerctl --player=spotifyd.instance$(pidof spotifyd) play-pause
+# bindsym XF86AudioNext exec --no-startup-id playerctl --player=spotifyd.instance$(pidof spotifyd) next
+# bindsym XF86AudioPrev exec --no-startup-id playerctl --player=spotifyd.instance$(pidof spotifyd) previous
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 && $refresh_i3status
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 && $refresh_i3status
@@ -64,9 +67,9 @@ floating_modifier $mod
 # tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec --no-startup-id kitty
 
-bindsym $mod+Shift+Return exec zen-browser
+bindsym $mod+Shift+Return exec --no-startup-id zen-browser
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -80,8 +83,6 @@ bindsym $mod+d exec --no-startup-id $HOME/.config/polybar/forest/scripts/launche
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 bindsym $mod+Shift+d exec --no-startup-id thunar
-
-bindsym $mod+x exec pcmanfm
 
 # change focus
 bindsym $mod+j focus left
@@ -192,7 +193,7 @@ bindsym $mod+Shift+minus move container to workspace number $ws11
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec pkill screenkey; restart
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -242,7 +243,7 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim -su "/home/$USER/Pictures/$(d
 
 bindsym $mod+comma exec --no-startup-id emoji-picker
 
-for_window [class="obs"] move to workspace $ws8
+# for_window [class="obs"] move to workspace $ws8
 for_window [class="discord"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
 
@@ -267,7 +268,7 @@ focus_wrapping workspace
 # run feh so the bg is not black while wallengine are booting
 # exec --no-startup-id feh --bg-fill $HOME/Pictures/JLT4n/ryo_e.png
 # exec_always --no-startup-id $HOME/.config/scripts/set-anim-wallpaper.sh --gifview "/home/preampinbut/Pictures/gif/e.gif" 1500 864 1920 1200 -p 0
-exec_always --no-startup-id $HOME/.config/scripts/set-anim-wallpaper.sh --mpv "/home/preampinbut/Videos/Swift Spring Delivery.mp4" 1920 1080 1920 1080
+exec_always --no-startup-id $HOME/.config/scripts/set-anim-wallpaper.sh --mpv "/home/preampinbut/Videos/Swift Spring Delivery.mp4" 1920 1080 1920 1080 -p 0
 
 # exec --no-startup-id $HOME/.config/linux-wallpaperengine/wallpaperengine-daemon.sh -d
 exec --no-startup-id picom -b

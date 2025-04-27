@@ -8,10 +8,10 @@
 
 # target                 title     bg    text   indicator  border
 client.focused           $pink     $base $text  $pink      $pink
-client.focused_inactive  $mauve    $base $text  $mauve     $mauve
-client.unfocused         $mauve    $base $text  $mauve     $mauve
-client.urgent            $peach    $base $peach $peach     $peach
-client.placeholder       $mauve    $base $text  $mauve     $mauve
+client.focused_inactive  $base     $base $text  $base      $base
+client.unfocused         $base     $base $text  $base      $base
+client.urgent            $base     $base $text  $base      $base
+client.placeholder       $base     $base $text  $base      $base
 client.background        $base
 
 # bar
