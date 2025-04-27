@@ -1,11 +1,11 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -74,7 +74,7 @@ plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+source $HOME/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 # User configuration
 
@@ -87,34 +87,40 @@ source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias l="ls -lah --color=auto"
-alias ls="ls -a --color=auto"
-
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 alias fastfetch="clear && fastfetch"
+alias cp="rsync -ah --progress --no-inc-recursive --ignore-times --inplace"
 
-# run neofetch on first window
 if [[ $KITTY_WINDOW_ID == "1" && -z "$TMUX" ]]; then
-  # neofetch
-  fastfetch
+	fastfetch
 fi
+
+# bun completions
+[ -s "/home/preampinbut/.bun/_bun" ] && source "/home/preampinbut/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm
 export PNPM_HOME="/home/preampinbut/.local/share/pnpm"
@@ -124,9 +130,22 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# bun completions
-[ -s "/home/preampinbut/.bun/_bun" ] && source "/home/preampinbut/.bun/_bun"
+# go
+export PATH="/home/preampinbut/go/bin/:$PATH"
+# go end
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# deno
+. "/home/preampinbut/.deno/env"
+# deno end
+
+# flutter
+export PATH="$HOME/development/flutter/bin:$PATH"
+export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable"
+# flutter end
+
+# android_sdk
+export ANDROID_HOME="$HOME/Android"
+export PATH="$HOME/Android/emulator:$PATH"
+export PATH="$HOME/Android/platform-tools:$PATH"
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
+# android_sdk end
