@@ -108,6 +108,9 @@ source $HOME/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+alias l="ls -CF"
+alias la="ls -CaF"
+alias ll="ls -ClahF"
 alias fastfetch="clear && fastfetch"
 alias cp="rsync -ah --progress --no-inc-recursive --ignore-times --inplace"
 
