@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from typing import cast
 import psutil
 import dbus
 import requests
@@ -9,6 +10,7 @@ import argparse
 output = u'{play_pause} {artist}: {song}'
 trunclen = 20
 play_pause = u'󰐊,󰏤,󰝚,󰝚' # first character is play, second is paused first set is when listening on this machine and other set is while listening on remote
+timeout = 3
 
 url = "http://localhost:36842"
 
@@ -62,6 +64,12 @@ parser.add_argument(
     metavar='play-pause indicator',
     dest='play_pause'
 )
+parser.add_argument(
+    '--timeout',
+    type=int,
+    metavar='request timeout',
+    dest='timeout'
+)
 
 parser.add_argument("command",
                     choices=[
@@ -81,6 +89,8 @@ if args.custom_format is not None:
     output = args.custom_format
 if args.play_pause is not None:
     play_pause = args.play_pause
+if args.timeout is not None:
+    timeout = args.timeout
 
 command = args.command
 
@@ -99,35 +109,35 @@ except:
 
 try:
     if command in ["PlayPause", "Next", "Previous"]:
-        remote_player = requests.get(f"{url}/web-api/v1/me/player").json()
+        remote_player = requests.get(f"{url}/web-api/v1/me/player", timeout=timeout).json()
         match command:
             case "PlayPause":
                 if player != None:
                     player.PlayPause()
                 else:
                     if remote_player["is_playing"]:
-                        requests.put(f"{url}/web-api/v1/me/player/pause")
+                        requests.put(f"{url}/web-api/v1/me/player/pause", timeout=timeout)
                     else:
-                        requests.put(f"{url}/web-api/v1/me/player/play")
+                        requests.put(f"{url}/web-api/v1/me/player/play", timeout=timeout)
             case "Next":
                 if player != None:
                     player.Next()
                 else:
-                    requests.post(f"{url}/web-api/v1/me/player/next")
+                    requests.post(f"{url}/web-api/v1/me/player/next", timeout=timeout)
             case "Previous":
                 if player != None:
                     player.Previous()
                 else:
-                    requests.post(f"{url}/web-api/v1/me/player/previous")
+                    requests.post(f"{url}/web-api/v1/me/player/previous", timeout=timeout)
     elif command in ["Artist", "Title"]:
-        player = requests.get(f"{url}/web-api/v1/me/player/currently-playing").json()
+        player = requests.get(f"{url}/web-api/v1/me/player/currently-playing", timeout=timeout).json()
         match command:
             case "Artist":
                 print(player["item"]["artists"][0]["name"])
             case "Title":
                 print(player["item"]["name"])
     elif command in ["Status"]:
-        player = requests.get(f"{url}/web-api/v1/me/player").json()
+        player = requests.get(f"{url}/web-api/v1/me/player", timeout=timeout).json()
         artist = player["item"]["artists"][0]["name"]
         title = player["item"]["name"]
         play_pause = play_pause.split(",")
@@ -138,6 +148,7 @@ try:
 
         print(truncate(output.format(artist=artist, song=title, play_pause=play_pause), trunclen + 4, len(play_pause)))
 except:
+    play_pause = cast(str, play_pause)
     play_pause = play_pause.split(",")
     offline_prefix = f'%{{F#EC7875}}{play_pause[1]}%{{F-}}'
     offline = f'%{{u#EC7875}}{offline_prefix} Offline'
