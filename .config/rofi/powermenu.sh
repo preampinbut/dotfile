@@ -19,47 +19,57 @@ hibernate=" Hibernate"
 
 # Confirmation
 confirm_exit() {
-	rofi -dmenu\
-        -no-config\
-		-i\
-		-no-fixed-num-lines\
-		-p "Are You Sure? : "\
-		-theme $dir/confirm.rasi
-}
-
-# Message
-msg() {
-	rofi -no-config -theme "$HOME/.config/rofi/themes/powermenu-rounded-pink-dark.rasi" -e "Available Options  -  yes / y / no / n"
+    echo -e "No\nYes" | rofi -dmenu \
+        -no-config \
+        -i \
+        -no-fixed-num-lines \
+        -p "Do You Want To $1?" \
+        -theme "$HOME/.config/rofi/themes/powermenu-rounded-pink-dark.rasi"
 }
 
 # Variable passed to rofi
 options="$suspend\n$hibernate\n$logout\n$reboot\n$shutdown\n$lock"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 0)"
+
 case $chosen in
     $shutdown)
-		ans=$(confirm_exit &)
-			systemctl poweroff
+      ans=$(confirm_exit Shutdown &)
+      if [[ "$ans" == "Yes" ]]; then
+        systemctl poweroff
+      fi
       ;;
     $reboot)
-		ans=$(confirm_exit &)
-			systemctl reboot
+      ans=$(confirm_exit Reboot &)
+      if [[ "$ans" == "Yes" ]]; then
+        systemctl reboot
+      fi
       ;;
     $lock)
-      dm-tool lock
+      ans=$(confirm_exit Lock &)
+      if [[ "$ans" == "Yes" ]]; then
+        dm-tool lock
+      fi
       ;;
     $hibernate)
-		ans=$(confirm_exit &)
-      systemctl hibernate
+      ans=$(confirm_exit Hibernate &)
+      if [[ "$ans" == "Yes" ]]; then
+        systemctl hibernate
+      fi
       ;;
     $suspend)
-		ans=$(confirm_exit &)
-			mpc -q pause
-			amixer set Master mute
-			systemctl suspend
+      ans=$(confirm_exit Suspend &)
+      if [[ "$ans" == "Yes" ]]; then
+        systemctl hibernate
+        mpc -q pause
+        amixer set Master mute
+        systemctl suspend
+      fi
       ;;
     $logout)
-		ans=$(confirm_exit &)
-      sway exit
+      ans=$(confirm_exit Logout &)
+      if [[ "$ans" == "Yes" ]]; then
+        sway exit
+      fi
       ;;
 esac
