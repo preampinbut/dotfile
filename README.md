@@ -1,16 +1,9 @@
 # Dotfile
 
-- [go-librespot](https://github.com/devgianlu/go-librespot) controll using
-  [n_spotify_controller.py](/.config/scripts/n_spotify_controller.py)
-- deprecated
-  - [librespot-java](https://github.com/librespot-org/librespot-java) controll
-    using [n_spotify_controller.py](/.config/scripts/n_spotify_controller.py)
-  - [spotifyd](https://github.com/Spotifyd/spotifyd) fork that used in this
-    config [momozahara/spotifyd](https://github.com/momozahara/spotifyd)
-    - you can't control other device music using spotifyd that's why I bind
-      spotify client to workspace 10 and yes I dont use tui
-
 <img alt="preview-1" src="./previews/1.png" />
 <img alt="preview-2" src="./previews/2.png" />
+<img alt="preview-2" src="./previews/3.png" />
+<img alt="preview-2" src="./previews/4.png" />
+<img alt="preview-2" src="./previews/5.png" />
 
 https://github.com/user-attachments/assets/8aad22c8-dee5-4c94-95d3-94c901747f99
