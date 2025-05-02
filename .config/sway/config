@@ -183,6 +183,7 @@ default_floating_border pixel 5
 
 gaps inner 8
 gaps outer 0
+gaps top 50
 
 # for_window [class="obs"] move to workspace $ws8
 for_window [class="discord"] move to workspace $ws9

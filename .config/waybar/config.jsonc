@@ -1,4 +1,7 @@
 {
+  "layer": "bottom",
+  "exclusive": false,
+  "margin": 0,
   "modules-left": [
     "clock",
     "custom/sep",
