@@ -1,7 +1,24 @@
 {
-  "modules-left": ["clock", "custom/sep", "custom/spotify"],
-	"modules-center": ["sway/workspaces"],
-	"modules-right": ["sway/language", "custom/sep", "cpu", "memory", "battery", "custom/sep", "network", "custom/sep", "pulseaudio", "backlight"],
+  "modules-left": [
+    "clock",
+    "custom/sep",
+    "custom/spotify"
+  ],
+  "modules-center": [
+    "sway/workspaces"
+  ],
+  "modules-right": [
+    "sway/language",
+    "custom/sep",
+    "cpu",
+    "memory",
+    "battery",
+    "custom/sep",
+    "network",
+    "custom/sep",
+    "pulseaudio",
+    "backlight"
+  ],
   "clock": {
     "tooltip": true,
     "tooltip-format": "<big>{:%A}</big>",
@@ -12,7 +29,11 @@
     "format": "<span color='#89b4fa'><big>{icon}</big></span>  {volume}%",
     "format-muted": "<span color='#f38ba8'><big></big></span>  Muted",
     "format-icons": {
-      "default": ["", "", ""]
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
     "scroll-step": 0.0,
     "max-volume": 100,
@@ -75,7 +96,11 @@
     "tooltip": false,
     "device": "intel_backlight",
     "format": "<span color='#f9e2af'><big>{icon}</big></span> {percent}%",
-    "format-icons": ["", "", ""]
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
   },
   "sway/language": {
     "tooltip": false,
