@@ -65,7 +65,9 @@ geo="${source_width}x${source_height}+${g_width}+${g_height}"
 pkill xwinwrap
 
 if [ "$mode" = "gifview" ]; then
-  xwinwrap -g "$geo" -ov -ni -s -nf -- gifview -w WID "$source" -a
+  echo "gif"
+  xwinwrap -g "$geo" -ov -ni -s -nf -- gifview -w %WID "$source" -a
 elif [ "$mode" = "mpv" ]; then
-  xwinwrap -g "$geo" -ov -ni -s -nf -- mpv -wid WID --loop --no-audio "$source"
+  echo "mpv"
+  xwinwrap -g "$geo" -ov -ni -s -nf -- mpv -wid %WID --loop --no-audio "$source"
 fi

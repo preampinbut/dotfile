@@ -41,6 +41,11 @@ map("n", "<leader>lj", function()
   vim.diagnostic.jump { count = 1, float = true }
 end, { desc = "Goto Next" })
 
+map("n", "<S-k>", function()
+  vim.lsp.buf.hover { border = "single" }
+end)
+
+
 map("n", "<leader>ca", function()
   vim.lsp.buf.code_action()
 end, { desc = "Code Actions " })

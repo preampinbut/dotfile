@@ -1,0 +1,154 @@
+@import "./themes/mocha.css";
+
+@define-color foreground @pink;
+@define-color background @base;
+@define-color urgent @red;
+
+@define-color primary @blue;
+@define-color success @green;
+@define-color warning @yellow;
+
+window#waybar {
+	background-color: transparent;
+}
+
+#waybar {
+  font-weight: 900;
+  font-family: "Iosevka Nerd Font", "Source Han Sans";
+}
+
+#waybar > box {
+	background-color: @background;
+
+	border-style: solid;
+	border-width: 4px;
+	border-radius: 10px;
+	border-color: @foreground;
+
+	margin: 8px;
+}
+
+tooltip {
+  background-color: transparent;
+}
+
+tooltip > box {
+	background-color: @background;
+
+	border-style: solid;
+	border-width: 4px;
+	border-radius: 10px;
+	border-color: @foreground;
+
+  box-shadow: 0 3px 10px @background;
+
+  margin: 9px;
+}
+
+tooltip label {
+  color: @foreground;
+
+  font-weight: 900;
+  font-family: "Iosevka Nerd Font", "Source Han Sans";
+
+  min-width: 120px;
+  min-height: 30px;
+}
+
+#clock {
+  color: @foreground;
+  background: @background;
+
+  margin: 5px 10px;
+}
+
+#pulseaudio {
+  margin: 5px 10px;
+
+  color: @foreground;
+}
+
+#language {
+  margin: 5px 10px;
+
+  color: @primary;
+}
+
+#cpu {
+  margin: 5px 10px;
+
+  color: @foreground;
+}
+
+#memory {
+  margin: 5px 10px;
+
+  color: @foreground;
+}
+
+#custom-sep {
+  margin: 5px 10px;
+
+  color: @foreground;
+}
+
+#backlight {
+  margin: 5px 10px;
+
+  color: @foreground;
+}
+
+#network {
+  margin: 5px 10px;
+
+  color: @foreground;
+}
+
+#battery {
+  margin: 5px 10px;
+
+  color: @foreground;
+}
+
+#battery.cap.charging {
+  animation: charging-animation 3s linear infinite;
+}
+
+@keyframes charging-animation {
+  50% {
+    color: @yellow;
+  }
+}
+
+#custom-spotify {
+  margin: 5px 10px;
+
+  color: @foreground;
+}
+
+#workspaces button {
+  padding: 5px 6px;
+
+  color: @foreground;
+
+  border: none;
+  border-radius: 0;
+}
+
+#workspaces button:hover {
+  color: @foreground;
+  background: inherit;
+
+  box-shadow: inherit;
+  text-shadow: inherit;
+}
+
+#workspaces button.focused {
+  color: @background;
+  background-color: @foreground;
+}
+
+#workspaces button.urgent {
+  color: @background;
+  background-color: @foreground;
+}

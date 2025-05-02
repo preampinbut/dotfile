@@ -10,7 +10,7 @@
     - you can't control other device music using spotifyd that's why I bind
       spotify client to workspace 10 and yes I dont use tui
 
-<img alt="preview-1" src="./1.png" />
-<img alt="preview-2" src="./2.png" />
+<img alt="preview-1" src="./previews/1.png" />
+<img alt="preview-2" src="./previews/2.png" />
 
 https://github.com/user-attachments/assets/8aad22c8-dee5-4c94-95d3-94c901747f99

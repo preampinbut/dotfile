@@ -150,6 +150,6 @@ try:
 except:
     play_pause = cast(str, play_pause)
     play_pause = play_pause.split(",")
-    offline_prefix = f'%{{F#EC7875}}{play_pause[1]}%{{F-}}'
-    offline = f'%{{u#EC7875}}{offline_prefix} Offline'
+    offline_prefix = f'<span color=\'#EC7875\'>{play_pause[1]}</span>'
+    offline = f'{offline_prefix}  Offline'
     print(offline)

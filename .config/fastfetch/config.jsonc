@@ -18,25 +18,45 @@
     }
   },
   "modules": [
-    // "title",
-    // "separator",
+    "title",
+    "separator",
     "os",
     "host",
     // "kernel",
-    "uptime",
+    // "uptime",
     "packages",
-    "shell",
+    {
+      "type": "shell",
+      "key": "Shell",
+      "format": "{pretty-name}"
+    },
     // {
     //   "type": "display",
     //   "compactType": "original",
     //   "key": "Resolution"
     // },
-    "de",
-    "wm",
-    "wmtheme",
-    "theme",
-    "icons",
-    "terminal",
+    // "de",
+    {
+      "type": "wm",
+      "key": "WM",
+      "format": "{pretty-name} ({protocol-name})"
+    },
+    // "wmtheme",
+    {
+      "type": "theme",
+      "key": "Theme",
+      "format": "{theme2}"
+    },
+    {
+      "type": "icons",
+      "key": "Icons",
+      "format": "{icons2}"
+    },
+    {
+      "type": "terminal",
+      "key": "Terminal",
+      "format": "{pretty-name}"
+    },
     // {
     //   "type": "terminalfont",
     //   "format": "{/2}{-}{/}{2}{?3} {3}{?}"

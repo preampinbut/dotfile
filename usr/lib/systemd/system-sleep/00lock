@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case $1 in
+	pre)
+		export XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+		/usr/bin/dm-tool lock
+		sleep 3
+	;;
+esac
+exit 0

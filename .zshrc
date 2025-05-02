@@ -73,7 +73,6 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
 source $HOME/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 # User configuration
@@ -83,12 +82,14 @@ source $HOME/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+export VISUAL='nvim'
+
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='$VISUAL'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -105,8 +106,7 @@ source $HOME/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+setopt COMBINING_CHARS
 
 alias l="ls -CF"
 alias la="ls -CaF"
@@ -117,38 +117,3 @@ alias cp="rsync -ah --progress --no-inc-recursive --ignore-times --inplace"
 if [[ $KITTY_WINDOW_ID == "1" && -z "$TMUX" ]]; then
 	fastfetch
 fi
-
-# bun completions
-[ -s "/home/preampinbut/.bun/_bun" ] && source "/home/preampinbut/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="/home/preampinbut/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# go
-export PATH="/home/preampinbut/go/bin/:$PATH"
-# go end
-
-# deno
-. "/home/preampinbut/.deno/env"
-# deno end
-
-# flutter
-export PATH="$HOME/development/flutter/bin:$PATH"
-export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable"
-# flutter end
-
-# android_sdk
-export ANDROID_HOME="$HOME/Android"
-export PATH="$HOME/Android/emulator:$PATH"
-export PATH="$HOME/Android/platform-tools:$PATH"
-export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
-# android_sdk end
