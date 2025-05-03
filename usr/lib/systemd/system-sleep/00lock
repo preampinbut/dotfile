@@ -1,10 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 case $1 in
 	pre)
 		export XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
-		/usr/bin/dm-tool lock
+		/bin/dm-tool lock
 		sleep 3
-	;;
+		;;
+	post)
+		sleep 3
+		/bin/bash /home/preampinbut/.config/scripts/kill-lightdm-xorg
+		;;
 esac
 exit 0

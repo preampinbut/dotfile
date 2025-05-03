@@ -48,7 +48,7 @@ case $chosen in
     $lock)
       ans=$(confirm_exit Lock &)
       if [[ "$ans" == "Yes" ]]; then
-        dm-tool lock
+        /bin/bash "$HOME/.config/scripts/lock-once"
       fi
       ;;
     $hibernate)
@@ -60,7 +60,6 @@ case $chosen in
     $suspend)
       ans=$(confirm_exit Suspend &)
       if [[ "$ans" == "Yes" ]]; then
-        systemctl hibernate
         mpc -q pause
         amixer set Master mute
         systemctl suspend

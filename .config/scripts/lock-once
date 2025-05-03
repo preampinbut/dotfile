@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# kill lightdm-webkit2 session immediately dont let it hang in the background
+swayidle -w \
+  timeout 1 \
+  "dm-tool lock" \
+  resume \
+  "/bin/bash $HOME/.config/scripts/kill-lightdm-xorg & pkill swayidle"
