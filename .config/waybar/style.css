@@ -9,7 +9,7 @@
 @define-color warning @yellow;
 
 window#waybar {
-	background-color: transparent;
+  background-color: transparent;
 }
 
 #waybar {
@@ -17,28 +17,28 @@ window#waybar {
   font-family: "Iosevka Nerd Font", "Source Han Sans";
 }
 
-#waybar > box {
-	background-color: @background;
+#waybar>box {
+  background-color: @background;
 
-	border-style: solid;
-	border-width: 4px;
-	border-radius: 10px;
-	border-color: @foreground;
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 10px;
+  border-color: @foreground;
 
-	margin: 8px;
+  margin: 8px;
 }
 
 tooltip {
   background-color: transparent;
 }
 
-tooltip > box {
-	background-color: @background;
+tooltip>box {
+  background-color: @background;
 
-	border-style: solid;
-	border-width: 4px;
-	border-radius: 10px;
-	border-color: @foreground;
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 10px;
+  border-color: @foreground;
 
   box-shadow: 0 3px 10px @background;
 
@@ -130,6 +130,7 @@ tooltip label {
   padding: 5px 6px;
 
   color: @foreground;
+  font-weight: 900;
 
   border: none;
   border-radius: 0;
