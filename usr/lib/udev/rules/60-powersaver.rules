@@ -3,7 +3,7 @@ ACTION=="change", \
   SUBSYSTEM=="power_supply", \
   ATTR{status}=="Discharging", \
   ATTR{capacity}=="[0-9]|10", \
-  RUN+="/usr/bin/brightnessctl set 25"
+  RUN+="/usr/bin/brightnessctl set 25%"
 
 ACTION=="change", \
   KERNEL=="BAT0" \
