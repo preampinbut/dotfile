@@ -1,6 +1,6 @@
 #!/bin/bash
 
-swaylock \
+/bin/swaylock \
   -f \
   --image "/usr/share/backgrounds/gundam/witchfrommercury/24話エンドカード.jpg" \
   --ignore-empty-password \
