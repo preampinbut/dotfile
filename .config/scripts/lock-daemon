@@ -1,0 +1,5 @@
+#!/bin/bash
+
+swayidle \
+  before-sleep "$HOME/.config/scripts/swaylock" \
+  lock "$HOME/.config/scripts/swaylock"

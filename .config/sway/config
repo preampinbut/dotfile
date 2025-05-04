@@ -211,3 +211,5 @@ bar {
 swaybg_command -
 
 exec mpvpaper -o "--no-audio --loop" "eDP-1" "$HOME/Videos/bg/Swift Spring Delivery Edit.mp4"
+
+exec /bin/bash "$HOME/.config/scripts/lock-daemon"

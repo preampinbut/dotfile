@@ -48,7 +48,7 @@ case $chosen in
     $lock)
       ans=$(confirm_exit Lock &)
       if [[ "$ans" == "Yes" ]]; then
-        /bin/bash "$HOME/.config/scripts/lock-once"
+        $HOME/.config/scripts/lock
       fi
       ;;
     $hibernate)
