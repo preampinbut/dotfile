@@ -1,12 +1,3 @@
 #!/bin/bash
 
-/bin/swaylock \
-  -f \
-  --image "/usr/share/backgrounds/gundam/witchfrommercury/24話エンドカード.jpg" \
-  --ignore-empty-password \
-  --fade-in 1 \
-  --daemonize \
-  --effect-blur 3x6 \
-  --indicator \
-  --indicator-caps-lock \
-  --clock
+/bin/swaylock
