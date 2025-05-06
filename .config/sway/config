@@ -1,7 +1,11 @@
+swaybg_command -
 include ~/.config/sway/themes/catppuccin-mocha
 include ~/.config/sway/set-color
 
 font pango:monospace 8
+
+exec /bin/bash "$HOME/.config/scripts/lock-daemon"
+exec mpvpaper -o "--no-audio --loop" "eDP-1" "$HOME/Videos/bg/Swift Spring Delivery Edit.mp4"
 
 set $mod Mod4
 set $term kitty
@@ -207,9 +211,3 @@ layer_effects "thunar" blur enable
 bar {
   swaybar_command waybar
 }
-
-swaybg_command -
-
-exec mpvpaper -o "--no-audio --loop" "eDP-1" "$HOME/Videos/bg/Swift Spring Delivery Edit.mp4"
-
-exec /bin/bash "$HOME/.config/scripts/lock-daemon"
