@@ -1,8 +1,13 @@
 swaybg_command -
+
 include ~/.config/sway/themes/catppuccin-mocha
 include ~/.config/sway/set-color
 
 font pango:monospace 8
+
+# this is for screen capture (obs...)
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 exec /bin/bash "$HOME/.config/scripts/lock-daemon"
 exec mpvpaper -o "--no-audio --loop" "eDP-1" "$HOME/Videos/bg/Swift Spring Delivery Edit.mp4"
