@@ -4,6 +4,10 @@
     "size": {
       "maxPrefix": "MB",
       "ndigits": 0
+    },
+    "color": {
+      "keys": "#f5c2e7",
+      "title": "#f5c2e7"
     }
   },
   "logo": {
@@ -16,8 +20,16 @@
   "modules": [
     "title",
     "separator",
-    "os",
-    "host",
+    {
+      "type": "os",
+      "key": "OS",
+      "format": "{name}"
+    },
+    {
+      "type": "host",
+      "key": "Host",
+      "format": "{family}"
+    },
     // "kernel",
     // "uptime",
     "packages",
@@ -57,10 +69,15 @@
     //   "type": "terminalfont",
     //   "format": "{/2}{-}{/}{2}{?3} {3}{?}"
     // },
-    "cpu",
+    {
+      "type": "cpu",
+      "key": "CPU",
+      "format": "{name}"
+    },
     {
       "type": "gpu",
-      "key": "GPU"
+      "key": "GPU",
+      "format": "{vendor} {name} {type}"
     },
     {
       "type": "memory",
