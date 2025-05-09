@@ -38,9 +38,9 @@ bindsym XF86AudioLowerVolume exec $HOME/.config/scripts/pactl-set.sh -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym XF86AudioPlay exec $HOME/.config/scripts/n_spotify_controller.py PlayPause && $refresh_i3status
-bindsym XF86AudioNext exec $HOME/.config/scripts/n_spotify_controller.py Next && $refresh_i3status
-bindsym XF86AudioPrev exec $HOME/.config/scripts/n_spotify_controller.py Previous && $refresh_i3status
+bindsym XF86AudioPlay exec $HOME/.config/scripts/spotify-controller.py PlayPause && $refresh_i3status
+bindsym XF86AudioNext exec $HOME/.config/scripts/spotify-controller.py Next && $refresh_i3status
+bindsym XF86AudioPrev exec $HOME/.config/scripts/spotify-controller.py Previous && $refresh_i3status
 # bindsym XF86AudioPlay exec playerctl --player=spotifyd.instance$(pidof spotifyd) play-pause
 # bindsym XF86AudioNext exec playerctl --player=spotifyd.instance$(pidof spotifyd) next
 # bindsym XF86AudioPrev exec playerctl --player=spotifyd.instance$(pidof spotifyd) previous

@@ -132,8 +132,17 @@
   },
   "custom/spotify": {
     "tooltip": false,
-    "exec": "python3 $HOME/.config/scripts/n_spotify_controller.py Status -t 40 -p \"<span color='#CBA6F7'></span>,<span color='#F38BA8'></span>,<span color='#CC6666'>󰝚</span>,<span color='#E57C46'>󰝚</span>\" -f '{play_pause} {artist}: {song}'",
-    "format": "{}",
-    "interval": 1
+    "exec": "python3 $HOME/.config/scripts/spotify-controller.py Status -f \"{artist}<span color='#F38BA8'>:</span> {song}\"",
+    "on-click": "python3 $HOME/.config/scripts/spotify-controller.py Title | wl-copy",
+    "on-click-right": "python3 $HOME/.config/scripts/spotify-controller.py Artist | wl-copy",
+    "format": "{icon}  {text}",
+    "format-icons": {
+      "playing": "<span color='#CBA6F7'></span>",
+      "paused": "<span color='#F38BA8'></span>",
+      "offline": "<span color='#F38BA8'></span>"
+    },
+    "max-length": 70,
+    "interval": 1,
+    "return-type": "json"
   }
 }
