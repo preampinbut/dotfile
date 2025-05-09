@@ -40,9 +40,9 @@ tooltip>box {
   border-radius: 10px;
   border-color: @foreground;
 
+  /* margin is required for box-shadow */
+  margin: 10px;
   box-shadow: 0 3px 10px @background;
-
-  margin: 9px;
 }
 
 tooltip label {
