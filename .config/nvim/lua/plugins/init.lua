@@ -3,9 +3,15 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      if pager then
+        return
+      end
       require "configs.lspconfig"
     end,
   },
+
+  -- test new blink
+  -- { import = "nvchad.blink.lazyspec" },
 
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
@@ -56,16 +62,6 @@ return {
         },
       },
     },
-  },
-
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && npm install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
   },
 
   {
