@@ -5,6 +5,8 @@ require("nvchad.configs.lspconfig").defaults()
 vim.lsp.enable "html"
 vim.lsp.enable "cssls"
 
+vim.lsp.enable "tailwindcss"
+
 vim.lsp.enable "vue_ls"
 
 vim.lsp.enable "ts_ls"
@@ -28,3 +30,7 @@ vim.lsp.config("ts_ls", {
     "vue",
   },
 })
+
+vim.lsp.enable "eslint"
+
+vim.lsp.enable "gopls"
