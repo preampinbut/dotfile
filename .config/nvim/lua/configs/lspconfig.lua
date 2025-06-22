@@ -7,9 +7,17 @@ vim.lsp.enable "cssls"
 
 vim.lsp.enable "tailwindcss"
 
+vim.lsp.config("vue_ls", {
+  settings = {
+    css = {
+      lint = {
+        unknownAtRules = "ignore",
+      },
+    },
+  },
+})
 vim.lsp.enable "vue_ls"
 
-vim.lsp.enable "ts_ls"
 vim.lsp.config("ts_ls", {
   init_options = {
     plugins = {
@@ -30,7 +38,10 @@ vim.lsp.config("ts_ls", {
     "vue",
   },
 })
+vim.lsp.enable "ts_ls"
 
 vim.lsp.enable "eslint"
+
+vim.lsp.enable "prismals"
 
 vim.lsp.enable "gopls"
