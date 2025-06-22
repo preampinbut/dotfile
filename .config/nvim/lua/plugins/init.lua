@@ -65,6 +65,17 @@ return {
   },
 
   {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require "nvchad.configs.treesitter"
+    end,
+  },
+
+  {
     "HiPhish/rainbow-delimiters.nvim",
     config = function()
       require "configs.rainbow"
