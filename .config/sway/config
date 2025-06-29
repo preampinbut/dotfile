@@ -63,15 +63,15 @@ bindsym $mod+Shift+d exec $filemanager
 bindsym $mod+d exec $HOME/.config/rofi/launcher.sh
 bindsym $mod+Escape exec $HOME/.config/rofi/powermenu.sh
 
-bindsym Menu exec grimshot copy output
-bindsym Shift+Menu exec grimshot copy anything
-bindsym Ctrl+Menu exec grimshot savecopy output
-bindsym Ctrl+Shift+Menu exec grimshot savecopy anything
+bindsym Menu exec /usr/share/sway-contrib/grimshot copy output
+bindsym Shift+Menu exec /usr/share/sway-contrib/grimshot copy anything
+bindsym Ctrl+Menu exec /usr/share/sway-contrib/grimshot savecopy output
+bindsym Ctrl+Shift+Menu exec /usr/share/sway-contrib/grimshot savecopy anything
 
-bindsym Print exec grimshot copy output
-bindsym Shift+Print exec grimshot copy anything
-bindsym Ctrl+Print exec grimshot savecopy output
-bindsym Ctrl+Shift+Print exec grimshot savecopy anything
+bindsym Print exec /usr/share/sway-contrib/grimshot copy output
+bindsym Shift+Print exec /usr/share/sway-contrib/grimshot copy anything
+bindsym Ctrl+Print exec /usr/share/sway-contrib/grimshot savecopy output
+bindsym Ctrl+Shift+Print exec /usr/share/sway-contrib/grimshot savecopy anything
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
