@@ -13,16 +13,6 @@ return {
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
-
   {
     "nvim-tree/nvim-tree.lua",
     opts = {
@@ -62,17 +52,6 @@ return {
         },
       },
     },
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
-    opts = function()
-      return require "nvchad.configs.treesitter"
-    end,
   },
 
   {
