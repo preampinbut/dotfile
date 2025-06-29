@@ -7,14 +7,6 @@ local M = {}
 M.base46 = {
   theme = "catppuccin",
   transparency = true,
-
-  hl_override = {
-    Comment = { italic = false },
-    ["@comment"] = { italic = false },
-  },
-  hl_add = {
-    NvimTreeOpenedFolderName = { fg = "green", bold = true },
-  },
 }
 
 M.nvdash = {
@@ -28,7 +20,7 @@ M.nvdash = {
     "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
     "                                                     ",
   },
-  load_on_startup = true,
+  load_on_startup = false,
 }
 
 M.ui = {
@@ -60,4 +52,3 @@ M.ui = {
 }
 
 return M
-
