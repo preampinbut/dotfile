@@ -20,8 +20,8 @@ vim.lsp.enable "tailwindcss"
 vim.lsp.config("vue_ls", {
   init_options = {
     typescript = {
-      tsdk = node_modules .. "node_modules/typescript/lib"
-    }
+      tsdk = node_modules .. "node_modules/typescript/lib",
+    },
   },
   settings = {
     css = {
@@ -30,12 +30,12 @@ vim.lsp.config("vue_ls", {
       },
     },
   },
-  before_init = function(params, config)
+  before_init = function(_, config)
     local lib_path = vim.fs.find("node_modules/typescript/lib", { path = new_root_dir, upward = true })[1]
     if lib_path then
       config.init_options.typescript.tsdk = lib_path
     end
-  end
+  end,
 })
 vim.lsp.enable "vue_ls"
 
@@ -61,6 +61,22 @@ vim.lsp.config("ts_ls", {
 })
 vim.lsp.enable "ts_ls"
 
+local base_on_attach = vim.lsp.config.eslint.on_attach
+vim.lsp.config("eslint", {
+  on_attach = function(client, bufnr)
+    if not base_on_attach then
+      return
+    end
+
+    base_on_attach(client, bufnr)
+    vim.keymap.set(
+      { "n", "x" },
+      "<leader>fm",
+      "<cmd>LspEslintFixAll<CR>",
+      { buffer = true, desc = "general format document" }
+    )
+  end,
+})
 vim.lsp.enable "eslint"
 
 vim.lsp.enable "prismals"
