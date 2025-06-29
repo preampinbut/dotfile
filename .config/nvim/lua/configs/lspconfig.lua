@@ -3,11 +3,8 @@ local node_modules = io.popen("npm root -g"):read "l" .. "/"
 require("nvchad.configs.lspconfig").defaults()
 
 vim.lsp.enable "html"
-vim.lsp.enable "cssls"
 
-vim.lsp.enable "tailwindcss"
-
-vim.lsp.config("vue_ls", {
+vim.lsp.config("cssls", {
   settings = {
     css = {
       lint = {
@@ -15,6 +12,30 @@ vim.lsp.config("vue_ls", {
       },
     },
   },
+})
+vim.lsp.enable "cssls"
+
+vim.lsp.enable "tailwindcss"
+
+vim.lsp.config("vue_ls", {
+  init_options = {
+    typescript = {
+      tsdk = node_modules .. "node_modules/typescript/lib"
+    }
+  },
+  settings = {
+    css = {
+      lint = {
+        unknownAtRules = "ignore",
+      },
+    },
+  },
+  before_init = function(params, config)
+    local lib_path = vim.fs.find("node_modules/typescript/lib", { path = new_root_dir, upward = true })[1]
+    if lib_path then
+      config.init_options.typescript.tsdk = lib_path
+    end
+  end
 })
 vim.lsp.enable "vue_ls"
 
