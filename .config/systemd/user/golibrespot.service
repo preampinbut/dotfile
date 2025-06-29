@@ -1,0 +1,15 @@
+[Unit]
+Description=A spotify playing daemon
+Documentation=https://github.com/devgianlu/go-librespot
+Wants=sound.target
+After=sound.target
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/go-librespot
+Restart=always
+RestartSec=12
+
+[Install]
+WantedBy=default.target

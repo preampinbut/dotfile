@@ -1,0 +1,8 @@
+credentials:
+  type: interactive
+server:
+  enabled: true
+  address: localhost
+  port: 36842
+device_name: "bluestation (no-select)"
+device_type: "computer"
