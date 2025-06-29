@@ -7,3 +7,5 @@
 <img alt="preview-2" src="./previews/5.png" />
 
 https://github.com/user-attachments/assets/8aad22c8-dee5-4c94-95d3-94c901747f99
+
+> for some reason linux break hibernation have to switch to linux-zen
