@@ -11,10 +11,11 @@
     }
   },
   "logo": {
-    "source": "/home/preampinbut/Pictures/gundam/witchfrommercury/71_ミオリネ・レンブラン.png",
+    "source": "/home/preampinbut/Pictures/umamusume/cinderella_gray/oguri_cap_chara_img1-2.png",
     "type": "kitty",
     "position": "left",
-    "width": 36,
+    // "width": 38,
+    "height": 16,
     "preserveAspectRatio": true
   },
   "modules": [
