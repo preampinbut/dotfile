@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case $1 in
+    post)
+      /usr/bin/pkill go-librespot
+      /usr/bin/pkill spotifyd
+    ;;
+esac
+
+exit 0
