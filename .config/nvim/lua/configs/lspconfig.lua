@@ -2,6 +2,7 @@ local node_modules = io.popen("npm root -g"):read "l" .. "/"
 
 require("nvchad.configs.lspconfig").defaults()
 
+vim.lsp.enable "emmet_ls"
 vim.lsp.enable "html"
 
 vim.lsp.config("cssls", {
@@ -15,6 +16,22 @@ vim.lsp.config("cssls", {
 })
 vim.lsp.enable "cssls"
 
+vim.lsp.config("tailwindcss", {
+  settings = {
+    tailwindCSS = {
+      classAttributes = {
+        "class",
+        "className",
+        "class:list",
+        "classList",
+        "ngClass",
+        "activeClass",
+        "inactiveClass",
+        "ui",
+      },
+    },
+  },
+})
 vim.lsp.enable "tailwindcss"
 
 vim.lsp.config("vue_ls", {
