@@ -1,0 +1,42 @@
+#!/bin/bash
+
+config_file="$HOME/.config/mpvpaper/config"
+
+main() {
+  local prev_vid=$(grep "^vid:" "$config_file" | cut -d':' -f2- | xargs)
+
+  if [ -z "$prev_vid" ]; then
+    echo "Error: Value for key \"vid\" not found in the config file."
+    exit 1
+  fi
+
+  while true; do
+    local runner_pid=0
+    local vid=$(grep "^vid:" "$config_file" | cut -d':' -f2- | xargs)
+    echo "vid: $vid"
+
+    if [ -z "$vid" ]; then
+      echo "Error: Value for key \"vid\" not found in the config file."
+      exit 1
+    fi
+
+    if ! pgrep -x "mpvpaper" > /dev/null; then
+      echo "Start runner $vid"
+      eval "$HOME/.config/mpvpaper/runner \"$vid\"" & runner_pid=$!
+      disown "$runner_pid"
+    else
+      echo "g"
+    fi
+
+    if [ "$vid" != "$prev_vid" ]; then
+      echo "Kill runner $runner_pid"
+      kill "$runner_pid"
+      prev_vid="$vid"
+      sleep 3
+    fi
+
+    sleep 3
+  done
+}
+
+main

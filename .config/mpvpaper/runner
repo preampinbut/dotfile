@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mpvpaper -o "--no-audio --loop" "eDP-1" "$1"
