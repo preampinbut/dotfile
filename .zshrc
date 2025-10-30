@@ -130,9 +130,6 @@ if [[ $KITTY_WINDOW_ID == "1" && -z "$TMUX" ]]; then
 	fastfetch
 fi
 
-# sway-contrib
-export PATH=/usr/share/sway-contrib/:$PATH
-
 # go
 export PATH=/usr/local/go/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
