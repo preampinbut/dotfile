@@ -72,7 +72,7 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # Add wisely, as too many plugins slow down shell startup.
 
 zstyle ':omz:plugins:nvm' lazy yes
-zstyle ':omz:plugins:nvm' lazy-cmd nvim
+zstyle ':omz:plugins:nvm' lazy-cmd nvim sudoedit sudo
 zstyle ':omz:plugins:nvm' autoload yes
 zstyle ':omz:plugins:nvm' silent-autoload yes
 
