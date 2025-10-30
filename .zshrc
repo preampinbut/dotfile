@@ -112,6 +112,9 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# zoxide
+eval "$(zoxide init zsh)"
+
 setopt COMBINING_CHARS # this is a fix for thai vowels
 
 alias v="nvim"
