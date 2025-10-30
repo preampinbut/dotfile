@@ -133,3 +133,10 @@ fi
 # go
 export PATH=/usr/local/go/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
+
+# bun completions
+[ -s "/home/preampinbut/.bun/_bun" ] && source "/home/preampinbut/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
