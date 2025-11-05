@@ -53,6 +53,10 @@ return {
           quit_on_open = true,
         },
       },
+      view = {
+        width = 40,
+        relativenumber = true,
+      },
       on_attach = function(bufnr)
         local nvimtree = require "configs.nvimtree"
         nvimtree.on_attach(bufnr)
