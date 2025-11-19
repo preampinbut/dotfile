@@ -34,6 +34,45 @@ vim.lsp.config("tailwindcss", {
 })
 vim.lsp.enable "tailwindcss"
 
+local vue_plugin = {
+  name = "@vue/typescript-plugin",
+  location = node_modules .. "@vue/language-server",
+  languages = {
+    "vue",
+  },
+}
+local tsserver_filetype = {
+  "javascript",
+  "typescript",
+  "javascriptreact",
+  "typescriptreact",
+  "vue",
+}
+
+vim.lsp.config("vtsls", {
+  settings = {
+    vtsls = {
+      tsserver = {
+        globalPlugins = {
+          vue_plugin,
+        },
+      },
+    },
+  },
+  filetypes = tsserver_filetype,
+})
+-- vim.lsp.enable "vtsls"
+
+vim.lsp.config("ts_ls", {
+  init_options = {
+    plugins = {
+      vue_plugin,
+    },
+  },
+  filetypes = tsserver_filetype,
+})
+vim.lsp.enable "ts_ls"
+
 vim.lsp.config("vue_ls", {
   init_options = {
     typescript = {
@@ -48,35 +87,14 @@ vim.lsp.config("vue_ls", {
     },
   },
   before_init = function(_, config)
-    local lib_path = vim.fs.find("node_modules/typescript/lib", { path = new_root_dir, upward = true })[1]
+    local current_dir = vim.fn.getcwd()
+    local lib_path = vim.fs.find("node_modules/typescript/lib", { path = current_dir, upward = true })[1]
     if lib_path then
       config.init_options.typescript.tsdk = lib_path
     end
   end,
 })
 vim.lsp.enable "vue_ls"
-
-vim.lsp.config("ts_ls", {
-  init_options = {
-    plugins = {
-      {
-        name = "@vue/typescript-plugin",
-        location = node_modules .. "@vue/language-server",
-        languages = {
-          "vue",
-        },
-      },
-    },
-  },
-  filetypes = {
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "vue",
-  },
-})
-vim.lsp.enable "ts_ls"
 
 local base_on_attach = vim.lsp.config.eslint.on_attach
 vim.lsp.config("eslint", {
