@@ -5,6 +5,15 @@ require("nvchad.configs.lspconfig").defaults()
 vim.lsp.enable "emmet_ls"
 vim.lsp.enable "html"
 
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+vim.lsp.config("jsonls", {
+  capabilities = capabilities,
+})
+vim.lsp.enable "jsonls"
+
 vim.lsp.config("cssls", {
   settings = {
     css = {
