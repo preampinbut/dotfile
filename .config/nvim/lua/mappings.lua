@@ -45,7 +45,6 @@ map("n", "<S-k>", function()
   vim.lsp.buf.hover { border = "single" }
 end)
 
-
 map("n", "<leader>ca", function()
   vim.lsp.buf.code_action()
 end, { desc = "Code Actions " })
@@ -65,3 +64,9 @@ map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Find
 map("n", "<leader>fS", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "Find workspace symbol" })
 map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Find Reference" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles only_cwd=true<CR>", { desc = "Find oldfiles" })
+
+-- Copilot
+
+map("n", "<M-l>", function()
+  require("copilot-lsp.nes").request_nes "copilot"
+end, { desc = "Trigger copilot-lsp nes" })
