@@ -126,7 +126,7 @@ alias cp="rsync -ah --progress --no-inc-recursive --ignore-times --inplace" # I 
 
 # kitty
 # only show fastfetch on kitty first tab
-if [[ $KITTY_WINDOW_ID == "1" && -z "$TMUX" ]]; then
+if [[ -z "$TMUX" ]]; then
 	fastfetch
 fi
 
