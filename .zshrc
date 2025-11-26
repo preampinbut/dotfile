@@ -124,10 +124,11 @@ alias ll="ls -ClahF"
 alias fastfetch="clear && fastfetch"
 alias cp="rsync -ah --progress --no-inc-recursive --ignore-times --inplace" # I love rsync
 
-# kitty
-# only show fastfetch on kitty first tab
+# skip fastfetch in tmux
 if [[ -z "$TMUX" ]]; then
+  sleep 0.1
 	fastfetch
+  sleep 0.1
 fi
 
 # go
