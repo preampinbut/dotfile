@@ -1,40 +1,112 @@
 #!/bin/bash
 
+# Configuration file path
 config_file="$HOME/.config/mpvpaper/config"
 
-main() {
-  local prev_vid=$(grep "^vid:" "$config_file" | cut -d':' -f2- | xargs)
+# Function to safely extract a key's value from the config file
+get_config_value() {
+  local key="$1"
+  # Search for the key, cut off the key and colon, trim whitespace
+  grep "^${key}:" "$config_file" | cut -d':' -f2- | xargs
+}
 
+main() {
+  # --- Initial Configuration Read ---
+  local prev_vid=$(get_config_value "vid")
+  local prev_enabled=$(get_config_value "enabled")
+  local runner_pid=0
+
+  # Handle initial error if 'vid' is missing
   if [ -z "$prev_vid" ]; then
     echo "Error: Value for key \"vid\" not found in the config file."
     exit 1
   fi
 
-  while true; do
-    local runner_pid=0
-    local vid=$(grep "^vid:" "$config_file" | cut -d':' -f2- | xargs)
-    echo "vid: $vid"
+  # Ensure 'prev_enabled' defaults to 'false' if not found
+  if [ -z "$prev_enabled" ]; then
+    prev_enabled="false"
+  fi
 
+  # Convert to lowercase for reliable comparison
+  prev_enabled=$(echo "$prev_enabled" | tr '[:upper:]' '[:lower:]')
+
+  echo "Initial vid: $prev_vid, Initial enabled: $prev_enabled"
+
+  # If enabled initially, start the runner for the first time
+  if [ "$prev_enabled" = "true" ]; then
+      echo "Start initial runner $prev_vid"
+      # Execute the runner script in the background
+      eval "$HOME/.config/mpvpaper/runner \"$prev_vid\"" & runner_pid=$!
+      disown "$runner_pid"
+  fi
+
+  # --- Main Monitoring Loop ---
+  while true; do
+    # Read current config values
+    local vid=$(get_config_value "vid")
+    local enabled=$(get_config_value "enabled")
+
+    # Ensure 'enabled' defaults to 'false' if not found
+    if [ -z "$enabled" ]; then
+      enabled="false"
+    fi
+
+    # Convert to lowercase for reliable comparison
+    enabled=$(echo "$enabled" | tr '[:upper:]' '[:lower:]')
+
+    echo "Current vid: $vid, Current enabled: $enabled"
+
+    # Handle error if 'vid' is missing
     if [ -z "$vid" ]; then
       echo "Error: Value for key \"vid\" not found in the config file."
       exit 1
     fi
 
-    if ! pgrep -x "mpvpaper" > /dev/null; then
-      echo "Start runner $vid"
-      eval "$HOME/.config/mpvpaper/runner \"$vid\"" & runner_pid=$!
-      disown "$runner_pid"
-    else
-      echo "g"
+    # 1. Start or Keep Running Logic: 
+    # Check if the process is NOT running AND the current config says it SHOULD be enabled.
+    if [ "$enabled" = "true" ]; then
+        if ! pgrep -x "mpvpaper" > /dev/null; then
+            # This block starts the runner if it's supposed to be running but isn't
+            echo "Start runner $vid"
+            # Ensure we start with the *current* video ID
+            eval "$HOME/.config/mpvpaper/runner \"$vid\"" & runner_pid=$!
+            disown "$runner_pid"
+        fi
     fi
 
-    if [ "$vid" != "$prev_vid" ]; then
-      echo "Kill runner $runner_pid"
-      kill "$runner_pid"
-      prev_vid="$vid"
-      sleep 3
+    # 2. Change/Stop Logic:
+    # Check if 'vid' has changed OR 'enabled' state has changed
+    if [ "$vid" != "$prev_vid" ] || [ "$enabled" != "$prev_enabled" ]; then
+
+        # If the process is currently running (based on pgrep) or we recorded a PID
+        # we need to kill it to apply the change.
+        if pgrep -x "mpvpaper" > /dev/null || [ "$runner_pid" -ne 0 ]; then
+            echo "Change detected (vid: $prev_vid -> $vid, enabled: $prev_enabled -> $enabled). Killing runner."
+
+            # The previous PID might not be the right one if something else started mpvpaper, 
+            # so we use pkill for reliability. However, we'll try to kill with the recorded PID too.
+            kill "$runner_pid" 2>/dev/null 
+            pkill -x "mpvpaper" 2>/dev/null
+            runner_pid=0 # Reset PID after killing
+        fi
+
+        # Update previous state variables
+        prev_vid="$vid"
+        prev_enabled="$enabled"
+
+        # If the new state is 'true', start the runner immediately
+        if [ "$enabled" = "true" ]; then
+            echo "Restarting runner for new vid: $vid"
+            eval "$HOME/.config/mpvpaper/runner \"$vid\"" & runner_pid=$!
+            disown "$runner_pid"
+        else
+            echo "Runner stopped because 'enabled' is now false."
+        fi
+
+        sleep 3 # Pause after a change/restart
     fi
 
+    # Main loop sleep
     sleep 3
   done
 }
