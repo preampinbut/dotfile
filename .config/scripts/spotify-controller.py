@@ -6,10 +6,11 @@ import requests
 import argparse
 
 # Default parameters
-output = u"{artist}: {song}"
+output = "{artist}: {song}"
 timeout = 3
 
 url = "http://localhost:36842"
+
 
 def getpidof(name):
     for proc in psutil.process_iter(attrs=["pid", "name"]):
@@ -17,37 +18,20 @@ def getpidof(name):
             return proc.info["pid"]
     return None
 
+
 parser = argparse.ArgumentParser()
 
 parser.add_argument(
-    "-f",
-    "--format",
-    type=str,
-    metavar="custom format",
-    dest="custom_format"
+    "-f", "--format", type=str, metavar="custom format", dest="custom_format"
 )
+parser.add_argument("--timeout", type=int, metavar="request timeout", dest="timeout")
 parser.add_argument(
-    "--timeout",
-    type=int,
-    metavar="request timeout",
-    dest="timeout"
-)
-parser.add_argument(
-    "-u",
-    "--url",
-    type=str,
-    metavar="go-librespot server url",
-    dest="url"
+    "-u", "--url", type=str, metavar="go-librespot server url", dest="url"
 )
 
-parser.add_argument("command",
-                    choices=[
-                        "PlayPause",
-                        "Next",
-                        "Previous",
-                        "Artist",
-                        "Title",
-                        "Status"])
+parser.add_argument(
+    "command", choices=["PlayPause", "Next", "Previous", "Artist", "Title", "Status"]
+)
 
 args = parser.parse_args()
 
@@ -66,40 +50,47 @@ try:
     session_bus = dbus.SessionBus()
     spotify_bus = session_bus.get_object(
         "org.mpris.MediaPlayer2.spotifyd.instance" + str(getpidof("spotifyd")),
-        "/org/mpris/MediaPlayer2"
+        "/org/mpris/MediaPlayer2",
     )
-    player = dbus.Interface(
-        spotify_bus,
-        "org.mpris.MediaPlayer2.Player"
-    )
+    player = dbus.Interface(spotify_bus, "org.mpris.MediaPlayer2.Player")
 # if not found means it either offline or listening on other device
-except:
+except dbus.DBusException:
     player = None
 
 try:
     if command in ["PlayPause", "Next", "Previous"]:
-        remote_player = requests.get(f"{url}/web-api/v1/me/player", timeout=timeout).json()
+        remote_player = requests.get(
+            f"{url}/web-api/v1/me/player", timeout=timeout
+        ).json()
         match command:
             case "PlayPause":
-                if player != None:
+                if player is not None:
                     player.PlayPause()
                 else:
                     if remote_player["is_playing"]:
-                        requests.put(f"{url}/web-api/v1/me/player/pause", timeout=timeout)
+                        requests.put(
+                            f"{url}/web-api/v1/me/player/pause", timeout=timeout
+                        )
                     else:
-                        requests.put(f"{url}/web-api/v1/me/player/play", timeout=timeout)
+                        requests.put(
+                            f"{url}/web-api/v1/me/player/play", timeout=timeout
+                        )
             case "Next":
-                if player != None:
+                if player is not None:
                     player.Next()
                 else:
                     requests.post(f"{url}/web-api/v1/me/player/next", timeout=timeout)
             case "Previous":
-                if player != None:
+                if player is not None:
                     player.Previous()
                 else:
-                    requests.post(f"{url}/web-api/v1/me/player/previous", timeout=timeout)
+                    requests.post(
+                        f"{url}/web-api/v1/me/player/previous", timeout=timeout
+                    )
     elif command in ["Artist", "Title"]:
-        player = requests.get(f"{url}/web-api/v1/me/player/currently-playing", timeout=timeout).json()
+        player = requests.get(
+            f"{url}/web-api/v1/me/player/currently-playing", timeout=timeout
+        ).json()
         match command:
             case "Artist":
                 print(player["item"]["artists"][0]["name"])
@@ -109,10 +100,13 @@ try:
         player = requests.get(f"{url}/web-api/v1/me/player", timeout=timeout).json()
         artist = player["item"]["artists"][0]["name"]
         title = player["item"]["name"]
+        title = title.replace("&", "&amp;")
         if player["is_playing"]:
             status = "playing"
         else:
             status = "paused"
-        print(f"{{ \"text\": \"{output.format(artist=artist, song=title)}\", \"class\": \"{status}\", \"alt\": \"{status}\" }}")
-except:
-    print(f"{{ \"text\": \"Offline\", \"class\": \"offline\", \"alt\": \"offline\" }}\n")
+        print(
+            f'{{ "text": "{output.format(artist=artist, song=title)}", "class": "{status}", "alt": "{status}" }}'
+        )
+except Exception:
+    print('{ "text": "Offline", "class": "offline", "alt": "offline" }\n')
