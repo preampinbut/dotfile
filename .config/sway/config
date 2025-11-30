@@ -23,6 +23,9 @@ seat * xcursor_theme catppuccin-mocha-pink-cursors 48
 input type:keyboard {
 	xkb_layout us,th
 	xkb_options grp:win_space_toggle
+
+  repeat_rate 45
+  repeat_delay 300
 }
 
 input type:touchpad {
@@ -211,7 +214,7 @@ blur_contrast 1
 blur_saturation 1
 corner_radius 5
 
-layer_effects "kitty" blur enable
+layer_effects "wezterm" blur enable
 layer_effects "thunar" blur enable
 
 bar {
