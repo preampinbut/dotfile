@@ -34,10 +34,18 @@ vim.g.lazyvim_python_lsp = "pyright"
 -- Set to "ruff_lsp" to use the old LSP implementation version.
 vim.g.lazyvim_python_ruff = "ruff"
 
+-- Set which filetype to run LspEslintFixAll instead of LazyVim.format()
+vim.g.format_eslint_ft = {
+  "javascript",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact",
+  "vue",
+}
+
 local opt = vim.opt
 
 opt.relativenumber = true
 opt.cursorline = true
 opt.scrolloff = 15
 opt.wrap = true
-

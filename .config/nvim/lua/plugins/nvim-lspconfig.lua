@@ -17,15 +17,6 @@ return {
             },
           },
         },
-        vtsls = {
-          settings = {
-            typescript = {
-              format = {
-                enable = false,
-              },
-            },
-          },
-        },
         ["*"] = {
           keys = {
             {
