@@ -4,7 +4,7 @@ export VISUAL='nvim'
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='$VISUAL'
+  export EDITOR=$VISUAL
 fi
 #
 # zoxide
