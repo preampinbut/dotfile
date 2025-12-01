@@ -2,6 +2,11 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      diagnostics = {
+        float = {
+          border = "single",
+        },
+      },
       servers = {
         vue_ls = {
           settings = {
@@ -29,8 +34,8 @@ return {
         },
       },
       inlay_hints = {
-        enabled = false
-      }
+        enabled = false,
+      },
     },
   },
 }
