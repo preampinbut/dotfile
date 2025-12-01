@@ -4,3 +4,4 @@ source $HOME/.zsh/options.zsh
 source $HOME/.zsh/fastfetch.zsh
 source $HOME/.zsh/go.zsh
 source $HOME/.zsh/bun.zsh
+source $HOME/.zsh/yazi.zsh
