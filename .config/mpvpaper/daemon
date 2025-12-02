@@ -6,104 +6,107 @@ config_file="$HOME/.config/mpvpaper/config"
 # Function to safely extract a key's value from the config file
 get_config_value() {
   local key="$1"
-  # Search for the key, cut off the key and colon, trim whitespace
   grep "^${key}:" "$config_file" | cut -d':' -f2- | xargs
 }
 
 main() {
   # --- Initial Configuration Read ---
-  local prev_vid=$(get_config_value "vid")
-  local prev_enabled=$(get_config_value "enabled")
+  local vpath=$(get_config_value "vpath")
+  local ppath=$(get_config_value "ppath")
+  local enabled=$(get_config_value "enabled")
   local runner_pid=0
 
-  # Handle initial error if 'vid' is missing
-  if [ -z "$prev_vid" ]; then
-    echo "Error: Value for key \"vid\" not found in the config file."
-    exit 1
-  fi
-
-  # Ensure 'prev_enabled' defaults to 'false' if not found
-  if [ -z "$prev_enabled" ]; then
-    prev_enabled="false"
-  fi
-
-  # Convert to lowercase for reliable comparison
-  prev_enabled=$(echo "$prev_enabled" | tr '[:upper:]' '[:lower:]')
-
-  echo "Initial vid: $prev_vid, Initial enabled: $prev_enabled"
-
-  # If enabled initially, start the runner for the first time
-  if [ "$prev_enabled" = "true" ]; then
-      echo "Start initial runner $prev_vid"
-      # Execute the runner script in the background
-      eval "$HOME/.config/mpvpaper/runner \"$prev_vid\"" & runner_pid=$!
-      disown "$runner_pid"
-  fi
+  # State tracking variables
+  local cur_mode=""
+  local cur_path=""
+  local prev_vpath=""
+  local prev_ppath=""
+  local prev_enabled=""
 
   # --- Main Monitoring Loop ---
   while true; do
-    # Read current config values
-    local vid=$(get_config_value "vid")
-    local enabled=$(get_config_value "enabled")
+    # 1. Read current config values
+    vpath=$(get_config_value "vpath")
+    ppath=$(get_config_value "ppath")
+    enabled=$(get_config_value "enabled")
 
-    # Ensure 'enabled' defaults to 'false' if not found
-    if [ -z "$enabled" ]; then
-      enabled="false"
-    fi
-
-    # Convert to lowercase for reliable comparison
+    # Defaults and Formatting
+    if [ -z "$enabled" ]; then enabled="false"; fi
     enabled=$(echo "$enabled" | tr '[:upper:]' '[:lower:]')
 
-    echo "Current vid: $vid, Current enabled: $enabled"
-
-    # Handle error if 'vid' is missing
-    if [ -z "$vid" ]; then
-      echo "Error: Value for key \"vid\" not found in the config file."
-      exit 1
+    # Syntax fix: Use double brackets for AND logic or separate brackets
+    if [[ -z "$vpath" && -z "$ppath" ]]; then
+      echo "Error: Neither 'vpath' nor 'ppath' found in config."
+      sleep 5
+      continue
     fi
 
-    # 1. Start or Keep Running Logic: 
-    # Check if the process is NOT running AND the current config says it SHOULD be enabled.
+    # 2. Determine the TARGET mode and path based on config
+    local target_mode=""
+    local target_path=""
+
     if [ "$enabled" = "true" ]; then
-        if ! pgrep -x "mpvpaper" > /dev/null; then
-            # This block starts the runner if it's supposed to be running but isn't
-            echo "Start runner $vid"
-            # Ensure we start with the *current* video ID
-            eval "$HOME/.config/mpvpaper/runner \"$vid\"" & runner_pid=$!
-            disown "$runner_pid"
-        fi
+      target_mode="mpvpaper"
+      target_path="$vpath"
+    else
+      target_mode="swaybg"
+      target_path="$ppath"
     fi
 
-    # 2. Change/Stop Logic:
-    # Check if 'vid' has changed OR 'enabled' state has changed
-    if [ "$vid" != "$prev_vid" ] || [ "$enabled" != "$prev_enabled" ]; then
+    echo "Target: $target_mode | Path: $target_path"
 
-        # If the process is currently running (based on pgrep) or we recorded a PID
-        # we need to kill it to apply the change.
-        if pgrep -x "mpvpaper" > /dev/null || [ "$runner_pid" -ne 0 ]; then
-            echo "Change detected (vid: $prev_vid -> $vid, enabled: $prev_enabled -> $enabled). Killing runner."
+    # 3. Change Detection Logic
+    # We check if config changed OR if variables match but the process died (Watchdog)
+    local config_changed=false
 
-            # The previous PID might not be the right one if something else started mpvpaper, 
-            # so we use pkill for reliability. However, we'll try to kill with the recorded PID too.
-            kill "$runner_pid" 2>/dev/null 
-            pkill -x "mpvpaper" 2>/dev/null
-            runner_pid=0 # Reset PID after killing
-        fi
+    if [ "$vpath" != "$prev_vpath" ] || \
+       [ "$ppath" != "$prev_ppath" ] || \
+       [ "$enabled" != "$prev_enabled" ]; then
+       config_changed=true
+    fi
 
-        # Update previous state variables
-        prev_vid="$vid"
-        prev_enabled="$enabled"
+    # Check if the runner process is actually running
+    local is_running=false
+    if [ "$runner_pid" -gt 0 ] && kill -0 "$runner_pid" 2>/dev/null; then
+        is_running=true
+    fi
 
-        # If the new state is 'true', start the runner immediately
-        if [ "$enabled" = "true" ]; then
-            echo "Restarting runner for new vid: $vid"
-            eval "$HOME/.config/mpvpaper/runner \"$vid\"" & runner_pid=$!
-            disown "$runner_pid"
+    # 4. Action: Restart/Start if Config Changed OR Process Died
+    if [ "$config_changed" = "true" ] || [ "$is_running" = "false" ]; then
+
+        if [ "$config_changed" = "true" ]; then
+            echo "Change detected (Enabled: $enabled)"
         else
-            echo "Runner stopped because 'enabled' is now false."
+            echo "Watchdog: Process $runner_pid is dead. Restarting..."
         fi
 
-        sleep 3 # Pause after a change/restart
+        # Kill previous instance if it exists
+        if [ "$runner_pid" -gt 0 ]; then
+            kill "$runner_pid" 2>/dev/null
+        fi
+
+        # Force cleanup of backend processes to ensure clean switch
+        # (Switching from video to image or vice versa requires the old one to die)
+        pkill -x "mpvpaper" 2>/dev/null
+        pkill -x "swaybg" 2>/dev/null
+
+        # Start the new runner
+        echo "Starting runner: $target_mode \"$target_path\""
+
+        # Using nohup or setsid is often safer for backgrounding, 
+        # but adhering to your eval structure:
+        eval "$HOME/.config/mpvpaper/runner $target_mode \"$target_path\"" &
+        runner_pid=$!
+        disown "$runner_pid"
+
+        # Update Previous State
+        prev_vpath="$vpath"
+        prev_ppath="$ppath"
+        prev_enabled="$enabled"
+        cur_mode="$target_mode"
+
+        # Give it a moment to start up
+        sleep 1
     fi
 
     # Main loop sleep
