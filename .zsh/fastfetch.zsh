@@ -1,5 +1,5 @@
 # skip fastfetch in tmux
-if [[ -z "$TMUX" ]]; then
+if [[ -z "$TMUX" && -z "$NVIM" ]]; then
   sleep 0.1
 	fastfetch
   sleep 0.1
