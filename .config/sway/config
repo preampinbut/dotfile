@@ -9,6 +9,8 @@ font pango:monospace 8
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+exec kanshi
+
 exec /bin/bash "$HOME/.config/scripts/lock-daemon"
 exec $HOME/.config/mpvpaper/daemon
 
