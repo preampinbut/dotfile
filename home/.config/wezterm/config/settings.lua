@@ -1,5 +1,5 @@
 return function(wezterm, config)
-  config.font_size = 12
+  config.font_size = 14
   config.font = wezterm.font("Cascadia Code")
   config.underline_thickness = "2px"
 
