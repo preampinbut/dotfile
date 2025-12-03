@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Configuration file path
-config_file="$HOME/.config/mpvpaper/config"
+BASE_PATH="$HOME/.config/background"
 
 # Function to safely extract a key's value from the config file
 get_config_value() {
   local key="$1"
-  grep "^${key}:" "$config_file" | cut -d':' -f2- | xargs
+  grep "^${key}:" "$BASE_PATH/config" | cut -d':' -f2- | xargs
 }
 
 main() {
@@ -95,7 +95,7 @@ main() {
 
         # Using nohup or setsid is often safer for backgrounding, 
         # but adhering to your eval structure:
-        eval "$HOME/.config/mpvpaper/runner $target_mode \"$target_path\"" &
+        eval "$BASE_PATH/runner $target_mode \"$target_path\"" &
         runner_pid=$!
         disown "$runner_pid"
 
