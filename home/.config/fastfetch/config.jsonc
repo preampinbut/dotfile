@@ -11,11 +11,11 @@
     }
   },
   "logo": {
-    "source": "/home/preampinbut/Pictures/umamusume/cinderella_gray/oguri_cap_chara_img1-2.png",
+    "source": "/home/preampinbut/Pictures/umamusume/oguri_cap/chara_img1-2.png",
     "type": "kitty",
     "position": "left",
     // "width": 38,
-    "height": 16,
+    "height": 14,
     "preserveAspectRatio": true
   },
   "modules": [
@@ -51,16 +51,16 @@
       "format": "{pretty-name} ({protocol-name})"
     },
     // "wmtheme",
-    {
-      "type": "theme",
-      "key": "Theme",
-      "format": "{theme2}"
-    },
-    {
-      "type": "icons",
-      "key": "Icons",
-      "format": "{icons2}"
-    },
+    // {
+    //   "type": "theme",
+    //   "key": "Theme",
+    //   "format": "{theme2}"
+    // },
+    // {
+    //   "type": "icons",
+    //   "key": "Icons",
+    //   "format": "{icons2}"
+    // },
     {
       "type": "terminal",
       "key": "Terminal",
