@@ -49,3 +49,4 @@ opt.relativenumber = true
 opt.cursorline = true
 opt.scrolloff = 15
 opt.wrap = true
+opt.smoothscroll = false
