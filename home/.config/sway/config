@@ -12,7 +12,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec kanshi
 
 exec /bin/bash "$HOME/.config/scripts/lock-daemon"
-exec $HOME/.config/mpvpaper/daemon
+exec $HOME/.config/background/daemon
 
 set $mod Mod4
 set $term wezterm
