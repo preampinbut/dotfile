@@ -2,7 +2,10 @@ Thunar
 configstore
 dconf
 discord
+Electron
 firebase
+mpv
+procps
 go
 gtk-3.0
 gtk-4.0
@@ -14,4 +17,6 @@ turborepo
 vlc
 xfce4
 xsettingsd
+yay
 mimeapps.list
+pavucontrol.ini

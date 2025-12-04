@@ -1,6 +1,0 @@
-#!/bin/bash
-
-/bin/swayidle -w \
-  before-sleep "/bin/bash $HOME/.config/scripts/swaylock; /bin/sleep 1; /bin/swaymsg 'output * dpms off'" \
-  after-resume "/bin/swaymsg 'output * dpms on'" \
-  lock "/bin/bash $HOME/.config/scripts/swaylock"
