@@ -131,9 +131,9 @@
   },
   "custom/spotify": {
     "tooltip": false,
-    "exec": "python3 $HOME/.config/scripts/spotify-controller.py Status -f \"{artist}<span color='#F38BA8'>:</span> {song}\"",
-    "on-click": "python3 $HOME/.config/scripts/spotify-controller.py Title | wl-copy",
-    "on-click-right": "python3 $HOME/.config/scripts/spotify-controller.py Artist | wl-copy",
+    "exec": "$HOME/.config/scripts/spotify/controller.py Status -f \"{artist}<span color='#F38BA8'>:</span> {song}\"",
+    "on-click": "$HOME/.config/scripts/spotify/controller.py Title | wl-copy",
+    "on-click-right": "$HOME/.config/scripts/spotify/controller.py Artist | wl-copy",
     "format": "{icon}  {text}",
     "format-icons": {
       "playing": "<span color='#CBA6F7'></span>",
