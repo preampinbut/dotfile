@@ -1,0 +1,11 @@
+[Unit]
+Description=Service to manage Swayidle and Swaylock
+BindsTo=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.config/scripts/lock/lock-daemon
+Restart=always
+
+[Install]
+WantedBy=sway-session.target

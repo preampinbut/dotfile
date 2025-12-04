@@ -1,0 +1,11 @@
+[Unit]
+Description=Service to manage Mpvpaper and Swaybg
+BindsTo=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.config/scripts/background/daemon
+Restart=always
+
+[Install]
+WantedBy=sway-session.target
