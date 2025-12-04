@@ -43,6 +43,8 @@ vim.g.format_eslint_ft = {
   "vue",
 }
 
+vim.g.clipboard = "wl-copy"
+
 local opt = vim.opt
 
 opt.relativenumber = true
