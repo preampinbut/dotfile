@@ -1,0 +1,126 @@
+#!/bin/bash
+
+# Configuration file path
+BASE_PATH="$HOME/.config/scripts/background"
+
+# Function to safely extract a key's value from the config file
+get_config_value() {
+  local key="$1"
+  grep "^${key}:" "$BASE_PATH/config" | cut -d':' -f2- | xargs
+}
+
+main() {
+  # --- Check if daemon is already running ---
+  local self_pid=$$
+  local daemon_name=$(basename "$0")
+  local running_pid=$(pgrep -o -x "$daemon_name")
+
+  if [ "$running_pid" ] && [ "$running_pid" != "$self_pid" ]; then
+    echo "Daemon is already running with PID $running_pid. Exiting."
+    exit 0
+  fi
+
+  local vpath=$(get_config_value "vpath")
+  local ppath=$(get_config_value "ppath")
+  local enabled=$(get_config_value "enabled")
+  local runner_pid=0
+
+  # State tracking variables
+  local cur_mode=""
+  local cur_path=""
+  local prev_vpath=""
+  local prev_ppath=""
+  local prev_enabled=""
+
+  # --- Main Monitoring Loop ---
+  while true; do
+    # 1. Read current config values
+    vpath=$(get_config_value "vpath")
+    ppath=$(get_config_value "ppath")
+    enabled=$(get_config_value "enabled")
+
+    # Defaults and Formatting
+    if [ -z "$enabled" ]; then enabled="false"; fi
+    enabled=$(echo "$enabled" | tr '[:upper:]' '[:lower:]')
+
+    # Syntax fix: Use double brackets for AND logic or separate brackets
+    if [[ -z "$vpath" && -z "$ppath" ]]; then
+      echo "Error: Neither 'vpath' nor 'ppath' found in config."
+      sleep 5
+      continue
+    fi
+
+    # 2. Determine the TARGET mode and path based on config
+    local target_mode=""
+    local target_path=""
+
+    if [ "$enabled" = "true" ]; then
+      target_mode="mpvpaper"
+      target_path="$vpath"
+    else
+      target_mode="swaybg"
+      target_path="$ppath"
+    fi
+
+    echo "Target: $target_mode | Path: $target_path"
+
+    # 3. Change Detection Logic
+    # We check if config changed OR if variables match but the process died (Watchdog)
+    local config_changed=false
+
+    if [ "$vpath" != "$prev_vpath" ] ||
+      [ "$ppath" != "$prev_ppath" ] ||
+      [ "$enabled" != "$prev_enabled" ]; then
+      config_changed=true
+    fi
+
+    # Check if the runner process is actually running
+    local is_running=false
+    if [ "$runner_pid" -gt 0 ] && kill -0 "$runner_pid" 2>/dev/null; then
+      is_running=true
+    fi
+
+    # 4. Action: Restart/Start if Config Changed OR Process Died
+    if [ "$config_changed" = "true" ] || [ "$is_running" = "false" ]; then
+
+      if [ "$config_changed" = "true" ]; then
+        echo "Change detected (Enabled: $enabled)"
+      else
+        echo "Watchdog: Process $runner_pid is dead. Restarting..."
+      fi
+
+      # Kill previous instance if it exists
+      if [ "$runner_pid" -gt 0 ]; then
+        kill "$runner_pid" 2>/dev/null
+      fi
+
+      # Force cleanup of backend processes to ensure clean switch
+      # (Switching from video to image or vice versa requires the old one to die)
+      pkill -x "mpvpaper" 2>/dev/null
+      pkill -x "swaybg" 2>/dev/null
+
+      # Start the new runner
+      echo "Starting runner: $target_mode \"$target_path\""
+
+      # Using nohup or setsid is often safer for backgrounding,
+      # but adhering to your eval structure:
+      eval "$BASE_PATH/runner $target_mode \"$target_path\"" &
+      runner_pid=$!
+      disown "$runner_pid"
+
+      # Update Previous State
+      prev_vpath="$vpath"
+      prev_ppath="$ppath"
+      prev_enabled="$enabled"
+      cur_mode="$target_mode"
+
+      # Give it a moment to start up
+      sleep 1
+    fi
+
+    # Main loop sleep
+    sleep 3
+  done
+}
+
+main

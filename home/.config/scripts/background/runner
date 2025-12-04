@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ "$1" == "mpvpaper" ]]; then
+  mpvpaper -o "--no-audio --loop" "eDP-1" "$2"
+elif [[ "$1" == "swaybg" ]]; then
+  swaybg -i "$2" -m center
+fi
