@@ -1,12 +1,12 @@
 [Unit]
 Description=Dynamic output configuration for Wayland compositors
 Documentation=https://gitlab.freedesktop.org/emersion/kanshi
-BindsTo=sway-session.target
+After=default.target
 
 [Service]
-Type=simple
 ExecStart=/usr/bin/kanshi
 Restart=always
+RestartSec=12
 
 [Install]
-WantedBy=sway-session.target
+WantedBy=default.target
