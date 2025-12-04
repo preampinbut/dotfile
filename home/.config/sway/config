@@ -60,6 +60,9 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 floating_modifier $mod
 
+bindsym $mod+p exec $HOME/.config/scripts/switch/lid_handler
+bindswitch --locked --reload lid:toggle exec $HOME/.config/scripts/switch/lid_handler
+
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Return exec $term

@@ -1,0 +1,25 @@
+#!/bin/env bash
+
+############################################################
+# Script:      Toggle eDP-1 based on HDMI and Lid State
+# Author:      Pream Pinbut
+# Date:        2025-04-12
+# Description: This script checks the status of the HDMI-A-1 
+#              output and the laptop lid (LID0). It enables 
+#              the built-in display (eDP-1) only if the HDMI
+#              output is inactive AND the lid is open.
+############################################################
+
+LID_FILE="/proc/acpi/button/lid/LID0/state"
+
+# Check if HDMI-A-1 is currently active ("true" | "")
+HDMI_STATUS=$(swaymsg -t get_outputs | jq -r '.[] | select(.name == "HDMI-A-1") | .active')
+# Check lid state ("open" | "close")
+LID_STATUS=$(cat "$LID_FILE" | awk '{print $NF}')
+
+# If HDMI-A-1 is not active, and LID is open, enable eDP-1 (the laptop screen)
+if [ "$HDMI_STATUS" != "true" ] && [ "$LID_STATUS" == "open" ]; then
+  swaymsg output eDP-1 enable
+else
+  swaymsg output eDP-1 disable
+fi
