@@ -9,11 +9,6 @@ font pango:monospace 8
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-exec kanshi
-
-exec /bin/bash "$HOME/.config/scripts/lock-daemon"
-exec $HOME/.config/background/daemon
-
 set $mod Mod4
 set $term wezterm
 set $browser zen-browser
@@ -37,26 +32,17 @@ input type:touchpad {
 	pointer_accel 0.5
 }
 
-# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-# bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioRaiseVolume exec $HOME/.config/scripts/pactl-set.sh +5%
-bindsym XF86AudioLowerVolume exec $HOME/.config/scripts/pactl-set.sh -5%
+bindsym XF86AudioRaiseVolume exec $HOME/.config/scripts/audio/pactl-set +5%
+bindsym XF86AudioLowerVolume exec $HOME/.config/scripts/audio/pactl-set -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym XF86AudioPlay exec $HOME/.config/scripts/spotify-controller.py PlayPause && $refresh_i3status
-bindsym XF86AudioNext exec $HOME/.config/scripts/spotify-controller.py Next && $refresh_i3status
-bindsym XF86AudioPrev exec $HOME/.config/scripts/spotify-controller.py Previous && $refresh_i3status
-# bindsym XF86AudioPlay exec playerctl --player=spotifyd.instance$(pidof spotifyd) play-pause
-# bindsym XF86AudioNext exec playerctl --player=spotifyd.instance$(pidof spotifyd) next
-# bindsym XF86AudioPrev exec playerctl --player=spotifyd.instance$(pidof spotifyd) previous
+bindsym XF86AudioPlay exec $HOME/.config/scripts/spotify/controller.py PlayPause
+bindsym XF86AudioNext exec $HOME/.config/scripts/spotify/controller.py Next
+bindsym XF86AudioPrev exec $HOME/.config/scripts/spotify/controller.py Previous
 
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-
-# bindsym XF86PowerOff exec /usr/bin/systemctl hibernate
-
-# bindsym $mod+Shift+n exec $HOME/.config/scripts/toggle_touchpad.sh && $refresh_i3status
 
 floating_modifier $mod
 
