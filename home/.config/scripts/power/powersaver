@@ -3,17 +3,30 @@
 # run this script with cronjob
 # * * * * * /path/to/.config/scripts/power/powersaver
 
+# --- Read battery status and energy values ---
 status=$(cat /sys/class/power_supply/BAT0/status)
 energy_full=$(cat /sys/class/power_supply/BAT0/energy_full)
 energy_now=$(cat /sys/class/power_supply/BAT0/energy_now)
 
-# 10%
-threshold_1=$((energy_full / 10))
-# 20%
-threshold_2=$((energy_full / 20))
+# --- Define Thresholds (Using integer division for simplicity) ---
 
-if [ "$status" = "Discharging" ] && [ "$energy_now" -lt "$threshold_2" ]; then
-  /usr/bin/systemctl hibernate
-elif [ "$status" = "Discharging" ] && [ "$energy_now" -lt "$threshold_1" ]; then
-  /usr/bin/brightnessctl set 25%
+# 10% of total energy (The critical low threshold)
+threshold_critical=$((energy_full / 10))
+
+# 20% of total energy (The warning/brightness threshold)
+threshold_warning=$((energy_full / 5))
+
+# --- Debugging Output (Optional but helpful) ---
+echo "Status: $status"
+echo "Energy Now: $energy_now"
+echo "Warning Threshold (20%): $threshold_warning"
+echo "Critical Threshold (10%): $threshold_critical"
+
+# --- Power Management Logic ---
+if [ "$status" = "Discharging" ] && [ "$energy_now" -lt "$threshold_critical" ]; then
+    echo "CRITICAL: Battery below 10%. Initiating hibernate."
+    /usr/bin/systemctl hibernate
+elif [ "$status" = "Discharging" ] && [ "$energy_now" -lt "$threshold_warning" ]; then
+    echo "WARNING: Battery below 20%. Setting brightness to 25%."
+    /usr/bin/brightnessctl set 25%
 fi
