@@ -8,6 +8,30 @@ return {
         },
       },
       servers = {
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              classAttributes = {
+                "class",
+                "className",
+                "class:list",
+                "classList",
+                "ngClass",
+                "activeClass",
+                "inactiveClass",
+                "ui",
+              },
+              experimental = {
+                classRegex = {
+                  {
+                    "ui:\\s*{([^)]*)\\s*}",
+                    "[\"'`]([^\"'`]*).*?[\"'`]",
+                  },
+                },
+              },
+            },
+          },
+        },
         vue_ls = {
           settings = {
             css = {
