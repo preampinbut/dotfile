@@ -1,0 +1,9 @@
+#!/bin/env bash
+
+systemctl stop --user kanshi.service
+
+swaymsg output eDP-1 enable
+
+swaylock
+
+loginctl unlock-session "$XDG_SESSION_ID"

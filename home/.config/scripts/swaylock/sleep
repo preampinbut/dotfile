@@ -1,0 +1,18 @@
+#!/bin/env bash
+
+# stop kanshi service before locking
+# error when HDMI-A-1 is connected while locked
+# 10158 Segmentation fault (core dumped) swaylock
+systemctl stop --user kanshi.service
+
+# disable HDMI-A-1 or sleep and resume will stuck for about 1-2 minutes
+swaymsg output eDP-1 enable
+swaymsg output HDMI-A-1 disable
+sleep 1
+
+# if need to use this run it with nohup
+# swaymsg output * dpms off
+
+swaylock
+
+systemctl start --user kanshi.service

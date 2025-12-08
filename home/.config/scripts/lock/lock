@@ -1,3 +1,0 @@
-#!/bin/bash
-
-/bin/loginctl lock-session "$XDG_SESSION_ID"

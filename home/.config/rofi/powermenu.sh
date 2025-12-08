@@ -48,7 +48,7 @@ $reboot)
 $lock)
   ans=$(confirm_exit Lock &)
   if [[ "$ans" == "Yes" ]]; then
-    /bin/loginctl lock-session "$XDG_SESSION_ID"
+    loginctl lock-session "$XDG_SESSION_ID"
   fi
   ;;
 $hibernate)

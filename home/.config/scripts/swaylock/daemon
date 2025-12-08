@@ -1,0 +1,7 @@
+#!/bin/env bash
+
+/bin/swayidle -w \
+  before-sleep "$HOME/.config/scripts/swaylock/sleep" \
+  after-resume "$HOME/.config/scripts/swaylock/resume" \
+  lock "$HOME/.config/scripts/swaylock/lock" \
+  unlock "$HOME/.config/scripts/swaylock/unlock"
