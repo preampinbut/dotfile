@@ -1,3 +1,5 @@
+export PATH="$HOME/.local/bin:$PATH"
+
 export VISUAL='nvim'
 
 # Preferred editor for local and remote sessions
